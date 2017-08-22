@@ -17,7 +17,7 @@ describe 'move' do
     end
   end
 
-  it 'moves to 2 next' do
+  it 'moves to the top next' do
     board_before_move = ["x", "", "",
                          "",  "", "",
                          "",  "", ""]
@@ -26,7 +26,7 @@ describe 'move' do
                         "",  "",  ""]
     
     board = Board.new(board_before_move)
-    board.move(2)
+    board.move("t")
 
     expect(board.board).to eq(board_after_move)
   end
