@@ -6,7 +6,8 @@ class Board
   end
 
   def move(move)
-    board[move - 1] = "x"
+    zero_based_move = move - 1
+    board[zero_based_move] = "x"
     board
   end
 end
