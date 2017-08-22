@@ -1,19 +1,19 @@
 require 'board'
 
 describe 'move' do
-  [[1, ["x", "",  "",
-        "",  "",  "",
-        "",  "",  ""]],
-   [2, ["",  "x", "",
-        "",  "",  "",
-        "",  "",  ""]],
-   [9, ["",  "",  "",
-        "",  "",  "",
-        "",  "",  "x"]]
-  ].each do |move, board_after_move|
-    it "moves to position #{move}" do
+  [["upper left", "ul", ["x", "",  "",
+                         "",  "",  "",
+                         "",  "",  ""]],
+   ["top", "t", ["",  "x", "",
+                 "",  "",  "",
+                 "",  "",  ""]],
+   ["bottom right", "br", ["",  "",  "",
+                           "",  "",  "",
+                           "",  "",  "x"]]
+  ].each do |move_as_string, move_as_short_str, board_after_move|
+    it "moves to the #{move_as_string} position" do
       board = Board.new
-      expect(board.move(move)).to eq(board_after_move)
+      expect(board.move(move_as_short_str)).to eq(board_after_move)
     end
   end
 
