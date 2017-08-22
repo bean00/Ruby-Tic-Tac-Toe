@@ -24,10 +24,4 @@ describe 'move' do
     board.move(2)
     expect(board.board).to eq(board_after_moves)
   end
-
-  it 'raises an exception if a player tries to move to an occupied position' do
-    board = Board.new
-    board.move(1)
-    expect(board.move(1)).to raise_exception(StandardError)
-  end
 end
