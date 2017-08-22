@@ -17,11 +17,17 @@ describe 'move' do
     end
   end
 
-  it 'moves to 1, then 2' do
-    board_after_moves = ["x", "x", "", "", "", "", "", "", ""]
-    board = Board.new
-    board.move(1)
+  it 'moves to 2 next' do
+    board_before_move = ["x", "", "",
+                         "",  "", "",
+                         "",  "", ""]
+    board_after_move = ["x", "x", "",
+                        "",  "",  "",
+                        "",  "",  ""]
+    
+    board = Board.new(board_before_move)
     board.move(2)
-    expect(board.board).to eq(board_after_moves)
+
+    expect(board.board).to eq(board_after_move)
   end
 end
