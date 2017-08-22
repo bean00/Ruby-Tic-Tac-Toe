@@ -1,21 +1,13 @@
 require 'board'
 
 describe 'move' do
-  it 'moves to position 1' do
-    move_at_1 = ["x", "", "", "", "", "", "", "", ""]
-    board = Board.new
-    expect(board.move(1)).to eq(move_at_1)
-  end
-
-  it 'moves to position 2' do
-    move_at_2 = ["", "x", "", "", "", "", "", "", ""]
-    board = Board.new
-    expect(board.move(2)).to eq(move_at_2)
-  end
-
-  it 'moves to position 9' do
-    move_at_9 = ["", "", "", "", "", "", "", "", "x"]
-    board = Board.new
-    expect(board.move(9)).to eq(move_at_9)
+  [[1, ["x", "",  "", "", "", "", "", "", ""]],
+   [2, ["",  "x", "", "", "", "", "", "", ""]],
+   [9, ["",  "",  "", "", "", "", "", "", "x"]]
+  ].each do |move, board_after_move|
+    it "moves to position #{move}" do
+      board = Board.new
+      expect(board.move(move)).to eq(board_after_move)
+    end
   end
 end
