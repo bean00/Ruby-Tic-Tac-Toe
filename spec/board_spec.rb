@@ -12,4 +12,10 @@ describe 'move' do
     board = Board.new
     expect(board.move(2)).to eq(move_at_2)
   end
+
+  it 'moves to position 9' do
+    move_at_9 = ["", "", "", "", "", "", "", "", "x"]
+    board = Board.new
+    expect(board.move(9)).to eq(move_at_9)
+  end
 end
