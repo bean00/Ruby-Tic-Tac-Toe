@@ -11,7 +11,7 @@ class Board
   def move(move_string)
     move_symbol = move_string.to_sym
     move_index = @moves[move_symbol]
-    board[move_index] = "x"
-    board
+    @board[move_index] = "x"
+    @board
   end
 end
