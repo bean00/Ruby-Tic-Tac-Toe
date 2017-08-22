@@ -1,5 +1,7 @@
 class Board
   def self.move(move)
-    ["x", "", "", "", "", "", "", "", ""]
+    board = ["", "", "", "", "", "", "", "", ""]
+    board[move - 1] = "x"
+    board
   end
 end
