@@ -55,3 +55,10 @@ describe 'is_valid' do
     expect(board.is_valid("tl")).to be false
   end
 end
+
+describe 'does_move_exist' do
+  it 'returns true for a move that exists' do
+    board = Board.new
+    expect(board.does_move_exist("r")).to be true
+  end
+end
