@@ -61,4 +61,12 @@ describe 'does_move_exist' do
     board = Board.new
     expect(board.does_move_exist("r")).to be true
   end
+
+  it "returns false for a move that doesn't exist" do
+    board = Board.new
+    expect(board.does_move_exist("m")).to be false
+  end
 end
+
+
+
