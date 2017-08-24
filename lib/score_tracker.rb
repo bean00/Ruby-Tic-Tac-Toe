@@ -12,6 +12,11 @@ class ScoreTracker
       has_won = true
     end
 
+    left_col = @board[0] + @board[3] + @board[6]
+    if left_col.count(character) == 3
+      has_won = true
+    end
+
     return has_won
   end
 
