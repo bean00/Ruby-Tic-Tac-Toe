@@ -14,4 +14,10 @@ class Board
     @board[move_index] = "x"
     @board
   end
+
+  def is_valid(move_string)
+    move_symbol = move_string.to_sym
+    move_index = @moves[move_symbol]
+    return (@board[move_index] == "")
+  end
 end

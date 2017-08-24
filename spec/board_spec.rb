@@ -31,3 +31,10 @@ describe 'move' do
     expect(board.board).to eq(board_after_move)
   end
 end
+
+describe 'is_valid' do
+  it 'returns true for a valid first move' do
+    board = Board.new
+    expect(board.is_valid("ul")).to be true
+  end
+end
