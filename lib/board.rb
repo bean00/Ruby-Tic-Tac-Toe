@@ -16,7 +16,7 @@ class Board
   end
 
   def is_valid(move_symbol)
-    if @moves.has_key?(move_symbol)
+    if move_exists(move_symbol)
       move_index = @moves[move_symbol]
       return (@board[move_index] == "")
     else
@@ -24,7 +24,7 @@ class Board
     end
   end
 
-  def does_move_exist(move_symbol)
+  def move_exists(move_symbol)
     return (@moves.has_key?(move_symbol))
   end
 end

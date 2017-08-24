@@ -56,15 +56,15 @@ describe 'is_valid' do
   end
 end
 
-describe 'does_move_exist' do
+describe 'move_exists' do
   it 'returns true for a move that exists' do
     board = Board.new
-    expect(board.does_move_exist(:r)).to be true
+    expect(board.move_exists(:r)).to be true
   end
 
   it "returns false for a move that doesn't exist" do
     board = Board.new
-    expect(board.does_move_exist(:m)).to be false
+    expect(board.move_exists(:m)).to be false
   end
 end
 
