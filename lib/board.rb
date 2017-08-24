@@ -35,9 +35,9 @@ class Board
     top_row = @board[0, 3]
     middle_row = @board[3, 3]
     bottom_row = @board[6, 3]
-    return is_row_full(top_row, character)    ||
-           is_row_full(middle_row, character) ||
-           is_row_full(bottom_row, character)
+    rows = [top_row, middle_row, bottom_row]
+
+    return are_any_rows_full(rows, character)
   end
 
   def are_any_rows_full(rows, character)
