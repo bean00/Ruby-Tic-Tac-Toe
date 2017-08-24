@@ -41,9 +41,13 @@ class Board
   end
 
   def are_any_rows_full(rows, character)
-    return is_row_full(rows[0], character) ||
-           is_row_full(rows[1], character) ||
-           is_row_full(rows[2], character)
+    is_a_row_full = false
+    rows.each do |row|
+      if is_row_full(row, character)
+        is_a_row_full = true
+      end
+    end
+    is_a_row_full
   end
 
   def is_row_full(row, character)
