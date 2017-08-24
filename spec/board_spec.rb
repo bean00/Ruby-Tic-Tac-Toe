@@ -55,6 +55,7 @@ describe 'move' do
   end
 end
 
+
 describe 'is_valid' do
   it 'returns true for a valid first move' do
     board = Board.new
@@ -79,6 +80,7 @@ describe 'is_valid' do
   end
 end
 
+
 describe 'move_exists' do
   it 'returns true for a move that exists' do
     board = Board.new
@@ -90,6 +92,7 @@ describe 'move_exists' do
     expect(board.move_exists(:m)).to be false
   end
 end
+
 
 describe 'position_is_empty' do
   it 'returns true if the position is empty' do
