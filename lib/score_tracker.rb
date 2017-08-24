@@ -1,6 +1,6 @@
 class ScoreTracker
 
-  def initialize(board)
+  def initialize(board=Array.new(9, ""))
     @board = board
   end
 

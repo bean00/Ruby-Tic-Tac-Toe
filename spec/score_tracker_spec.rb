@@ -8,13 +8,11 @@ describe 'has_player_won' do
     board.move("t", "x")
     board.move("tr", "x")
     st = ScoreTracker.new(board.board)
-
     expect(st.has_player_won("x")).to be true
   end
 
   it 'returns false when the board is empty' do
-    board = Board.new
-    st = ScoreTracker.new(board.board)
+    st = ScoreTracker.new
     expect(st.has_player_won("x")).to be false
   end
 
@@ -54,8 +52,7 @@ describe 'extract_rows' do
   end
 
   it 'returns all rows for an empty board' do
-    board = Board.new
-    st = ScoreTracker.new(board.board)
+    st = ScoreTracker.new
     rows = [["", "", ""],
             ["", "", ""],
             ["", "", ""]]
@@ -66,8 +63,7 @@ end
 
 describe 'are_any_rows_full' do
   it 'returns true if one row is full' do
-    board = Board.new
-    st = ScoreTracker.new(board.board)
+    st = ScoreTracker.new
     rows = [["x", "x", "x"],
             ["",  "",  ""],
             ["",  "",  ""]]
@@ -75,8 +71,7 @@ describe 'are_any_rows_full' do
   end
 
   it 'returns false if no row is full' do
-    board = Board.new
-    st = ScoreTracker.new(board.board)
+    st = ScoreTracker.new
     rows = [["x", "",  ""],
             ["",  "",  ""],
             ["x", "x", "o"]]
@@ -87,22 +82,19 @@ end
 
 describe 'is_row_full' do
   it 'returns true if the row is full' do
-    board = Board.new
-    st = ScoreTracker.new(board.board)
+    st = ScoreTracker.new
     row = ["x", "x", "x"]
     expect(st.is_row_full(row, "x")).to be true
   end
 
   it 'returns false if the row is empty' do
-    board = Board.new
-    st = ScoreTracker.new(board.board)
+    st = ScoreTracker.new
     row = ["", "", ""]
     expect(st.is_row_full(row, "x")).to be false
   end
 
   it 'returns false if the row has mixed characters' do
-    board = Board.new
-    st = ScoreTracker.new(board.board)
+    st = ScoreTracker.new
     row = ["x", "o", "x"]
     expect(st.is_row_full(row, "x")).to be false
   end
