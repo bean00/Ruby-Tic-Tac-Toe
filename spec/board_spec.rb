@@ -153,11 +153,18 @@ end
 describe 'are_any_rows_full' do
   it 'returns true if one row is full' do
     board = Board.new
-    top_row = ["x", "x", "x"]
-    middle_row = ["", "", ""]
-    bottom_row = ["", "", ""]
-    rows = [top_row, middle_row, bottom_row]
+    rows = [["x", "x", "x"],
+            ["",  "",  ""],
+            ["",  "",  ""]]
     expect(board.are_any_rows_full(rows, "x")).to be true
+  end
+
+  it 'returns false if no row is full' do
+    board = Board.new
+    rows = [["x", "",  ""],
+            ["",  "",  ""],
+            ["x", "x", "o"]]
+    expect(board.are_any_rows_full(rows, "x")).to be false
   end
 end
 
