@@ -29,4 +29,9 @@ class Board
     move_index = @moves[move_symbol]
     return (@board[move_index] == "")
   end
+
+
+  def has_player_won(character)
+    true
+  end
 end

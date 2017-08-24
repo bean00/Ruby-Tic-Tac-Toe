@@ -117,3 +117,16 @@ describe 'position_is_empty' do
   end
 end
 
+
+describe 'has_player_won' do
+  it 'returns true when the top row is filled' do
+    board = Board.new
+    board.move("ul", "x")
+    board.move("t", "x")
+    board.move("ur", "x")
+    expect(board.has_player_won("x")). to be true
+  end
+end
+
+
+
