@@ -15,8 +15,7 @@ class Board
     @board
   end
 
-  def is_valid(move_string)
-    move_symbol = move_string.to_sym
+  def is_valid(move_symbol)
     if @moves.has_key?(move_symbol)
       move_index = @moves[move_symbol]
       return (@board[move_index] == "")
