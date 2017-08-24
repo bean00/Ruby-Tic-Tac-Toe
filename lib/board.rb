@@ -33,6 +33,10 @@ class Board
 
   def has_player_won(character)
     top_row = @board[0, 3]
-    return (top_row.count(character) == 3)
+    middle_row = @board[3, 3]
+    bottom_row = @board[6, 3]
+    return (top_row.count(character) == 3)    ||
+           (middle_row.count(character) == 3) ||
+           (bottom_row.count(character) == 3)
   end
 end

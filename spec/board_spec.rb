@@ -131,6 +131,22 @@ describe 'has_player_won' do
     board = Board.new
     expect(board.has_player_won("x")).to be false
   end
+
+  it 'returns true when the middle row is filled' do
+    board = Board.new
+    board.move("l", "o")
+    board.move("c", "o")
+    board.move("r", "o")
+    expect(board.has_player_won("o")).to be true
+  end
+
+  it 'returns true when the bottom row is filled' do
+    board = Board.new
+    board.move("bl", "x")
+    board.move("b", "x")
+    board.move("br", "x")
+    expect(board.has_player_won("x")).to be true
+  end
 end
 
 
