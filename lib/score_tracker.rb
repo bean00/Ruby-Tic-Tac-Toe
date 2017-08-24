@@ -12,10 +12,8 @@ class ScoreTracker
       has_won = true
     end
 
-    left_col = @board[0] + @board[3] + @board[6]
-    middle_col = @board[1] + @board[4] + @board[7]
-    right_col = @board[2] + @board[5] + @board[8]
-    columns = [left_col, middle_col, right_col]
+    
+    columns = extract_columns
     if are_any_arrays_full(columns, character)
       has_won = true
     end
@@ -28,6 +26,13 @@ class ScoreTracker
     middle_row = @board[3, 3]
     bottom_row = @board[6, 3]
     [top_row, middle_row, bottom_row]
+  end
+
+  def extract_columns
+    left_col = @board[0] + @board[3] + @board[6]
+    middle_col = @board[1] + @board[4] + @board[7]
+    right_col = @board[2] + @board[5] + @board[8]
+    [left_col, middle_col, right_col]
   end
 
   def are_any_arrays_full(arrays, character)
