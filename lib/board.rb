@@ -25,8 +25,7 @@ class Board
     end
   end
 
-  def does_move_exist(move_string)
-    move_symbol = move_string.to_sym
+  def does_move_exist(move_symbol)
     return (@moves.has_key?(move_symbol))
   end
 end
