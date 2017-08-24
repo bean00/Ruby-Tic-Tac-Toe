@@ -21,12 +21,12 @@ describe 'move' do
     board_before_move = ["x", "", "",
                          "",  "", "",
                          "",  "", ""]
-    board_after_move = ["x", "x", "",
+    board_after_move = ["x", "o", "",
                         "",  "",  "",
                         "",  "",  ""]
     
     board = Board.new(board_before_move)
-    board.move("t", "x")
+    board.move("t", "o")
 
     expect(board.board).to eq(board_after_move)
   end
