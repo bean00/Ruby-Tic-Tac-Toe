@@ -13,7 +13,7 @@ class ScoreTracker
     end
 
     left_col = @board[0] + @board[3] + @board[6]
-    if left_col.count(character) == 3
+    if is_array_full(left_col, character)
       has_won = true
     end
 
@@ -30,15 +30,15 @@ class ScoreTracker
   def are_any_rows_full(rows, character)
     is_a_row_full = false
     rows.each do |row|
-      if is_row_full(row, character)
+      if is_array_full(row, character)
         is_a_row_full = true
       end
     end
     is_a_row_full
   end
 
-  def is_row_full(row, character)
-    return (row.count(character) == 3)
+  def is_array_full(array, character)
+    return (array.count(character) == 3)
   end
 
 end

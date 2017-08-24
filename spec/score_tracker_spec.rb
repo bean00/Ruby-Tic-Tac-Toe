@@ -89,23 +89,23 @@ describe 'are_any_rows_full' do
 end
 
 
-describe 'is_row_full' do
+describe 'is_array_full' do
   it 'returns true if the row is full' do
     st = ScoreTracker.new
     row = ["x", "x", "x"]
-    expect(st.is_row_full(row, "x")).to be true
+    expect(st.is_array_full(row, "x")).to be true
   end
 
   it 'returns false if the row is empty' do
     st = ScoreTracker.new
     row = ["", "", ""]
-    expect(st.is_row_full(row, "x")).to be false
+    expect(st.is_array_full(row, "x")).to be false
   end
 
   it 'returns false if the row has mixed characters' do
     st = ScoreTracker.new
     row = ["x", "o", "x"]
-    expect(st.is_row_full(row, "x")).to be false
+    expect(st.is_array_full(row, "x")).to be false
   end
 end
 
