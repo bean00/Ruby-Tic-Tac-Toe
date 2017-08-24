@@ -10,10 +10,10 @@ describe 'move' do
    ["bottom right", "br", ["",  "",  "",
                            "",  "",  "",
                            "",  "",  "x"]]
-  ].each do |move_as_string, move_as_short_str, board_after_move|
-    it "moves to the #{move_as_string} position" do
+  ].each do |position_as_string, position_as_short_str, board_after_move|
+    it "moves to the #{position_as_string} position" do
       board = Board.new
-      expect(board.move(move_as_short_str)).to eq(board_after_move)
+      expect(board.move(position_as_short_str, "x")).to eq(board_after_move)
     end
   end
 
@@ -26,7 +26,7 @@ describe 'move' do
                         "",  "",  ""]
     
     board = Board.new(board_before_move)
-    board.move("t")
+    board.move("t", "x")
 
     expect(board.board).to eq(board_after_move)
   end
@@ -40,13 +40,13 @@ describe 'is_valid' do
 
   it 'returns true for a valid second move' do
     board = Board.new
-    board.move("ul")
+    board.move("ul", "x")
     expect(board.is_valid(:t)).to be true
   end
 
   it 'returns false for an invalid second move' do
     board = Board.new
-    board.move("c")
+    board.move("c", "x")
     expect(board.is_valid(:c)).to be false
   end
 
@@ -76,7 +76,7 @@ describe 'position_is_empty' do
 
   it 'returns false if the position is taken' do
     board = Board.new
-    board.move("c")
+    board.move("c", "x")
     expect(board.position_is_empty(:c)).to be false
   end
 end

@@ -8,10 +8,10 @@ class Board
                :bl => 6, :b => 7, :br => 8 }
   end
 
-  def move(move_string)
-    move_symbol = move_string.to_sym
-    move_index = @moves[move_symbol]
-    @board[move_index] = "x"
+  def move(position, character)
+    position_symbol = position.to_sym
+    move_index = @moves[position_symbol]
+    @board[move_index] = character
     @board
   end
 
