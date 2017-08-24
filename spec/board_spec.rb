@@ -150,6 +150,22 @@ describe 'has_player_won' do
 end
 
 
+describe 'extract_rows' do
+  it 'returns all rows' do
+    board = Board.new
+    board.move("ul", "x")
+    board.move("c", "o")
+    board.move("bl", "x")
+
+    rows = [["x", "",  ""],
+            ["",  "o", ""],
+            ["x", "",  ""]]
+
+    expect(board.extract_rows).to eq rows
+  end
+end
+
+
 describe 'are_any_rows_full' do
   it 'returns true if one row is full' do
     board = Board.new

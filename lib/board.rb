@@ -40,6 +40,12 @@ class Board
     return are_any_rows_full(rows, character)
   end
 
+  def extract_rows
+    rows = [["x", "", ""],
+            ["", "o", ""],
+            ["x", "", ""]]
+  end
+
   def are_any_rows_full(rows, character)
     is_a_row_full = false
     rows.each do |row|
