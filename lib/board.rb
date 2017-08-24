@@ -39,4 +39,9 @@ class Board
            (middle_row.count(character) == 3) ||
            (bottom_row.count(character) == 3)
   end
+
+  def is_row_full(row, character)
+    return (row.count(character) == 3)
+  end 
+
 end

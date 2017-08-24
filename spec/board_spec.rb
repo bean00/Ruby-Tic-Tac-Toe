@@ -150,4 +150,24 @@ describe 'has_player_won' do
 end
 
 
+describe 'is_row_full' do
+  it 'returns true if the row is full' do
+    board = Board.new
+    row = ["x", "x", "x"]
+    expect(board.is_row_full(row, "x")).to be true
+  end
+
+  it 'returns false if the row is empty' do
+    board = Board.new
+    row = ["", "", ""]
+    expect(board.is_row_full(row, "x")).to be false
+  end
+
+  it 'returns false if the row has mixed characters' do
+    board = Board.new
+    row = ["x", "o", "x"]
+    expect(board.is_row_full(row, "x")).to be false
+  end
+end
+
 
