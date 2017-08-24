@@ -14,7 +14,9 @@ class ScoreTracker
 
     left_col = @board[0] + @board[3] + @board[6]
     middle_col = @board[1] + @board[4] + @board[7]
-    if is_array_full(left_col, character) || is_array_full(middle_col, character)
+    right_col = @board[2] + @board[5] + @board[8]
+    columns = [left_col, middle_col, right_col]
+    if are_any_arrays_full(columns, character)
       has_won = true
     end
 
