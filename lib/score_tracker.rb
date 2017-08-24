@@ -5,9 +5,14 @@ class ScoreTracker
   end
 
   def has_player_won(character)
-    rows = extract_rows
+    has_won = false
 
-    return are_any_rows_full(rows, character)
+    rows = extract_rows
+    if are_any_rows_full(rows, character)
+      has_won = true
+    end
+
+    return has_won
   end
 
   def extract_rows
