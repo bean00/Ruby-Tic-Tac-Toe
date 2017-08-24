@@ -32,6 +32,7 @@ class Board
 
 
   def has_player_won(character)
-    true
+    top_row = @board[0, 3]
+    return (top_row.count(character) == 3)
   end
 end

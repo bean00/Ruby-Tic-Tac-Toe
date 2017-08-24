@@ -124,7 +124,12 @@ describe 'has_player_won' do
     board.move("ul", "x")
     board.move("t", "x")
     board.move("ur", "x")
-    expect(board.has_player_won("x")). to be true
+    expect(board.has_player_won("x")).to be true
+  end
+
+  it 'returns false when the board is empty' do
+    board = Board.new
+    expect(board.has_player_won("x")).to be false
   end
 end
 
