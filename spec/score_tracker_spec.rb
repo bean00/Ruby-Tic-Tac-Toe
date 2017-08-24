@@ -12,5 +12,11 @@ describe 'has_player_won' do
 
     expect(st.has_player_won("x")).to be true
   end
+
+  it 'returns false when the board is empty' do
+    board = Board.new
+    st = ScoreTracker.new(board.board)
+    expect(st.has_player_won("x")).to be false
+  end
 end
 
