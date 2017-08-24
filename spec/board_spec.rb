@@ -150,6 +150,18 @@ describe 'has_player_won' do
 end
 
 
+describe 'are_any_rows_full' do
+  it 'returns true if one row is full' do
+    board = Board.new
+    top_row = ["x", "x", "x"]
+    middle_row = ["", "", ""]
+    bottom_row = ["", "", ""]
+    rows = [top_row, middle_row, bottom_row]
+    expect(board.are_any_rows_full(rows, "x")).to be true
+  end
+end
+
+
 describe 'is_row_full' do
   it 'returns true if the row is full' do
     board = Board.new

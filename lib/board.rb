@@ -40,6 +40,12 @@ class Board
            is_row_full(bottom_row, character)
   end
 
+  def are_any_rows_full(rows, character)
+    return is_row_full(rows[0], character) ||
+           is_row_full(rows[1], character) ||
+           is_row_full(rows[2], character)
+  end
+
   def is_row_full(row, character)
     return (row.count(character) == 3)
   end 
