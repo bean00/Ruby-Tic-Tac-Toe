@@ -49,4 +49,9 @@ describe 'is_valid' do
     board.move("c")
     expect(board.is_valid("c")).to be false
   end
+
+  it 'returns false for an invalid move to "tl"' do
+    board = Board.new
+    expect(board.is_valid("tl")).to be false
+  end
 end
