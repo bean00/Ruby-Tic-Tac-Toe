@@ -68,5 +68,16 @@ describe 'move_exists' do
   end
 end
 
+describe 'position_is_empty' do
+  it 'returns true if the position is empty' do
+    board = Board.new
+    expect(board.position_is_empty(:c)).to be true
+  end
 
+  it 'returns false if the position is taken' do
+    board = Board.new
+    board.move("c")
+    expect(board.position_is_empty(:c)).to be false
+  end
+end
 

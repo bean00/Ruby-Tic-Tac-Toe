@@ -23,4 +23,9 @@ class Board
   def move_exists(move_symbol)
     return (@moves.has_key?(move_symbol))
   end
+
+  def position_is_empty(move_symbol)
+    move_index = @moves[move_symbol]
+    return (@board[move_index] == "")
+  end
 end
