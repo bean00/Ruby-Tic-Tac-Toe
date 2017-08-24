@@ -37,4 +37,16 @@ describe 'is_valid' do
     board = Board.new
     expect(board.is_valid("ul")).to be true
   end
+
+  it 'returns true for a valid second move' do
+    board = Board.new
+    board.move("ul")
+    expect(board.is_valid("t")).to be true
+  end
+
+  it 'returns false for an invalid second move' do
+    board = Board.new
+    board.move("c")
+    expect(board.is_valid("c")).to be false
+  end
 end
