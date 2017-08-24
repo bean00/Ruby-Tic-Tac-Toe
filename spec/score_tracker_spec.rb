@@ -42,6 +42,15 @@ describe 'has_player_won' do
     st = ScoreTracker.new(board.board)
     expect(st.has_player_won("x")).to be true
   end
+
+  it 'returns true when the middle column is filled' do
+    board = Board.new
+    board.move("t", "x")
+    board.move("c", "x")
+    board.move("b", "x")
+    st = ScoreTracker.new(board.board)
+    expect(st.has_player_won("x")).to be true
+  end
 end
 
 
