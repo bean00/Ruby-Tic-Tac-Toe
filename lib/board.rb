@@ -32,10 +32,7 @@ class Board
 
 
   def has_player_won(character)
-    top_row = @board[0, 3]
-    middle_row = @board[3, 3]
-    bottom_row = @board[6, 3]
-    rows = [top_row, middle_row, bottom_row]
+    rows = extract_rows
 
     return are_any_rows_full(rows, character)
   end
