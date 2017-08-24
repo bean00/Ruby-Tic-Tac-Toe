@@ -53,6 +53,16 @@ describe 'move' do
 
     expect(board.board).to eq(board_after_moves)
   end
+
+  it "doesn't allow a player to move to an invalid position" do
+    board = Board.new
+    board.move("XX", "x")
+    board_after_move = ["", "", "",
+                        "", "", "",
+                        "", "", ""]
+
+    expect(board.board).to eq(board_after_move)
+  end
 end
 
 
