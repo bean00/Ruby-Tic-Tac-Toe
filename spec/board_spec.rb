@@ -1,7 +1,7 @@
 require 'board'
 
 describe 'move' do
-  [["upper left", "ul", ["x", "",  "",
+  [["top left", "tl", ["x", "",  "",
                          "",  "",  "",
                          "",  "",  ""]],
    ["top", "t", ["",  "x", "",
@@ -69,7 +69,7 @@ end
 describe 'is_valid' do
   it 'returns true for a valid first move' do
     board = Board.new
-    expect(board.is_valid(:ul)).to be true
+    expect(board.is_valid(:tl)).to be true
   end
 
   it 'returns true for a valid second move' do
@@ -84,9 +84,9 @@ describe 'is_valid' do
     expect(board.is_valid(:c)).to be false
   end
 
-  it 'returns false for an invalid move to "tl"' do
+  it 'returns false for an invalid move to "XX"' do
     board = Board.new
-    expect(board.is_valid(:tl)).to be false
+    expect(board.is_valid(:XX)).to be false
   end
 end
 
@@ -121,9 +121,9 @@ end
 describe 'has_player_won' do
   it 'returns true when the top row is filled' do
     board = Board.new
-    board.move("ul", "x")
+    board.move("tl", "x")
     board.move("t", "x")
-    board.move("ur", "x")
+    board.move("tr", "x")
     expect(board.has_player_won("x")).to be true
   end
 
@@ -153,7 +153,7 @@ end
 describe 'extract_rows' do
   it 'returns all rows for a board with 3 moves' do
     board = Board.new
-    board.move("ul", "x")
+    board.move("tl", "x")
     board.move("c", "o")
     board.move("bl", "x")
 

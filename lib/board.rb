@@ -3,7 +3,7 @@ class Board
 
   def initialize(board=Array.new(9, ""))
     @board = board
-    @moves = { :ul => 0, :t => 1, :ur => 2,
+    @moves = { :tl => 0, :t => 1, :tr => 2,
                :l  => 3, :c => 4, :r  => 5,
                :bl => 6, :b => 7, :br => 8 }
   end
