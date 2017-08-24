@@ -31,7 +31,7 @@ describe 'move' do
     expect(board.board).to eq(board_after_move)
   end
 
-  it "doesn't move to a position that's already taken" do
+  it "doesn't move where the other player has already gone" do
     board = Board.new
     board.move("c", "x")
     board.move("c", "o")
@@ -39,6 +39,18 @@ describe 'move' do
                          "", "x", "",
                          "", "",  ""]
     
+    expect(board.board).to eq(board_after_moves)
+  end
+
+  it "doesn't move where the same player has already gone" do
+    board = Board.new
+    board.move("c", "x")
+    board.move("t", "o")
+    board.move("c", "x")
+    board_after_moves = ["", "o", "",
+                         "", "x", "",
+                         "", "",  ""]
+
     expect(board.board).to eq(board_after_moves)
   end
 end
