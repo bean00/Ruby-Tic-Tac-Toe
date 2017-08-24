@@ -1,4 +1,5 @@
 require 'board'
+require 'score_tracker'
 
 describe 'has_player_won' do
   it 'returns true when the top row is filled' do
@@ -6,7 +7,10 @@ describe 'has_player_won' do
     board.move("tl", "x")
     board.move("t", "x")
     board.move("tr", "x")
-    expect(board.has_player_won("x")).to be true
+
+    st = ScoreTracker.new(board.board)
+
+    expect(st.has_player_won("x")).to be true
   end
 end
 

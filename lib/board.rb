@@ -30,12 +30,13 @@ class Board
     return (@board[move_index] == "")
   end
 
-
+=begin
   def has_player_won(character)
     rows = extract_rows
 
     return are_any_rows_full(rows, character)
   end
+=end
 
   def extract_rows
     top_row = @board[0, 3]
