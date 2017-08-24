@@ -79,21 +79,21 @@ describe 'extract_rows' do
 end
 
 
-describe 'are_any_rows_full' do
-  it 'returns true if one row is full' do
+describe 'are_any_arrays_full' do
+  it 'returns true if one array is full' do
     st = ScoreTracker.new
-    rows = [["x", "x", "x"],
-            ["",  "",  ""],
-            ["",  "",  ""]]
-    expect(st.are_any_rows_full(rows, "x")).to be true
+    arrays = [["x", "x", "x"],
+              ["",  "",  ""],
+              ["",  "",  ""]]
+    expect(st.are_any_arrays_full(arrays, "x")).to be true
   end
 
-  it 'returns false if no row is full' do
+  it 'returns false if no array is full' do
     st = ScoreTracker.new
-    rows = [["x", "",  ""],
-            ["",  "",  ""],
-            ["x", "x", "o"]]
-    expect(st.are_any_rows_full(rows, "x")).to be false
+    arrays = [["x", "",  ""],
+              ["",  "",  ""],
+              ["x", "x", "o"]]
+    expect(st.are_any_arrays_full(arrays, "x")).to be false
   end
 end
 

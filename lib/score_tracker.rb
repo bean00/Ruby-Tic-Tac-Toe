@@ -8,7 +8,7 @@ class ScoreTracker
     has_won = false
 
     rows = extract_rows
-    if are_any_rows_full(rows, character)
+    if are_any_arrays_full(rows, character)
       has_won = true
     end
 
@@ -28,14 +28,14 @@ class ScoreTracker
     [top_row, middle_row, bottom_row]
   end
 
-  def are_any_rows_full(rows, character)
-    is_a_row_full = false
-    rows.each do |row|
-      if is_array_full(row, character)
-        is_a_row_full = true
+  def are_any_arrays_full(arrays, character)
+    is_an_array_full = false
+    arrays.each do |array|
+      if is_array_full(array, character)
+        is_an_array_full = true
       end
     end
-    is_a_row_full
+    is_an_array_full
   end
 
   def is_array_full(array, character)
