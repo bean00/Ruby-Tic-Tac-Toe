@@ -41,9 +41,10 @@ class Board
   end
 
   def extract_rows
-    rows = [["x", "", ""],
-            ["", "o", ""],
-            ["x", "", ""]]
+    top_row = @board[0, 3]
+    middle_row = @board[3, 3]
+    bottom_row = @board[6, 3]
+    [top_row, middle_row, bottom_row]
   end
 
   def are_any_rows_full(rows, character)

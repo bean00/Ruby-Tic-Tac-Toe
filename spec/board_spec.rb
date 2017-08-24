@@ -151,7 +151,7 @@ end
 
 
 describe 'extract_rows' do
-  it 'returns all rows' do
+  it 'returns all rows for a board with 3 moves' do
     board = Board.new
     board.move("ul", "x")
     board.move("c", "o")
@@ -161,6 +161,14 @@ describe 'extract_rows' do
             ["",  "o", ""],
             ["x", "",  ""]]
 
+    expect(board.extract_rows).to eq rows
+  end
+
+  it 'returns all rows for an empty board' do
+    board = Board.new
+    rows = [["", "", ""],
+            ["", "", ""],
+            ["", "", ""]]
     expect(board.extract_rows).to eq rows
   end
 end
