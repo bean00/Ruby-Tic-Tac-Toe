@@ -30,6 +30,17 @@ describe 'move' do
 
     expect(board.board).to eq(board_after_move)
   end
+
+  it "doesn't move to a position that's already taken" do
+    board = Board.new
+    board.move("c", "x")
+    board.move("c", "o")
+    board_after_moves = ["", "",  "",
+                         "", "x", "",
+                         "", "",  ""]
+    
+    expect(board.board).to eq(board_after_moves)
+  end
 end
 
 describe 'is_valid' do
