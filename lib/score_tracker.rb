@@ -5,8 +5,9 @@ class ScoreTracker
   end
 
   def has_player_won(character)
-    return is_a_row_full(character) ||
-           is_a_column_full(character)
+    return is_a_row_full(character)      ||
+           is_a_column_full(character)   ||
+           is_a_diagonal_full(character)
   end
 
   def is_a_row_full(character)

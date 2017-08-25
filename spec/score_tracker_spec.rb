@@ -60,6 +60,24 @@ describe 'has_player_won' do
     st = ScoreTracker.new(board.board)
     expect(st.has_player_won("x")).to be true
   end
+
+  it 'returns true when the diagonal from the "tl" to "br" is filled' do
+    board = Board.new
+    board.move("tl", "x")
+    board.move("c", "x")
+    board.move("br", "x")
+    st = ScoreTracker.new(board.board)
+    expect(st.has_player_won("x")).to be true
+  end
+
+  it 'returns true when the diagonal from the "tr" to "bl" is filled' do
+    board = Board.new
+    board.move("tr", "x")
+    board.move("c", "x")
+    board.move("bl", "x")
+    st = ScoreTracker.new(board.board)
+    expect(st.has_player_won("x")).to be true
+  end
 end
 
 
