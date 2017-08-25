@@ -21,9 +21,7 @@ class ScoreTracker
   end
 
   def is_a_diagonal_full(character)
-    left_diagonal = [@board[0], @board[4], @board[8]]
-    right_diagonal = [@board[2], @board[4], @board[6]]
-    diagonals = [left_diagonal, right_diagonal]
+    diagonals = extract_diagonals
     return (are_any_arrays_full(diagonals, character))
   end
 
@@ -39,6 +37,12 @@ class ScoreTracker
     middle_col = [@board[1], @board[4], @board[7]]
     right_col = [@board[2], @board[5], @board[8]]
     [left_col, middle_col, right_col]
+  end
+
+  def extract_diagonals
+    left_diagonal = [@board[0], @board[4], @board[8]]
+    right_diagonal = [@board[2], @board[4], @board[6]]
+    [left_diagonal, right_diagonal]
   end
 
   def are_any_arrays_full(arrays, character)

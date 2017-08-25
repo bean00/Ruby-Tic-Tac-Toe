@@ -168,6 +168,22 @@ describe 'extract_columns' do
 end
 
 
+describe 'extract_diagonals' do
+  it 'returns all diagonals for a board with 3 moves' do
+    board = Board.new
+    board.move("c", "x")
+    board.move("r", "o")
+    board.move("br", "x")
+    st = ScoreTracker.new(board.board)
+
+    diagonals = [["", "x", "x"],
+                 ["", "x", ""]]
+
+    expect(st.extract_diagonals).to eq diagonals
+  end
+end
+
+
 describe 'are_any_arrays_full' do
   it 'returns true if one array is full' do
     st = ScoreTracker.new
