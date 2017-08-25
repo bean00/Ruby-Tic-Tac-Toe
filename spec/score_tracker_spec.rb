@@ -88,6 +88,24 @@ describe 'extract_rows' do
 end
 
 
+describe 'extract_columns' do
+  it 'returns all columns for a board with 4 moves' do
+    board = Board.new
+    board.move("l", "x")
+    board.move("bl", "o")
+    board.move("t", "x")
+    board.move("tr", "o")
+    st = ScoreTracker.new(board.board)
+
+    columns = [["",  "x", "o"],
+               ["x", "",  ""],
+               ["o", "",  ""]]
+
+    expect(st.extract_columns).to eq columns
+  end
+end
+
+
 describe 'are_any_arrays_full' do
   it 'returns true if one array is full' do
     st = ScoreTracker.new

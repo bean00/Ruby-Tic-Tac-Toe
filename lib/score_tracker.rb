@@ -29,9 +29,9 @@ class ScoreTracker
   end
 
   def extract_columns
-    left_col = @board[0] + @board[3] + @board[6]
-    middle_col = @board[1] + @board[4] + @board[7]
-    right_col = @board[2] + @board[5] + @board[8]
+    left_col = [@board[0], @board[3], @board[6]]
+    middle_col = [@board[1], @board[4], @board[7]]
+    right_col = [@board[2], @board[5], @board[8]]
     [left_col, middle_col, right_col]
   end
 
