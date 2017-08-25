@@ -131,14 +131,6 @@ describe 'extract_rows' do
 
     expect(st.extract_rows).to eq rows
   end
-
-  it 'returns all rows for an empty board' do
-    st = ScoreTracker.new
-    rows = [["", "", ""],
-            ["", "", ""],
-            ["", "", ""]]
-    expect(st.extract_rows).to eq rows
-  end
 end
 
 
@@ -155,14 +147,6 @@ describe 'extract_columns' do
                ["x", "",  ""],
                ["o", "",  ""]]
 
-    expect(st.extract_columns).to eq columns
-  end
-
-  it 'returns all columns for an empty board' do
-    st = ScoreTracker.new
-    columns = [["", "", ""],
-               ["", "", ""],
-               ["", "", ""]]
     expect(st.extract_columns).to eq columns
   end
 end
