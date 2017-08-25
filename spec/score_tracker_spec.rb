@@ -63,6 +63,18 @@ describe 'has_player_won' do
 end
 
 
+describe 'is_a_row_full' do
+  it 'returns true if a row is full' do
+    board = Board.new
+    board.move("bl", "x")
+    board.move("b", "x")
+    board.move("br", "x")
+    st = ScoreTracker.new(board.board)
+    expect(st.is_a_row_full("x")).to be true
+  end
+end
+
+
 describe 'extract_rows' do
   it 'returns all rows for a board with 3 moves' do
     board = Board.new
