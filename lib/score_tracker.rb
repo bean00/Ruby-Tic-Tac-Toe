@@ -5,21 +5,18 @@ class ScoreTracker
   end
 
   def has_player_won(character)
-    has_won = false
-
-    has_won = is_a_row_full(character)
-
-    columns = extract_columns
-    if are_any_arrays_full(columns, character)
-      has_won = true
-    end
-
-    return has_won
+    return is_a_row_full(character) ||
+           is_a_column_full(character)
   end
 
   def is_a_row_full(character)
     rows = extract_rows
     return (are_any_arrays_full(rows, character))
+  end
+
+  def is_a_column_full(character)
+    columns = extract_columns
+    return (are_any_arrays_full(columns, character))
   end
 
   def extract_rows
