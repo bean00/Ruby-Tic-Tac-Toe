@@ -87,6 +87,18 @@ describe 'is_a_column_full' do
 end
 
 
+describe 'is_a_diagonal_full' do
+  it 'returns true if a diagonal is full' do
+    board = Board.new
+    board.move("tl", "x")
+    board.move("c", "x")
+    board.move("br", "x")
+    st = ScoreTracker.new(board.board)
+    expect(st.is_a_diagonal_full("x")).to be true
+  end
+end
+
+
 describe 'extract_rows' do
   it 'returns all rows for a board with 3 moves' do
     board = Board.new

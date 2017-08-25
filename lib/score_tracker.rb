@@ -19,6 +19,13 @@ class ScoreTracker
     return (are_any_arrays_full(columns, character))
   end
 
+  def is_a_diagonal_full(character)
+    left_diagonal = [@board[0], @board[4], @board[8]]
+    right_diagonal = [@board[2], @board[4], @board[6]]
+    diagonals = [left_diagonal, right_diagonal]
+    return (are_any_arrays_full(diagonals, character))
+  end
+
   def extract_rows
     top_row = @board[0, 3]
     middle_row = @board[3, 3]
