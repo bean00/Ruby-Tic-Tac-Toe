@@ -15,34 +15,11 @@ class ScoreTracker
     return (are_any_arrays_full(rows, character))
   end
 
-  def is_a_column_full(character)
-    columns = extract_columns
-    return (are_any_arrays_full(columns, character))
-  end
-
-  def is_a_diagonal_full(character)
-    diagonals = extract_diagonals
-    return (are_any_arrays_full(diagonals, character))
-  end
-
   def extract_rows
     top_row = @board[0, 3]
     middle_row = @board[3, 3]
     bottom_row = @board[6, 3]
     [top_row, middle_row, bottom_row]
-  end
-
-  def extract_columns
-    left_col = [@board[0], @board[3], @board[6]]
-    middle_col = [@board[1], @board[4], @board[7]]
-    right_col = [@board[2], @board[5], @board[8]]
-    [left_col, middle_col, right_col]
-  end
-
-  def extract_diagonals
-    left_diagonal = [@board[0], @board[4], @board[8]]
-    right_diagonal = [@board[2], @board[4], @board[6]]
-    [left_diagonal, right_diagonal]
   end
 
   def are_any_arrays_full(arrays, character)
@@ -57,6 +34,29 @@ class ScoreTracker
 
   def is_array_full(array, character)
     return (array.count(character) == 3)
+  end
+
+  def is_a_column_full(character)
+    columns = extract_columns
+    return (are_any_arrays_full(columns, character))
+  end
+
+  def extract_columns
+    left_col = [@board[0], @board[3], @board[6]]
+    middle_col = [@board[1], @board[4], @board[7]]
+    right_col = [@board[2], @board[5], @board[8]]
+    [left_col, middle_col, right_col]
+  end
+
+  def is_a_diagonal_full(character)
+    diagonals = extract_diagonals
+    return (are_any_arrays_full(diagonals, character))
+  end
+
+  def extract_diagonals
+    left_diagonal = [@board[0], @board[4], @board[8]]
+    right_diagonal = [@board[2], @board[4], @board[6]]
+    [left_diagonal, right_diagonal]
   end
 
 end
