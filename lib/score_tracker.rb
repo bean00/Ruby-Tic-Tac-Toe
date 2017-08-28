@@ -8,7 +8,7 @@ class ScoreTracker
     is_a_diagonal_full(board, character)
   end
 
-  private
+  # -- private --
 
   def self.is_a_row_full(board, character)
     rows = extract_rows(board)
@@ -18,6 +18,7 @@ class ScoreTracker
 
   def self.extract_rows(board)
     @@board = board
+
     top_row = @@board[0, 3]
     middle_row = @@board[3, 3]
     bottom_row = @@board[6, 3]
@@ -27,6 +28,7 @@ class ScoreTracker
 
   def self.are_any_arrays_full(arrays, character)
     is_an_array_full = false
+
     arrays.each do |array|
       if is_array_full(array, character)
         is_an_array_full = true
@@ -48,6 +50,7 @@ class ScoreTracker
 
   def self.extract_columns(board)
     @@board = board
+
     left_col = [@@board[0], @@board[3], @@board[6]]
     middle_col = [@@board[1], @@board[4], @@board[7]]
     right_col = [@@board[2], @@board[5], @@board[8]]
@@ -57,6 +60,7 @@ class ScoreTracker
 
   def self.is_a_diagonal_full(board, character)
     @@board = board
+
     diagonals = extract_diagonals(board)
     
     are_any_arrays_full(diagonals, character)
@@ -64,10 +68,15 @@ class ScoreTracker
 
   def self.extract_diagonals(board)
     @@board = board
+
     left_diagonal = [@@board[0], @@board[4], @@board[8]]
     right_diagonal = [@@board[2], @@board[4], @@board[6]]
 
     [left_diagonal, right_diagonal]
   end
+
+  private_class_method :is_a_row_full, :extract_rows, :are_any_arrays_full,
+    :is_array_full, :is_a_column_full, :extract_columns, :is_a_diagonal_full,
+    :extract_diagonals
 
 end
