@@ -7,13 +7,18 @@ describe 'has_player_won' do
     board.move("tl", "x")
     board.move("t", "x")
     board.move("tr", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.has_player_won("x")).to be true
+
+    player_won = ScoreTracker.has_player_won(board.board, "x")
+
+    expect(player_won).to be true
   end
 
   it 'returns false when the board is empty' do
-    st = ScoreTracker.new
-    expect(st.has_player_won("x")).to be false
+    board = Board.new
+
+    player_won = ScoreTracker.has_player_won(board.board, "x")
+
+    expect(player_won).to be false
   end
 
   it 'returns true when the middle row is filled' do
@@ -21,8 +26,10 @@ describe 'has_player_won' do
     board.move("l", "o")
     board.move("c", "o")
     board.move("r", "o")
-    st = ScoreTracker.new(board.board)
-    expect(st.has_player_won("o")).to be true
+
+    player_won = ScoreTracker.has_player_won(board.board, "o")
+
+    expect(player_won).to be true
   end
 
   it 'returns true when the bottom row is filled' do
@@ -30,8 +37,10 @@ describe 'has_player_won' do
     board.move("bl", "x")
     board.move("b", "x")
     board.move("br", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.has_player_won("x")).to be true
+
+    player_won = ScoreTracker.has_player_won(board.board, "x")
+
+    expect(player_won).to be true
   end
 
   it 'returns true when the left column is filled' do
@@ -39,8 +48,10 @@ describe 'has_player_won' do
     board.move("tl", "x")
     board.move("l", "x")
     board.move("bl", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.has_player_won("x")).to be true
+
+    player_won = ScoreTracker.has_player_won(board.board, "x")
+
+    expect(player_won).to be true
   end
 
   it 'returns true when the middle column is filled' do
@@ -48,8 +59,10 @@ describe 'has_player_won' do
     board.move("t", "x")
     board.move("c", "x")
     board.move("b", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.has_player_won("x")).to be true
+
+    player_won = ScoreTracker.has_player_won(board.board, "x")
+
+    expect(player_won).to be true
   end
 
   it 'returns true when the right column is filled' do
@@ -57,8 +70,10 @@ describe 'has_player_won' do
     board.move("tr", "x")
     board.move("r", "x")
     board.move("br", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.has_player_won("x")).to be true
+    
+    player_won = ScoreTracker.has_player_won(board.board, "x")
+
+    expect(player_won).to be true
   end
 
   it 'returns true when the diagonal from the "tl" to "br" is filled' do
@@ -66,8 +81,10 @@ describe 'has_player_won' do
     board.move("tl", "x")
     board.move("c", "x")
     board.move("br", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.has_player_won("x")).to be true
+
+    player_won = ScoreTracker.has_player_won(board.board, "x")
+
+    expect(player_won).to be true
   end
 
   it 'returns true when the diagonal from the "tr" to "bl" is filled' do
@@ -75,8 +92,10 @@ describe 'has_player_won' do
     board.move("tr", "x")
     board.move("c", "x")
     board.move("bl", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.has_player_won("x")).to be true
+
+    player_won = ScoreTracker.has_player_won(board.board, "x")
+    
+    expect(player_won).to be true
   end
 end
 
@@ -87,8 +106,10 @@ describe 'is_a_row_full' do
     board.move("bl", "x")
     board.move("b", "x")
     board.move("br", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.is_a_row_full("x")).to be true
+
+    row_is_full = ScoreTracker.is_a_row_full(board.board, "x")
+
+    expect(row_is_full).to be true
   end
 end
 
@@ -99,8 +120,10 @@ describe 'is_a_column_full' do
     board.move("tr", "x")
     board.move("r", "x")
     board.move("br", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.is_a_column_full("x")).to be true
+
+    column_is_full = ScoreTracker.is_a_column_full(board.board, "x")
+
+    expect(column_is_full).to be true
   end
 end
 
@@ -111,8 +134,10 @@ describe 'is_a_diagonal_full' do
     board.move("tl", "x")
     board.move("c", "x")
     board.move("br", "x")
-    st = ScoreTracker.new(board.board)
-    expect(st.is_a_diagonal_full("x")).to be true
+
+    diagonal_is_full = ScoreTracker.is_a_diagonal_full(board.board, "x")
+    
+    expect(diagonal_is_full).to be true
   end
 end
 
@@ -123,13 +148,13 @@ describe 'extract_rows' do
     board.move("tl", "x")
     board.move("c", "o")
     board.move("bl", "x")
-    st = ScoreTracker.new(board.board)
-
     rows = [["x", "",  ""],
             ["",  "o", ""],
             ["x", "",  ""]]
 
-    expect(st.extract_rows).to eq rows
+    extracted_rows = ScoreTracker.extract_rows(board.board)
+    
+    expect(extracted_rows).to eq rows
   end
 end
 
@@ -141,13 +166,13 @@ describe 'extract_columns' do
     board.move("bl", "o")
     board.move("t", "x")
     board.move("tr", "o")
-    st = ScoreTracker.new(board.board)
-
     columns = [["",  "x", "o"],
                ["x", "",  ""],
                ["o", "",  ""]]
 
-    expect(st.extract_columns).to eq columns
+    extracted_columns = ScoreTracker.extract_columns(board.board)
+
+    expect(extracted_columns).to eq columns
   end
 end
 
@@ -158,52 +183,62 @@ describe 'extract_diagonals' do
     board.move("c", "x")
     board.move("r", "o")
     board.move("br", "x")
-    st = ScoreTracker.new(board.board)
-
     diagonals = [["", "x", "x"],
                  ["", "x", ""]]
 
-    expect(st.extract_diagonals).to eq diagonals
+    extracted_diagonals = ScoreTracker.extract_diagonals(board.board)
+
+    expect(extracted_diagonals).to eq diagonals
   end
 end
 
 
 describe 'are_any_arrays_full' do
   it 'returns true if one array is full' do
-    st = ScoreTracker.new
     arrays = [["x", "x", "x"],
               ["",  "",  ""],
               ["",  "",  ""]]
-    expect(st.are_any_arrays_full(arrays, "x")).to be true
+
+    an_array_is_full = ScoreTracker.are_any_arrays_full(arrays, "x")
+
+    expect(an_array_is_full).to be true
   end
 
   it 'returns false if no array is full' do
-    st = ScoreTracker.new
     arrays = [["x", "",  ""],
               ["",  "",  ""],
               ["x", "x", "o"]]
-    expect(st.are_any_arrays_full(arrays, "x")).to be false
+
+    an_array_is_full = ScoreTracker.are_any_arrays_full(arrays, "x")
+
+    expect(an_array_is_full).to be false
   end
 end
 
 
 describe 'is_array_full' do
   it 'returns true if the row is full' do
-    st = ScoreTracker.new
     row = ["x", "x", "x"]
-    expect(st.is_array_full(row, "x")).to be true
+
+    array_is_full = ScoreTracker.is_array_full(row, "x")
+
+    expect(array_is_full).to be true
   end
 
   it 'returns false if the row is empty' do
-    st = ScoreTracker.new
     row = ["", "", ""]
-    expect(st.is_array_full(row, "x")).to be false
+
+    array_is_full = ScoreTracker.is_array_full(row, "x")
+
+    expect(array_is_full).to be false
   end
 
   it 'returns false if the row has mixed characters' do
-    st = ScoreTracker.new
     row = ["x", "o", "x"]
-    expect(st.is_array_full(row, "x")).to be false
+
+    array_is_full = ScoreTracker.is_array_full(row, "x")
+
+    expect(array_is_full).to be false
   end
 end
 
