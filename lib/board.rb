@@ -14,20 +14,22 @@ class Board
     if is_valid(position)
       @board[index] = character
     end
+
     @board
   end
 
   def is_valid(move_symbol)
-    return move_exists(move_symbol) && position_is_empty(move_symbol)
+    move_exists(move_symbol) && position_is_empty(move_symbol)
   end
 
   def move_exists(move_symbol)
-    return (@moves.has_key?(move_symbol))
+    @moves.has_key?(move_symbol)
   end
 
   def position_is_empty(move_symbol)
     move_index = @moves[move_symbol]
-    return (@board[move_index] == "")
+
+    @board[move_index] == ""
   end
 
 end
