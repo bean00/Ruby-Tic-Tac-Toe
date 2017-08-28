@@ -130,3 +130,53 @@ describe 'position_is_empty' do
 end
 
 
+describe 'to_string' do
+  it 'returns a formatted board if all positions are "x"s' do
+    board = Board.new
+    board.move("tl", "x")
+    board.move("t", "x")
+    board.move("tr", "x")
+    board.move("l", "x")
+    board.move("c", "x")
+    board.move("r", "x")
+    board.move("bl", "x")
+    board.move("b", "x")
+    board.move("br", "x")
+    formatted_board = " x | x | x \n" +
+                      "---+---+---\n" +
+                      " x | x | x \n" + 
+                      "---+---+---\n" +
+                      " x | x | x "
+
+    expect(board.to_string).to eq(formatted_board)
+  end
+
+  it 'returns a formatted board if all positions are empty' do
+    board = Board.new
+    formatted_board = "   |   |   \n" +
+                      "---+---+---\n" +
+                      "   |   |   \n" +
+                      "---+---+---\n" +
+                      "   |   |   "
+
+    expect(board.to_string).to eq(formatted_board)
+  end
+
+  it 'returns a formatted board if positions are mixed' do
+    board = Board.new
+    board.move("c", "x")
+    board.move("tl", "o")
+    board.move("br", "x")
+    board.move("r", "o")
+    formatted_board = " o |   |   \n" +
+                      "---+---+---\n" +
+                      "   | x | o \n" +
+                      "---+---+---\n" +
+                      "   |   | x "
+
+    expect(board.to_string).to eq(formatted_board)
+  end
+end
+
+
+

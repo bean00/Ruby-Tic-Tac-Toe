@@ -32,4 +32,26 @@ class Board
     @board[move_index] == ""
   end
 
+  def to_string
+    formatted_board = ""
+
+    @board.each_with_index do |pos, i|
+      formatted_board << " "
+      if (pos.strip.empty?)
+        formatted_board << " "
+      else
+        formatted_board << pos
+      end
+      formatted_board << " "
+
+      if ((i + 1) % 3 != 0)
+        formatted_board << "|"
+      elsif i < 8
+        formatted_board << "\n---+---+---\n"
+      end
+    end
+
+    formatted_board
+  end
+
 end
