@@ -14,9 +14,20 @@ class Board
     if is_valid(position)
       @board[index] = character
     end
-
-    @board
   end
+
+  def to_string
+    formatted_board = ""
+
+    @board.each_with_index do |pos, i|
+      formatted_board << pad_with_spaces(pos)
+      formatted_board << add_divider(i)
+    end
+
+    formatted_board
+  end
+
+  private
 
   def is_valid(move_symbol)
     move_exists(move_symbol) && position_is_empty(move_symbol)
@@ -32,18 +43,7 @@ class Board
     @board[move_index] == ""
   end
 
-  def to_string
-    formatted_board = ""
-
-    @board.each_with_index do |pos, i|
-      formatted_board << self.class.pad_with_spaces(pos)
-      formatted_board << self.class.add_divider(i)
-    end
-
-    formatted_board
-  end
-
-  def self.pad_with_spaces(char)
+  def pad_with_spaces(char)
     padded_char = " "
 
     if (char.strip.empty?)
@@ -56,7 +56,7 @@ class Board
     padded_char
   end
 
-  def self.add_divider(index)
+  def add_divider(index)
     divider = ""
     
     if ((index + 1) % 3 != 0)
