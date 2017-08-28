@@ -179,4 +179,18 @@ describe 'to_string' do
 end
 
 
+describe 'pad_with_spaces' do
+  it 'adds spaces around an "x"' do
+    padded_string = Board.pad_with_spaces("x")
+
+    expect(padded_string).to eq(" x ")
+  end
+
+  it 'adds spaces around a space' do
+    padded_string = Board.pad_with_spaces(" ")
+    
+    expect(padded_string).to eq("   ")
+  end
+end
+
 

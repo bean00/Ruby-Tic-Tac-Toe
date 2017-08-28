@@ -36,13 +36,7 @@ class Board
     formatted_board = ""
 
     @board.each_with_index do |pos, i|
-      formatted_board << " "
-      if (pos.strip.empty?)
-        formatted_board << " "
-      else
-        formatted_board << pos
-      end
-      formatted_board << " "
+      formatted_board << self.class.pad_with_spaces(pos)
 
       if ((i + 1) % 3 != 0)
         formatted_board << "|"
@@ -54,4 +48,15 @@ class Board
     formatted_board
   end
 
+  def self.pad_with_spaces(char)
+    padded_char = " "
+    if (char.strip.empty?)
+      padded_char << " "
+    else
+      padded_char << char
+    end
+    padded_char << " "
+
+    padded_char
+  end
 end
