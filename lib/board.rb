@@ -37,12 +37,7 @@ class Board
 
     @board.each_with_index do |pos, i|
       formatted_board << self.class.pad_with_spaces(pos)
-
-      if ((i + 1) % 3 != 0)
-        formatted_board << "|"
-      elsif i < 8
-        formatted_board << "\n---+---+---\n"
-      end
+      formatted_board << self.class.add_divider(i)
     end
 
     formatted_board
@@ -50,6 +45,7 @@ class Board
 
   def self.pad_with_spaces(char)
     padded_char = " "
+
     if (char.strip.empty?)
       padded_char << " "
     else
@@ -59,4 +55,17 @@ class Board
 
     padded_char
   end
+
+  def self.add_divider(index)
+    divider = ""
+    
+    if ((index + 1) % 3 != 0)
+      divider = "|"
+    elsif index < 8
+      divider = "\n---+---+---\n"
+    end
+    
+    divider
+  end
+
 end

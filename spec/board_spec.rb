@@ -194,3 +194,18 @@ describe 'pad_with_spaces' do
 end
 
 
+describe 'add_divider' do
+  it 'adds a vertical divider after the top position' do
+    divider_to_add = Board.add_divider(1)
+
+    expect(divider_to_add).to eq("|")
+  end
+
+  it 'adds a horizontal divider after the right position' do
+    divider_to_add = Board.add_divider(5)
+
+    expect(divider_to_add).to eq("\n---+---+---\n")
+  end
+end
+
+
