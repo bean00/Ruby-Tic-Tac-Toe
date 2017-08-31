@@ -8,7 +8,7 @@ class ScoreTracker
     is_a_diagonal_full(board, character)
   end
 
-  # -- private --
+  # ----- private -----
 
   def self.is_a_row_full(board, character)
     rows = extract_rows(board)

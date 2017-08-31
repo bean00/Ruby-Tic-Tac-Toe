@@ -46,25 +46,3 @@ describe 'play_round' do
 end
 
 
-describe 'prompt_player_for_move' do
-  it 'displays the correct prompt for Player 1' do
-    c = Controller.new
-    prompt = "Player 1, please enter your move: "
-
-    expect{c.prompt_player_for_move(1)}.to output(prompt).to_stdout
-  end
-end
-
-
-describe 'get_move' do
-  it 'gets user input' do
-    c = Controller.new
-
-    allow($stdin).to receive(:gets).and_return("tl\n")
-    input = c.get_move
-
-    expect(input).to eq("tl")
-  end
-end
-
-
