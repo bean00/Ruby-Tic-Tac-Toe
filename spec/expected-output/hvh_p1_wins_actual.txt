@@ -1,0 +1,72 @@
+Hello! This is a Tic Tac Toe program.
+
+Please enter one of the following:
+- "h" to play against another person
+- "c" to play against a computer
+
+> h
+
+Ok, you chose to play another person.
+
+You are Player 1, and you will go first.
+
+To enter a move, type:
+- "t"   -> top
+- "c"   -> center
+- "b"   -> bottom
+- "l"   -> left
+- "r"   -> right
+- "tl"  -> top left
+- "tr"  -> top right
+- "bl"  -> bottom left
+- "br"  -> bottom right
+
+ tl | t | tr 
+----+---+----
+ l  | c | r  
+----+---+----
+ bl | b | br 
+
+Player 1, please enter your move: t
+   | x |   
+---+---+---
+   |   |   
+---+---+---
+   |   |   
+
+Player 2, please enter your move: tr
+   | x | o 
+---+---+---
+   |   |   
+---+---+---
+   |   |   
+
+Player 1, please enter your move: tl
+ x | x | o 
+---+---+---
+   |   |   
+---+---+---
+   |   |   
+
+Player 2, please enter your move: c
+ x | x | o 
+---+---+---
+   | o |   
+---+---+---
+   |   |   
+
+Player 1, please enter your move: l
+ x | x | o 
+---+---+---
+ x | o |   
+---+---+---
+   |   |   
+
+Player 2, please enter your move: bl
+ x | x | o 
+---+---+---
+   | o |   
+---+---+---
+ o |   |   
+
+Game over. Player 2 won!
