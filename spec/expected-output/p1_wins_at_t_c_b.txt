@@ -1,5 +1,14 @@
 Hello! This is a Tic Tac Toe program.
 
+Please enter one of the following:
+- "h" to play against another person
+- "c" to play against a computer
+
+> 
+Ok, you chose to play another person.
+
+You are Player 1, and you will go first.
+
 To enter a move, type:
 - "t"   -> top
 - "c"   -> center

@@ -72,6 +72,49 @@ describe 'move' do
 end
 
 
+describe 'get_available_moves' do
+  it 'returns [t] when there is 1 more move left' do
+    board = Board.new
+    board.move("tl", "x")
+    board.move("tr", "o")
+    board.move("l", "x")
+    board.move("r", "o")
+    board.move("c", "x")
+    board.move("bl", "o")
+    board.move("b", "x")
+    board.move("br", "o")
+    array_with_t = ["t"]
+
+    actual_array = board.get_available_moves
+
+    expect(array_with_t).to eq(actual_array)
+  end
+
+  it 'returns all moves when no move has been made yet' do
+    board = Board.new
+    array_with_all_moves = ["tl", "t", "tr", "l", "c", "r", "bl", "b", "br"]
+
+    actual_array = board.get_available_moves
+
+    expect(array_with_all_moves).to eq(actual_array)
+  end
+
+  it 'returns [tl, r, b, br] when the other 5 moves have been made' do
+    board = Board.new
+    board.move("t", "x")
+    board.move("tr", "o")
+    board.move("l", "x")
+    board.move("c", "o")
+    board.move("bl", "x")
+    array_with_moves = ["tl", "r", "b", "br"]
+
+    actual_array = board.get_available_moves
+
+    expect(array_with_moves).to eq(actual_array)
+  end
+end
+
+
 describe 'to_string' do
   it 'returns a formatted board if all positions are "x"s' do
     board = Board.new

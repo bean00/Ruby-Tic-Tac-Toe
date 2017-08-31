@@ -16,6 +16,20 @@ class Board
     end
   end
 
+  def get_available_moves
+    available_moves = []
+
+    @board.each_with_index do |pos, i|
+      if pos == ""
+        move_symbol = @moves.key(i)
+        move_string = move_symbol.to_s
+        available_moves << move_string
+      end
+    end
+
+    available_moves
+  end
+
   def to_string
     formatted_board = ""
 

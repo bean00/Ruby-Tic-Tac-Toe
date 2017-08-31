@@ -5,6 +5,34 @@ class IOHandler
           "\n"
   end
 
+  def self.display_game_mode_instructions
+    print "Please enter one of the following:\n" +
+          "- \"h\" to play against another person\n" +
+          "- \"c\" to play against a computer\n" +
+          "\n"
+  end
+
+  def self.get_user_input_for_game_mode
+    print "> "
+    get_user_input
+  end
+
+  def self.display_game_mode(playing_computer)
+    if playing_computer
+      print "\nOk, you chose to play a computer.\n\n"
+    else
+      print "\nOk, you chose to play another person.\n\n"
+    end
+  end
+
+  def self.display_who_goes_1st(playing_computer)
+    if playing_computer
+      print "You will go first.\n\n"
+    else
+      print "You are Player 1, and you will go first.\n\n"
+    end
+  end
+
   def self.display_instructions
     print "To enter a move, type:\n" +
           "- \"t\"   -> top\n" +
@@ -25,19 +53,29 @@ class IOHandler
           "\n"
   end
 
-  def self.prompt_player_for_move(player_num)
-    print "Player #{player_num}, please enter your move: "
+  def self.prompt_player_for_move(player_num, playing_computer)
+    if playing_computer
+      print "Please enter your move: "
+    else
+      print "Player #{player_num}, please enter your move: "
+    end
   end
 
-  def self.get_move
+  def self.get_user_input
     $stdin.gets.chomp
   end
 
-  def self.display_game_over_msg(move_number, player_num)
-    if (move_number >= 9)
+  def self.display_game_over_msg(move_number, player_num, playing_computer)
+    if move_number >= 9
       display_draw_message
-    else
+    elsif !playing_computer
       display_winning_message(player_num)
+    elsif playing_computer
+      if player_num == 1
+        print "Game over. You won!\n"
+      else
+        print "Game over. You lost :(\n"
+      end
     end
   end
 
