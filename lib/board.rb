@@ -11,7 +11,8 @@ class Board
   def move(position_string, character)
     position = position_string.to_sym
     index = @moves[position]
-    if is_valid(position)
+
+    if is_valid?(position)
       @board[index] = character
     end
   end
@@ -43,15 +44,15 @@ class Board
 
   private
 
-  def is_valid(move_symbol)
-    move_exists(move_symbol) && position_is_empty(move_symbol)
+  def is_valid?(move_symbol)
+    move_exists?(move_symbol) && position_is_empty?(move_symbol)
   end
 
-  def move_exists(move_symbol)
+  def move_exists?(move_symbol)
     @moves.has_key?(move_symbol)
   end
 
-  def position_is_empty(move_symbol)
+  def position_is_empty?(move_symbol)
     move_index = @moves[move_symbol]
 
     @board[move_index] == ""

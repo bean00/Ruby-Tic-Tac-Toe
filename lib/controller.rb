@@ -28,7 +28,7 @@ class Controller
       play_round(player_num, playing_computer)
 
       player_char = set_player_char(player_num)
-      has_player_won = ScoreTracker.has_player_won(board.board, player_char)
+      has_player_won = ScoreTracker.has_player_won?(board.board, player_char)
 
       move_number += 1
       num_available_moves = board.get_available_moves.length

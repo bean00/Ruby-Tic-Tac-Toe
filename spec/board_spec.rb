@@ -162,6 +162,3 @@ describe 'to_string' do
     expect(board.to_string).to eq(formatted_board)
   end
 end
-
-
-
