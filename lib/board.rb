@@ -42,21 +42,28 @@ class Board
     formatted_board
   end
 
-  private
-
-  def is_valid?(move_symbol)
-    move_exists?(move_symbol) && position_is_empty?(move_symbol)
+  def is_valid?(move_string)
+    move_exists?(move_string) && position_is_empty?(move_string)
   end
 
-  def move_exists?(move_symbol)
+  def move_exists?(move_string)
+    move_symbol = move_string.to_sym
+
     @moves.has_key?(move_symbol)
   end
 
-  def position_is_empty?(move_symbol)
-    move_index = @moves[move_symbol]
-
-    @board[move_index] == ""
+  def position_is_empty?(move_string)
+    if move_exists?(move_string)
+      move_symbol = move_string.to_sym
+      move_index = @moves[move_symbol]
+      
+      @board[move_index] == ""
+    else
+      return false
+    end
   end
+
+  private
 
   def pad_with_spaces(char)
     padded_char = " "
