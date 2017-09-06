@@ -65,16 +65,14 @@ class IOHandler
     $stdin.gets.chomp
   end
 
-  def self.display_game_over_msg(move_number, player_num, playing_computer)
-    if move_number >= 9
+  def self.display_game_over_msg(player_won, player_num, playing_computer)
+    if !player_won
       display_draw_message
-    elsif !playing_computer
-      display_winning_message(player_num)
-    elsif playing_computer
-      if player_num == 1
-        print "Game over. You won!\n"
+    else
+      if !playing_computer
+        display_winning_message(player_num)
       else
-        print "Game over. You lost :(\n"
+        display_message_vs_computer(player_num)
       end
     end
   end
@@ -89,6 +87,15 @@ class IOHandler
     print "Game over. Player #{player_num} won!\n"
   end
 
-  private_class_method :display_draw_message, :display_winning_message
+  def self.display_message_vs_computer(player_num)
+    if player_num == 1
+      print "Game over. You won!\n"
+    else
+      print "Game over. You lost :(\n"
+    end
+  end
+
+  private_class_method :display_draw_message, :display_winning_message,
+    :display_message_vs_computer
 
 end

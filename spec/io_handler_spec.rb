@@ -118,7 +118,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. Player 1 won!\n"
 
     expect {
-      IOHandler.display_game_over_msg(5, 1, false)
+      IOHandler.display_game_over_msg(true, 1, false)
     }.to output(msg).to_stdout
   end
 
@@ -126,7 +126,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. Resulted in a draw.\n"
 
     expect {
-      IOHandler.display_game_over_msg(10, 2, false)
+      IOHandler.display_game_over_msg(false, 2, false)
     }.to output(msg).to_stdout
   end
 
@@ -134,7 +134,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. You won!\n"
 
     expect {
-      IOHandler.display_game_over_msg(7, 1, true)
+      IOHandler.display_game_over_msg(true, 1, true)
     }.to output(msg).to_stdout
   end
 
@@ -142,7 +142,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. You lost :(\n"
 
     expect {
-      IOHandler.display_game_over_msg(6, 2, true)
+      IOHandler.display_game_over_msg(true, 2, true)
     }.to output(msg).to_stdout
   end
 end
