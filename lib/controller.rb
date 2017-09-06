@@ -41,11 +41,11 @@ class Controller
   def play_round(player_num, playing_computer)
     if player_num == 1
       IOHandler.prompt_player_for_move(player_num, playing_computer)
-      move = IOHandler.get_user_input
+      move = get_valid_move
     else
       if !playing_computer
         IOHandler.prompt_player_for_move(player_num, playing_computer)
-        move = IOHandler.get_user_input
+        move = get_valid_move
       else
         print "The computer moved.\n"
         available_moves = board.get_available_moves
@@ -61,6 +61,30 @@ class Controller
   end
 
   private
+
+  def get_valid_move
+    move = IOHandler.get_user_input
+    move_does_not_exist = !board.move_exists?(move)
+    move_has_been_taken = !board.position_is_empty?(move)
+
+    while move_does_not_exist || move_has_been_taken
+      if move_does_not_exist
+        print "\n<!> Error: Move \"#{move}\" doesn't exist.\n"
+        print "Please enter a move that exists (ex: \"tl\", \"c\"): "
+        move = IOHandler.get_user_input
+        move_does_not_exist = !board.move_exists?(move)
+        move_has_been_taken = !board.position_is_empty?(move)
+      elsif move_has_been_taken
+        print "\n<!> Error: The position at \"#{move}\" has already been taken.\n"
+        print "Please enter a new move: "
+        move = IOHandler.get_user_input
+        move_does_not_exist = !board.move_exists?(move)
+        move_has_been_taken = !board.position_is_empty?(move)
+      end
+    end
+
+    move
+  end
 
   def is_playing_computer?(game_mode_char)
     game_mode_char == "c"

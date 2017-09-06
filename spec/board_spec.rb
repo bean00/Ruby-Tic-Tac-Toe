@@ -162,3 +162,81 @@ describe 'to_string' do
     expect(board.to_string).to eq(formatted_board)
   end
 end
+
+
+describe 'is_valid?' do
+  it 'returns true for a valid move' do
+    board = Board.new
+    board.move("c", "x")
+
+    is_valid = board.is_valid?("r")
+
+    expect(is_valid).to be true
+  end
+
+  it 'returns false for a move that does not exist' do
+    board = Board.new
+
+    is_valid = board.is_valid?("A")
+
+    expect(is_valid).to be false
+  end
+
+  it 'returns false for a move that has already been made' do
+    board = Board.new
+    board.move("tr", "x")
+
+    is_valid = board.is_valid?("tr")
+
+    expect(is_valid).to be false
+  end
+end
+
+
+describe 'move_exists?' do
+  it 'returns true for move "t"' do
+    board = Board.new
+
+    move_exists = board.move_exists?("t")
+
+    expect(move_exists).to be true
+  end
+
+  it 'returns false for move "x"' do
+    board = Board.new
+
+    move_exists = board.move_exists?("x")
+
+    expect(move_exists).to be false
+  end
+end
+
+
+describe 'position_is_empty?' do
+  it 'returns true for an empty position' do
+    board = Board.new
+    board.move("l", "x")
+    board.move("c", "o")
+
+    position_is_empty = board.position_is_empty?("t")
+
+    expect(position_is_empty).to be true
+  end
+
+  it 'returns false for a position that was taken' do
+    board = Board.new
+    board.move("r", "x")
+
+    position_is_empty = board.position_is_empty?("r")
+
+    expect(position_is_empty).to be false
+  end
+
+  it 'returns false for a move that does not exist' do
+    board = Board.new
+
+    position_is_empty = board.position_is_empty?("a")
+
+    expect(position_is_empty).to be false
+  end
+end

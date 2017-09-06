@@ -1,0 +1,60 @@
+Hello! This is a Tic Tac Toe program.
+
+Please enter one of the following:
+- "h" to play against another person
+- "c" to play against a computer
+
+> h
+
+Ok, you chose to play another person.
+
+You are Player 1, and you will go first.
+
+To enter a move, type:
+- "t"   -> top
+- "c"   -> center
+- "b"   -> bottom
+- "l"   -> left
+- "r"   -> right
+- "tl"  -> top left
+- "tr"  -> top right
+- "bl"  -> bottom left
+- "br"  -> bottom right
+
+ tl | t | tr 
+----+---+----
+ l  | c | r  
+----+---+----
+ bl | b | br 
+
+Player 1, please enter your move: x
+
+Error: Move "x" doesn't exist.
+Please enter a move that exists (ex: "tl", "c"): tr
+   |   | x 
+---+---+---
+   |   |   
+---+---+---
+   |   |   
+
+Player 2, please enter your move: a
+
+Error: Move "a" doesn't exist.
+Please enter a move that exists (ex: "tl", "c"): ax
+
+Error: Move "ax" doesn't exist.
+Please enter a move that exists (ex: "tl", "c"): c
+   |   | x 
+---+---+---
+   | o |   
+---+---+---
+   |   |   
+
+Player 1, please enter your move: l
+   |   | x 
+---+---+---
+ x | o |   
+---+---+---
+   |   |   
+
+...
