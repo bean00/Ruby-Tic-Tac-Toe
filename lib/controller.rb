@@ -10,13 +10,10 @@ class Controller
   def play_game
     IOHandler.display_introduction
     IOHandler.display_game_mode_instructions
-
-    game_mode_character = IOHandler.get_user_input_for_game_mode
-    playing_computer = is_playing_computer?(game_mode_character)
-
+    game_mode_symbol = IOHandler.get_user_input_for_game_mode
+    playing_computer = is_playing_computer?(game_mode_symbol)
     IOHandler.display_game_mode(playing_computer)
     IOHandler.display_who_goes_1st(playing_computer)
-
     IOHandler.display_instructions
 
     has_player_won = false
@@ -61,30 +58,27 @@ class Controller
 
   def get_valid_move
     move = IOHandler.get_user_input
-    move_does_not_exist = !board.move_exists?(move)
-    move_has_been_taken = !board.position_is_empty?(move)
+    move_is_invalid = !board.is_valid?(move)
 
-    while move_does_not_exist || move_has_been_taken
-      if move_does_not_exist
+    while move_is_invalid
+      if !board.move_exists?(move)
         print "\n<!> Error: Move \"#{move}\" doesn't exist.\n"
         print "Please enter a move that exists (ex: \"tl\", \"c\"): "
         move = IOHandler.get_user_input
-        move_does_not_exist = !board.move_exists?(move)
-        move_has_been_taken = !board.position_is_empty?(move)
-      elsif move_has_been_taken
+        move_is_invalid = !board.is_valid?(move)
+      elsif !board.position_is_empty?(move)
         print "\n<!> Error: The position at \"#{move}\" has already been taken.\n"
         print "Please enter a new move: "
         move = IOHandler.get_user_input
-        move_does_not_exist = !board.move_exists?(move)
-        move_has_been_taken = !board.position_is_empty?(move)
+        move_is_invalid = !board.is_valid?(move)
       end
     end
 
     move
   end
 
-  def is_playing_computer?(game_mode_char)
-    game_mode_char == "c"
+  def is_playing_computer?(game_mode_symbol)
+    game_mode_symbol == :c
   end
 
   def set_player_token_based_on_move(move_number)

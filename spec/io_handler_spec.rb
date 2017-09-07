@@ -114,7 +114,7 @@ describe 'get_user_input' do
     allow($stdin).to receive(:gets).and_return("tl\n")
     input = IOHandler.get_user_input
 
-    expect(input).to eq("tl")
+    expect(input).to eq(:tl)
   end
 end
 

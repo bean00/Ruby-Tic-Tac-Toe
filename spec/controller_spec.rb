@@ -119,8 +119,8 @@ describe 'play_round' do
 
   it 'displays correct output if Px moves to "b" (which has been taken)' do
     b = Board.new
-    b.move("b", "x")
-    b.move("br", "o")
+    b.move(:b, "x")
+    b.move(:br, "o")
     c = Controller.new(b)
     expected_output = "Player x, please enter your move: " +
                       "\n" +
@@ -140,7 +140,7 @@ describe 'play_round' do
 
   it 'displays correct output if Po moves to "t" (which has been taken)' do
     b = Board.new
-    b.move("t", "x")
+    b.move(:t, "x")
     c = Controller.new(b)
     expected_output = "Player o, please enter your move: " +
                       "\n" +

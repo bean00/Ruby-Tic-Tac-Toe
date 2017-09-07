@@ -62,7 +62,7 @@ class IOHandler
   end
 
   def self.get_user_input
-    $stdin.gets.chomp
+    $stdin.gets.chomp.to_sym
   end
 
   def self.display_game_over_msg(player_won, playing_computer, player_token)

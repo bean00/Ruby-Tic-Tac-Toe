@@ -8,13 +8,10 @@ class Board
                :bl => 6, :b => 7, :br => 8 }
   end
 
-  def move(position_string, character)
-    position = position_string.to_sym
-    index = @moves[position]
+  def move(move, player_token)
+    index = @moves[move]
 
-    if is_valid?(position)
-      @board[index] = character
-    end
+    @board[index] = player_token
   end
 
   def get_available_moves
@@ -22,9 +19,8 @@ class Board
 
     @board.each_with_index do |pos, i|
       if pos == ""
-        move_symbol = @moves.key(i)
-        move_string = move_symbol.to_s
-        available_moves << move_string
+        move = @moves.key(i)
+        available_moves << move
       end
     end
 
@@ -42,40 +38,24 @@ class Board
     formatted_board
   end
 
-  def is_valid?(move_string)
-    move_exists?(move_string) && position_is_empty?(move_string)
+  def is_valid?(move)
+    move_exists?(move) && position_is_empty?(move)
   end
 
-  def move_exists?(move_string)
-    move_symbol = move_string.to_sym
-
-    @moves.has_key?(move_symbol)
+  def move_exists?(move)
+    @moves.has_key?(move)
   end
 
-  def position_is_empty?(move_string)
-    if move_exists?(move_string)
-      move_symbol = move_string.to_sym
-      move_index = @moves[move_symbol]
-      
-      @board[move_index] == ""
-    else
-      return false
-    end
+  def position_is_empty?(move)
+    move_index = @moves[move]
+    
+    @board[move_index] == ""
   end
 
   private
 
   def pad_with_spaces(char)
-    padded_char = " "
-
-    if (char.strip.empty?)
-      padded_char << " "
-    else
-      padded_char << char
-    end
-    padded_char << " "
-
-    padded_char
+    char.center(3)
   end
 
   def add_divider(index)
