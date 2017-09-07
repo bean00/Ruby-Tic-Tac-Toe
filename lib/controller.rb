@@ -24,26 +24,25 @@ class Controller
     num_available_moves = board.get_available_moves.length
 
     while (!has_player_won) && (num_available_moves > 0)
-      player_num = set_player_num_based_on_move(move_number)
-      play_round(player_num, playing_computer)
+      player_token = set_player_token_based_on_move(move_number)
+      play_round(player_token, playing_computer)
 
-      player_char = set_player_char(player_num)
-      has_player_won = ScoreTracker.has_player_won?(board.board, player_char)
+      has_player_won = ScoreTracker.has_player_won?(board.board, player_token)
 
       move_number += 1
       num_available_moves = board.get_available_moves.length
     end
 
-    IOHandler.display_game_over_msg(has_player_won, player_num, playing_computer)
+    IOHandler.display_game_over_msg(has_player_won, playing_computer, player_token)
   end
 
-  def play_round(player_num, playing_computer)
-    if player_num == 1
-      IOHandler.prompt_player_for_move(player_num, playing_computer)
+  def play_round(player_token, playing_computer)
+    if player_token == "x"
+      IOHandler.prompt_player_for_move(player_token, playing_computer)
       move = get_valid_move
     else
       if !playing_computer
-        IOHandler.prompt_player_for_move(player_num, playing_computer)
+        IOHandler.prompt_player_for_move(player_token, playing_computer)
         move = get_valid_move
       else
         print "The computer moved.\n"
@@ -52,8 +51,7 @@ class Controller
       end
     end
 
-    player_char = set_player_char(player_num)
-    board.move(move, player_char)
+    board.move(move, player_token)
     
     puts (board.to_string + "\n" +
           "\n")
@@ -89,12 +87,8 @@ class Controller
     game_mode_char == "c"
   end
 
-  def set_player_num_based_on_move(move_number)
-    (move_number % 2 != 0) ? 1 : 2
-  end
-  
-  def set_player_char(player_num)
-    (player_num == 1) ? "x" : "o"
+  def set_player_token_based_on_move(move_number)
+    (move_number % 2 != 0) ? "x" : "o"
   end
 
 end
