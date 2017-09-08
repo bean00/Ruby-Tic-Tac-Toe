@@ -8,7 +8,7 @@ Please enter one of the following:
 
 Ok, you chose to play another person.
 
-You are Player 1, and you will go first.
+You are Player x, and you will go first.
 
 To enter a move, type:
 - "t"   -> top
@@ -27,46 +27,67 @@ To enter a move, type:
 ----+---+----
  bl | b | br 
 
-Player 1, please enter your move: t
+Player x, please enter your move: 
    | x |   
 ---+---+---
    |   |   
 ---+---+---
    |   |   
 
-Player 2, please enter your move: tr
+Player o, please enter your move: 
    | x | o 
 ---+---+---
    |   |   
 ---+---+---
    |   |   
 
-Player 1, please enter your move: tl
- x | x | o 
+Player x, please enter your move: 
+   | x | o 
 ---+---+---
-   |   |   
+   | x |   
 ---+---+---
    |   |   
 
-Player 2, please enter your move: c
- x | x | o 
+Player o, please enter your move: 
+   | x | o 
+---+---+---
+   | x |   
 ---+---+---
    | o |   
----+---+---
-   |   |   
 
-Player 1, please enter your move: l
+Player x, please enter your move: 
  x | x | o 
 ---+---+---
- x | o |   
----+---+---
-   |   |   
-
-Player 2, please enter your move: bl
- x | x | o 
+   | x |   
 ---+---+---
    | o |   
----+---+---
- o |   |   
 
-Game over. Player 2 won!
+Player o, please enter your move: 
+ x | x | o 
+---+---+---
+ o | x |   
+---+---+---
+   | o |   
+
+Player x, please enter your move: 
+ x | x | o 
+---+---+---
+ o | x | x 
+---+---+---
+   | o |   
+
+Player o, please enter your move: 
+ x | x | o 
+---+---+---
+ o | x | x 
+---+---+---
+ o | o |   
+
+Player x, please enter your move: 
+ x | x | o 
+---+---+---
+ o | x | x 
+---+---+---
+ o | o | x 
+
+Game over. Player x won!
