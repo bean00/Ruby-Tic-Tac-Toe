@@ -29,7 +29,7 @@ class IOHandler
     if playing_computer
       print "You will go first.\n\n"
     else
-      print "You are Player 1, and you will go first.\n\n"
+      print "You are Player x, and you will go first.\n\n"
     end
   end
 
@@ -53,26 +53,26 @@ class IOHandler
           "\n"
   end
 
-  def self.prompt_player_for_move(player_num, playing_computer)
+  def self.prompt_player_for_move(player_token, playing_computer)
     if playing_computer
       print "Please enter your move: "
     else
-      print "Player #{player_num}, please enter your move: "
+      print "Player #{player_token}, please enter your move: "
     end
   end
 
   def self.get_user_input
-    $stdin.gets.chomp
+    $stdin.gets.chomp.to_sym
   end
 
-  def self.display_game_over_msg(player_won, player_num, playing_computer)
+  def self.display_game_over_msg(player_won, playing_computer, player_token)
     if !player_won
       display_draw_message
     else
       if !playing_computer
-        display_winning_message(player_num)
+        display_winning_message(player_token)
       else
-        display_message_vs_computer(player_num)
+        display_message_vs_computer(player_token)
       end
     end
   end
@@ -83,12 +83,12 @@ class IOHandler
     print "Game over. Resulted in a draw.\n"
   end
 
-  def self.display_winning_message(player_num)
-    print "Game over. Player #{player_num} won!\n"
+  def self.display_winning_message(player_token)
+    print "Game over. Player #{player_token} won!\n"
   end
 
-  def self.display_message_vs_computer(player_num)
-    if player_num == 1
+  def self.display_message_vs_computer(player_token)
+    if player_token == "x"
       print "Game over. You won!\n"
     else
       print "Game over. You lost :(\n"

@@ -56,7 +56,7 @@ describe 'display_who_goes_1st' do
   end
 
   it 'displays human message for Human vs. Human mode' do
-    hum_msg = "You are Player 1, and you will go first.\n\n"
+    hum_msg = "You are Player x, and you will go first.\n\n"
 
     expect{IOHandler.display_who_goes_1st(false)}.to output(hum_msg).to_stdout
   end
@@ -89,13 +89,19 @@ end
 
 
 describe 'prompt_player_for_move' do
-  it 'displays the correct prompt for Player 1 (H vs. H)' do
-    prompt = "Player 1, please enter your move: "
+  it 'displays the correct prompt for the player that went 1st (HvH)' do
+    prompt = "Player x, please enter your move: "
 
-    expect{IOHandler.prompt_player_for_move(1, false)}.to output(prompt).to_stdout
+    expect{IOHandler.prompt_player_for_move("x", false)}.to output(prompt).to_stdout
   end
 
-  it 'displays the correct prompt for the human player (H vs. C)' do
+  it 'displays the correct prompt for the player that went 2nd (HvH)' do
+    prompt = "Player o, please enter your move: "
+
+    expect{IOHandler.prompt_player_for_move("o", false)}.to output(prompt).to_stdout
+  end
+
+  it 'displays the correct prompt for the human player (HvC)' do
     prompt = "Please enter your move: "
 
     expect{IOHandler.prompt_player_for_move(1, true)}.to output(prompt).to_stdout
@@ -108,41 +114,41 @@ describe 'get_user_input' do
     allow($stdin).to receive(:gets).and_return("tl\n")
     input = IOHandler.get_user_input
 
-    expect(input).to eq("tl")
+    expect(input).to eq(:tl)
   end
 end
 
 
 describe 'display_game_over_msg' do
-  it 'displays the correct message if Player 1 won (H vs. H)' do
-    msg = "Game over. Player 1 won!\n"
+  it 'displays the correct message if Player x won (HvH)' do
+    msg = "Game over. Player x won!\n"
 
     expect {
-      IOHandler.display_game_over_msg(true, 1, false)
+      IOHandler.display_game_over_msg(true, false, "x")
     }.to output(msg).to_stdout
   end
 
-  it 'displays the correct message if the game resulted in a draw (H vs. H)' do
+  it 'displays the correct message if the game resulted in a draw (HvH)' do
     msg = "Game over. Resulted in a draw.\n"
 
     expect {
-      IOHandler.display_game_over_msg(false, 2, false)
+      IOHandler.display_game_over_msg(false, false, "x")
     }.to output(msg).to_stdout
   end
 
-  it 'displays the correct message if the human won (H vs. C)' do
+  it 'displays the correct message if the human won (HvC)' do
     msg = "Game over. You won!\n"
 
     expect {
-      IOHandler.display_game_over_msg(true, 1, true)
+      IOHandler.display_game_over_msg(true, true, "x")
     }.to output(msg).to_stdout
   end
 
-  it 'displays the correct message if the computer won (H vs. C)' do
+  it 'displays the correct message if the computer won (HvC)' do
     msg = "Game over. You lost :(\n"
 
     expect {
-      IOHandler.display_game_over_msg(true, 2, true)
+      IOHandler.display_game_over_msg(true, true, "o")
     }.to output(msg).to_stdout
   end
 end
