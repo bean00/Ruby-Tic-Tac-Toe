@@ -10,7 +10,7 @@ class Controller
   def play_game
     IOHandler.display_introduction
     IOHandler.display_game_mode_instructions
-    game_mode_symbol = IOHandler.get_user_input_for_game_mode
+    game_mode_symbol = get_valid_game_mode
     playing_computer = is_playing_computer?(game_mode_symbol)
     IOHandler.display_game_mode(playing_computer)
     IOHandler.display_who_goes_1st(playing_computer)
@@ -55,6 +55,22 @@ class Controller
   end
 
   private
+
+  def get_valid_game_mode
+    print "> "
+
+    mode = IOHandler.get_user_input
+    mode_is_invalid = (mode != :h) && (mode != :c)
+
+    while mode_is_invalid
+      print "\n<!> Error: Invalid input for game mode.\n"
+      print "Please enter a valid choice (\"h\", \"c\"): "
+      mode = IOHandler.get_user_input
+      mode_is_invalid = (mode != :h) && (mode != :c)
+    end
+
+    mode
+  end
 
   def get_valid_move
     move = IOHandler.get_user_input

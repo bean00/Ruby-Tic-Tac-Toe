@@ -12,11 +12,6 @@ class IOHandler
           "\n"
   end
 
-  def self.get_user_input_for_game_mode
-    print "> "
-    get_user_input
-  end
-
   def self.display_game_mode(playing_computer)
     if playing_computer
       print "\nOk, you chose to play a computer.\n\n"
