@@ -34,9 +34,8 @@ class Controller
       num_available_moves = board.get_available_moves.length
     end
 
-    IOHandler.display_game_over_msg(move_number, player_num, playing_computer)
+    IOHandler.display_game_over_msg(has_player_won, player_num, playing_computer)
   end
-
 
   def play_round(player_num, playing_computer)
     if player_num == 1

@@ -35,6 +35,18 @@ describe 'play_game' do
 
     expect{c.play_game}.to output(expected_output).to_stdout
   end
+
+  it 'prints the correct output when P1 wins on last move (HvH)' do
+    c = Controller.new
+    expected_output = File.read(File.dirname(__FILE__) +
+                                '/expected-output/p1_wins_on_last_move.txt')
+
+    allow($stdin).to receive(:gets).and_return("h\n", "t\n", "tr\n", "c\n",
+                                               "b\n", "tl\n", "l\n", "r\n",
+                                               "bl\n", "br\n")
+
+    expect{c.play_game}.to output(expected_output).to_stdout
+  end
 end
 
 
