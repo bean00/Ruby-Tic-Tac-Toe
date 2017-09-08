@@ -29,7 +29,7 @@ describe 'play_game' do
   it 'prints correct output when human wins against computer (HvC)' do
     c = Controller.new
     expected_output = File.read(File.dirname(__FILE__) +
-                                '/expected-output/human_wins_for_test.txt')
+                                '/expected-output/human_wins.txt')
 
     allow($stdin).to receive(:gets).and_return("c\n", "t\n", "c\n", "b\n")
 

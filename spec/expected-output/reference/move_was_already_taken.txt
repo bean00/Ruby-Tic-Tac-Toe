@@ -8,7 +8,7 @@ Please enter one of the following:
 
 Ok, you chose to play another person.
 
-You are Player 1, and you will go first.
+You are Player x, and you will go first.
 
 To enter a move, type:
 - "t"   -> top
@@ -27,16 +27,16 @@ To enter a move, type:
 ----+---+----
  bl | b | br 
 
-Player 1, please enter your move: t
+Player x, please enter your move: t
    | x |   
 ---+---+---
    |   |   
 ---+---+---
    |   |   
 
-Player 2, please enter your move: t
+Player o, please enter your move: t
 
-Error: The position at "t" has already been taken.
+<!> Error: The position at "t" has already been taken.
 Please enter a new move: c
    | x |   
 ---+---+---
@@ -44,12 +44,12 @@ Please enter a new move: c
 ---+---+---
    |   |   
 
-Player 1, please enter your move: c
+Player x, please enter your move: c
 
-Error: The position at "c" has already been taken.
+<!> Error: The position at "c" has already been taken.
 Please enter a new move: t
 
-Error: The position at "t" has already been taken.
+<!> Error: The position at "t" has already been taken.
 Please enter a new move: b
    | x |   
 ---+---+---

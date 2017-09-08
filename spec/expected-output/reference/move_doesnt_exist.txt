@@ -8,7 +8,7 @@ Please enter one of the following:
 
 Ok, you chose to play another person.
 
-You are Player 1, and you will go first.
+You are Player x, and you will go first.
 
 To enter a move, type:
 - "t"   -> top
@@ -27,9 +27,9 @@ To enter a move, type:
 ----+---+----
  bl | b | br 
 
-Player 1, please enter your move: x
+Player x, please enter your move: x
 
-Error: Move "x" doesn't exist.
+<!> Error: Move "x" doesn't exist.
 Please enter a move that exists (ex: "tl", "c"): tr
    |   | x 
 ---+---+---
@@ -37,12 +37,12 @@ Please enter a move that exists (ex: "tl", "c"): tr
 ---+---+---
    |   |   
 
-Player 2, please enter your move: a
+Player o, please enter your move: a
 
-Error: Move "a" doesn't exist.
+<!> Error: Move "a" doesn't exist.
 Please enter a move that exists (ex: "tl", "c"): ax
 
-Error: Move "ax" doesn't exist.
+<!> Error: Move "ax" doesn't exist.
 Please enter a move that exists (ex: "tl", "c"): c
    |   | x 
 ---+---+---
@@ -50,7 +50,7 @@ Please enter a move that exists (ex: "tl", "c"): c
 ---+---+---
    |   |   
 
-Player 1, please enter your move: l
+Player x, please enter your move: l
    |   | x 
 ---+---+---
  x | o |   
