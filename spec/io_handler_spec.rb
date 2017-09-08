@@ -24,15 +24,6 @@ describe 'display_game_mode_instructions' do
 end
 
 
-describe 'get_user_input_for_game_mode' do
-  it 'displays ">" and gets user input' do
-    allow($stdin).to receive(:gets).and_return("c\n")
-
-    expect{IOHandler.get_user_input_for_game_mode}.to output("> ").to_stdout
-  end
-end
-
-
 describe 'dislpay_game_mode' do
   it 'displays computer message for Human vs. Computer mode' do
     comp_msg = "\nOk, you chose to play a computer.\n\n"

@@ -1,17 +1,17 @@
 class ScoreTracker
 
-  def self.has_player_won?(board, character)
-    is_a_row_full?(board, character)      ||
-    is_a_column_full?(board, character)   ||
-    is_a_diagonal_full?(board, character)
+  def self.has_player_won?(board, player_token)
+    is_a_row_full?(board, player_token)      ||
+    is_a_column_full?(board, player_token)   ||
+    is_a_diagonal_full?(board, player_token)
   end
 
   # ----- private -----
 
-  def self.is_a_row_full?(board, character)
+  def self.is_a_row_full?(board, player_token)
     rows = extract_rows(board)
 
-    are_any_arrays_full?(rows, character)
+    are_any_arrays_full?(rows, player_token)
   end
 
   def self.extract_rows(board)
@@ -22,9 +22,9 @@ class ScoreTracker
     [top_row, middle_row, bottom_row]
   end
 
-  def self.are_any_arrays_full?(arrays, character)
+  def self.are_any_arrays_full?(arrays, player_token)
     arrays.each do |array|
-      if is_array_full?(array, character)
+      if is_array_full?(array, player_token)
         return true
       end
     end
@@ -32,14 +32,14 @@ class ScoreTracker
     false
   end
 
-  def self.is_array_full?(array, character)
-    array.count(character) == 3
+  def self.is_array_full?(array, player_token)
+    array.count(player_token) == 3
   end
 
-  def self.is_a_column_full?(board, character)
+  def self.is_a_column_full?(board, player_token)
     columns = extract_columns(board)
 
-    are_any_arrays_full?(columns, character)
+    are_any_arrays_full?(columns, player_token)
   end
 
   def self.extract_columns(board)
@@ -50,10 +50,10 @@ class ScoreTracker
     [left_col, middle_col, right_col]
   end
 
-  def self.is_a_diagonal_full?(board, character)
+  def self.is_a_diagonal_full?(board, player_token)
     diagonals = extract_diagonals(board)
     
-    are_any_arrays_full?(diagonals, character)
+    are_any_arrays_full?(diagonals, player_token)
   end
 
   def self.extract_diagonals(board)

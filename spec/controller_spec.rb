@@ -47,6 +47,17 @@ describe 'play_game' do
 
     expect{c.play_game}.to output(expected_output).to_stdout
   end
+
+  it 'prints correct output when user enters invalid input for game mode' do
+    c = Controller.new
+    expected_output = File.read(File.dirname(__FILE__) +
+                                '/expected-output/invalid_input_for_game_mode.txt')
+
+    allow($stdin).to receive(:gets).and_return("y\n", "h\n", "t\n", "tr\n",
+                                               "c\n", "r\n", "b\n")
+
+    expect{c.play_game}.to output(expected_output).to_stdout
+  end
 end
 
 

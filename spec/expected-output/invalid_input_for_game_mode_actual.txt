@@ -1,0 +1,68 @@
+Hello! This is a Tic Tac Toe program.
+
+Please enter one of the following:
+- "h" to play against another person
+- "c" to play against a computer
+
+> y
+
+<!> Error: Invalid input for game mode.
+Please enter a valid choice ("h", "c"): h
+
+Ok, you chose to play another person.
+
+You are Player x, and you will go first.
+
+To enter a move, type:
+- "t"   -> top
+- "c"   -> center
+- "b"   -> bottom
+- "l"   -> left
+- "r"   -> right
+- "tl"  -> top left
+- "tr"  -> top right
+- "bl"  -> bottom left
+- "br"  -> bottom right
+
+ tl | t | tr 
+----+---+----
+ l  | c | r  
+----+---+----
+ bl | b | br 
+
+Player x, please enter your move: t
+   | x |   
+---+---+---
+   |   |   
+---+---+---
+   |   |   
+
+Player o, please enter your move: tr
+   | x | o 
+---+---+---
+   |   |   
+---+---+---
+   |   |   
+
+Player x, please enter your move: c
+   | x | o 
+---+---+---
+   | x |   
+---+---+---
+   |   |   
+
+Player o, please enter your move: r
+   | x | o 
+---+---+---
+   | x | o 
+---+---+---
+   |   |   
+
+Player x, please enter your move: b
+   | x | o 
+---+---+---
+   | x | o 
+---+---+---
+   | x |   
+
+Game over. Player x won!
