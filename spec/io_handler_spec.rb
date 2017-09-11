@@ -56,22 +56,15 @@ end
 
 describe 'display_instructions' do
   it 'displays the instructions for the Tic Tac Toe game' do
-    instructions = "To enter a move, type:\n" +
-                   "- \"t\"   -> top\n" +
-                   "- \"c\"   -> center\n" +
-                   "- \"b\"   -> bottom\n" +
-                   "- \"l\"   -> left\n" +
-                   "- \"r\"   -> right\n" +
-                   "- \"tl\"  -> top left\n" +
-                   "- \"tr\"  -> top right\n" +
-                   "- \"bl\"  -> bottom left\n" +
-                   "- \"br\"  -> bottom right\n" +
+    instructions = "To enter a move, type a number from 1-9.\n" +
+                   "It will be added to the board based on\n" +
+                   "the following positions:\n" +
                    "\n" +
-                   " tl | t | tr \n" +
-                   "----+---+----\n" +
-                   " l  | c | r  \n" +
-                   "----+---+----\n" +
-                   " bl | b | br \n" +
+                   " 1 | 2 | 3 \n" +
+                   "---+---+---\n" +
+                   " 4 | 5 | 6 \n" +
+                   "---+---+---\n" +
+                   " 7 | 8 | 9 \n" +
                    "\n"
 
     expect{IOHandler.display_instructions}.to output(instructions).to_stdout
@@ -101,11 +94,21 @@ end
 
 
 describe 'get_user_input' do
-  it 'gets user input' do
-    allow($stdin).to receive(:gets).and_return("tl\n")
+  it 'gets user input as a string' do
+    allow($stdin).to receive(:gets).and_return("h\n")
     input = IOHandler.get_user_input
 
-    expect(input).to eq(:tl)
+    expect(input).to eq("h")
+  end
+end
+
+
+describe 'get_input_as_int' do
+  it 'gets user input as an integer' do
+    allow($stdin).to receive(:gets).and_return("3\n")
+    input = IOHandler.get_input_as_int
+
+    expect(input).to eq(3)
   end
 end
 

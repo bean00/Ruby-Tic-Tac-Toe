@@ -1,4 +1,5 @@
 require_relative 'io_handler'
+require_relative 'input_validator'
 
 class Controller
   attr_reader :board
@@ -10,8 +11,8 @@ class Controller
   def play_game
     IOHandler.display_introduction
     IOHandler.display_game_mode_instructions
-    game_mode_symbol = get_valid_game_mode
-    playing_computer = is_playing_computer?(game_mode_symbol)
+    game_mode = get_valid_game_mode
+    playing_computer = is_playing_computer?(game_mode)
     IOHandler.display_game_mode(playing_computer)
     IOHandler.display_who_goes_1st(playing_computer)
     IOHandler.display_instructions
@@ -60,13 +61,13 @@ class Controller
     print "> "
 
     mode = IOHandler.get_user_input
-    mode_is_invalid = (mode != :h) && (mode != :c)
+    mode_is_invalid = (mode != "h") && (mode != "c")
 
     while mode_is_invalid
       print "\n<!> Error: Invalid input for game mode.\n"
       print "Please enter a valid choice (\"h\", \"c\"): "
       mode = IOHandler.get_user_input
-      mode_is_invalid = (mode != :h) && (mode != :c)
+      mode_is_invalid = (mode != "h") && (mode != "c")
     end
 
     mode
@@ -74,27 +75,25 @@ class Controller
 
   def get_valid_move
     move = IOHandler.get_user_input
-    move_is_invalid = !board.is_valid?(move)
+    iv = InputValidator.new(9)
 
-    while move_is_invalid
-      if !board.move_exists?(move)
-        print "\n<!> Error: Move \"#{move}\" doesn't exist.\n"
-        print "Please enter a move that exists (ex: \"tl\", \"c\"): "
+    while !iv.is_move_valid?(move) || !board.position_is_empty?(move)
+      if !iv.is_move_valid?(move)
+        print "\n<!> Error: Move \"#{move}\" is invalid.\n"
+        print "Please enter a move from 1-9: "
         move = IOHandler.get_user_input
-        move_is_invalid = !board.is_valid?(move)
       elsif !board.position_is_empty?(move)
-        print "\n<!> Error: The position at \"#{move}\" has already been taken.\n"
+        print "\n<!> Error: Move #{move} has already been taken.\n"
         print "Please enter a new move: "
         move = IOHandler.get_user_input
-        move_is_invalid = !board.is_valid?(move)
       end
     end
 
-    move
+    move.to_i
   end
 
-  def is_playing_computer?(game_mode_symbol)
-    game_mode_symbol == :c
+  def is_playing_computer?(game_mode)
+    game_mode == "c"
   end
 
   def set_player_token_based_on_move(move_number)

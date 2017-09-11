@@ -9,22 +9,15 @@ Ok, you chose to play a computer.
 
 You will go first.
 
-To enter a move, type:
-- "t"   -> top
-- "c"   -> center
-- "b"   -> bottom
-- "l"   -> left
-- "r"   -> right
-- "tl"  -> top left
-- "tr"  -> top right
-- "bl"  -> bottom left
-- "br"  -> bottom right
+To enter a move, type a number from 1-9.
+It will be added to the board based on
+the following positions:
 
- tl | t | tr 
-----+---+----
- l  | c | r  
-----+---+----
- bl | b | br 
+ 1 | 2 | 3 
+---+---+---
+ 4 | 5 | 6 
+---+---+---
+ 7 | 8 | 9 
 
 Please enter your move:    | x |   
 ---+---+---

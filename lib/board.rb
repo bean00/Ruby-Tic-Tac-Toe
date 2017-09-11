@@ -3,15 +3,12 @@ class Board
 
   def initialize(board=Array.new(9, ""))
     @board = board
-    @moves = { :tl => 0, :t => 1, :tr => 2,
-               :l  => 3, :c => 4, :r  => 5,
-               :bl => 6, :b => 7, :br => 8 }
   end
 
   def move(move, player_token)
-    index = @moves[move]
+    move_index = move - 1
 
-    @board[index] = player_token
+    @board[move_index] = player_token
   end
 
   def get_available_moves
@@ -19,7 +16,7 @@ class Board
 
     @board.each_with_index do |pos, i|
       if pos == ""
-        move = @moves.key(i)
+        move = i + 1
         available_moves << move
       end
     end
@@ -38,16 +35,12 @@ class Board
     formatted_board
   end
 
-  def is_valid?(move)
-    move_exists?(move) && position_is_empty?(move)
-  end
-
-  def move_exists?(move)
-    @moves.has_key?(move)
-  end
-
   def position_is_empty?(move)
-    move_index = @moves[move]
+    if move.is_a? String
+      move = move.to_i
+    end
+
+    move_index = move - 1
     
     @board[move_index] == ""
   end
