@@ -129,7 +129,7 @@ describe 'play_round' do
   end
 
   it 'displays correct output if PX moves to 8 (which has been taken)' do
-    b = Board.new
+    b = Board.new(3)
     b.move(8, "X")
     b.move(9, "O")
     c = Controller.new(b)
@@ -150,7 +150,7 @@ describe 'play_round' do
   end
 
   it 'displays correct output if PO moves to 2 (which has been taken)' do
-    b = Board.new
+    b = Board.new(3)
     b.move(2, "X")
     c = Controller.new(b)
     expected_output = "Player O, please enter your move: " +

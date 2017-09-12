@@ -1,7 +1,8 @@
 class Board
 
-  def initialize(board=Array.new(9, ""))
-    @board = board
+  def initialize(side_length)
+    @side_length = side_length
+    @board = Array.new(@side_length * @side_length, "")
   end
 
   def move(move, player_token)
@@ -35,6 +36,10 @@ class Board
 
   def to_string
     @board
+  end
+
+  def set_board(board)
+    @board = board
   end
 
 end

@@ -4,7 +4,7 @@ require_relative 'view'
 
 class Controller
 
-  def initialize(board = Board.new)
+  def initialize(board = Board.new(3))
     @board = board
     @view = View.new(@board.to_string)
   end

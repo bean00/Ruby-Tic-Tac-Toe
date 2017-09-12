@@ -1,13 +1,13 @@
 class View
 
   def initialize(board_string)
-    @board = board_string
+    @board_string = board_string
   end
 
   def display_board
     formatted_board = ""
 
-    @board.each_with_index do |pos, i|
+    @board_string.each_with_index do |pos, i|
       pos = convert_index_if_position_is_empty(pos, i)
 
       formatted_board << pad_with_spaces(pos)
@@ -19,7 +19,7 @@ class View
   end
 
   def update_view(board_string)
-    @board = board_string
+    @board_string = board_string
   end
 
   private

@@ -3,7 +3,7 @@ require 'view'
 
 describe 'display_board' do
   it 'prints a formatted board if all positions are "x"s' do
-    b = Board.new
+    b = Board.new(3)
     b.move(1, "X")
     b.move(2, "X")
     b.move(3, "X")
@@ -25,7 +25,7 @@ describe 'display_board' do
   end
 
   it 'prints a formatted board if all positions are empty' do
-    b = Board.new
+    b = Board.new(3)
     v = View.new(b.to_string)
     formatted_board = " 1 | 2 | 3 \n" +
                       "---+---+---\n" +
@@ -38,7 +38,7 @@ describe 'display_board' do
   end
 
   it 'prints a formatted board if positions are mixed' do
-    b = Board.new
+    b = Board.new(3)
     b.move(5, "X")
     b.move(1, "O")
     b.move(9, "X")
@@ -58,7 +58,7 @@ end
 
 describe 'update_view' do
   it 'sets the board to the passed in array of strings' do
-    b = Board.new
+    b = Board.new(3)
     v = View.new(b.to_string)
     b.move(3, "X")
     b.move(4, "O")

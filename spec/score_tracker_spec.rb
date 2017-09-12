@@ -3,7 +3,7 @@ require 'score_tracker'
 
 describe 'has_player_won?' do
   it 'returns true when the top row is filled' do
-    board = Board.new
+    board = Board.new(3)
     board.move(1, "X")
     board.move(2, "X")
     board.move(3, "X")
@@ -14,7 +14,7 @@ describe 'has_player_won?' do
   end
 
   it 'returns false when the board is empty' do
-    board = Board.new
+    board = Board.new(3)
 
     player_won = ScoreTracker.has_player_won?(board.to_string, "X")
 
@@ -22,7 +22,7 @@ describe 'has_player_won?' do
   end
 
   it 'returns true when the middle row is filled' do
-    board = Board.new
+    board = Board.new(3)
     board.move(4, "O")
     board.move(5, "O")
     board.move(6, "O")
@@ -33,7 +33,7 @@ describe 'has_player_won?' do
   end
 
   it 'returns true when the bottom row is filled' do
-    board = Board.new
+    board = Board.new(3)
     board.move(7, "X")
     board.move(8, "X")
     board.move(9, "X")
@@ -44,7 +44,7 @@ describe 'has_player_won?' do
   end
 
   it 'returns true when the left column is filled' do
-    board = Board.new
+    board = Board.new(3)
     board.move(1, "X")
     board.move(4, "X")
     board.move(7, "X")
@@ -55,7 +55,7 @@ describe 'has_player_won?' do
   end
 
   it 'returns true when the middle column is filled' do
-    board = Board.new
+    board = Board.new(3)
     board.move(2, "X")
     board.move(5, "X")
     board.move(8, "X")
@@ -66,7 +66,7 @@ describe 'has_player_won?' do
   end
 
   it 'returns true when the right column is filled' do
-    board = Board.new
+    board = Board.new(3)
     board.move(3, "X")
     board.move(6, "X")
     board.move(9, "X")
@@ -77,7 +77,7 @@ describe 'has_player_won?' do
   end
 
   it 'returns true when the diagonal from the "tl" to "br" is filled' do
-    board = Board.new
+    board = Board.new(3)
     board.move(1, "X")
     board.move(5, "X")
     board.move(9, "X")
@@ -88,7 +88,7 @@ describe 'has_player_won?' do
   end
 
   it 'returns true when the diagonal from the "tr" to "bl" is filled' do
-    board = Board.new
+    board = Board.new(3)
     board.move(3, "X")
     board.move(5, "X")
     board.move(7, "X")
