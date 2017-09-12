@@ -3,7 +3,7 @@ require 'score_tracker'
 require 'controller'
 
 describe 'play_game' do
-  it 'prints correct output when Px wins from moving to [t,c,b] (HvH)' do
+  it 'prints correct output when PX wins from moving to [t,c,b] (HvH)' do
     c = Controller.new
     expected_output = File.read(File.dirname(__FILE__) +
                                 '/expected-output/px_wins_at_t_c_b.txt')
@@ -62,110 +62,110 @@ end
 
 
 describe 'play_round' do
-  it 'displays correct output for Player x (Px) moving to 1 (HvH)' do
+  it 'displays correct output for Player X (PX) moving to 1 (HvH)' do
     c = Controller.new
-    expected_output = "Player x, please enter your move: " +
-                      " x |   |   \n" +
+    expected_output = "Player X, please enter your move: " +
+                      " X | 2 | 3 \n" +
                       "---+---+---\n" +
-                      "   |   |   \n" +
+                      " 4 | 5 | 6 \n" +
                       "---+---+---\n" +
-                      "   |   |   \n" +
+                      " 7 | 8 | 9 \n" +
                       "\n"
 
     allow($stdin).to receive(:gets).and_return("1\n")
 
-    expect{c.play_round("x", false)}.to output(expected_output).to_stdout
+    expect{c.play_round("X", false)}.to output(expected_output).to_stdout
   end
 
-  it 'displays correct output for Px moving to 2 (HvC)' do
+  it 'displays correct output for PX moving to 2 (HvC)' do
     c = Controller.new
     expected_output = "Please enter your move: " +
-                      "   | x |   \n" +
+                      " 1 | X | 3 \n" +
                       "---+---+---\n" +
-                      "   |   |   \n" +
+                      " 4 | 5 | 6 \n" +
                       "---+---+---\n" +
-                      "   |   |   \n" +
+                      " 7 | 8 | 9 \n" +
                       "\n"
 
     allow($stdin).to receive(:gets).and_return("2\n")
 
-    expect{c.play_round("x", true)}.to output(expected_output).to_stdout
+    expect{c.play_round("X", true)}.to output(expected_output).to_stdout
   end
 
-  it 'displays correct output if Px makes an invalid move to "x"' do
+  it 'displays correct output if PX makes an invalid move to "z"' do
     c = Controller.new
-    expected_output = "Player x, please enter your move: " + 
+    expected_output = "Player X, please enter your move: " + 
                       "\n" +
-                      "<!> Error: Move \"x\" is invalid.\n" +
+                      "<!> Error: Move \"z\" is invalid.\n" +
                       "Please enter a move from 1-9: " +
-                      "   |   |   \n" +
+                      " 1 | 2 | 3 \n" +
                       "---+---+---\n" +
-                      "   | x |   \n" +
+                      " 4 | X | 6 \n" +
                       "---+---+---\n" +
-                      "   |   |   \n" +
+                      " 7 | 8 | 9 \n" +
                       "\n"
 
-    allow($stdin).to receive(:gets).and_return("x\n", "5\n")
+    allow($stdin).to receive(:gets).and_return("z\n", "5\n")
 
-    expect{c.play_round("x", false)}.to output(expected_output).to_stdout
+    expect{c.play_round("X", false)}.to output(expected_output).to_stdout
   end
 
-  it 'displays correct output if Player o (Po) makes an invalid move to "y"' do
+  it 'displays correct output if Player O (PO) makes an invalid move to "y"' do
     c = Controller.new
-    expected_output = "Player o, please enter your move: " + 
+    expected_output = "Player O, please enter your move: " + 
                       "\n" +
                       "<!> Error: Move \"y\" is invalid.\n" +
                       "Please enter a move from 1-9: " +
-                      "   |   |   \n" +
+                      " 1 | 2 | 3 \n" +
                       "---+---+---\n" +
-                      "   |   | o \n" +
+                      " 4 | 5 | O \n" +
                       "---+---+---\n" +
-                      "   |   |   \n" +
+                      " 7 | 8 | 9 \n" +
                       "\n"
 
     allow($stdin).to receive(:gets).and_return("y\n", "6\n")
 
-    expect{c.play_round("o", false)}.to output(expected_output).to_stdout
+    expect{c.play_round("O", false)}.to output(expected_output).to_stdout
   end
 
-  it 'displays correct output if Px moves to 8 (which has been taken)' do
+  it 'displays correct output if PX moves to 8 (which has been taken)' do
     b = Board.new
-    b.move(8, "x")
-    b.move(9, "o")
+    b.move(8, "X")
+    b.move(9, "O")
     c = Controller.new(b)
-    expected_output = "Player x, please enter your move: " +
+    expected_output = "Player X, please enter your move: " +
                       "\n" +
                       "<!> Error: Move 8 has already been taken.\n" +
                       "Please enter a new move: " +
-                      "   |   |   \n" +
+                      " 1 | 2 | 3 \n" +
                       "---+---+---\n" +
-                      "   | x |   \n" +
+                      " 4 | X | 6 \n" +
                       "---+---+---\n" +
-                      "   | x | o \n" +
+                      " 7 | X | O \n" +
                       "\n"
 
     allow($stdin).to receive(:gets).and_return("8\n", "5\n")
 
-    expect{c.play_round("x", false)}.to output(expected_output).to_stdout
+    expect{c.play_round("X", false)}.to output(expected_output).to_stdout
   end
 
-  it 'displays correct output if Po moves to 2 (which has been taken)' do
+  it 'displays correct output if PO moves to 2 (which has been taken)' do
     b = Board.new
-    b.move(2, "x")
+    b.move(2, "X")
     c = Controller.new(b)
-    expected_output = "Player o, please enter your move: " +
+    expected_output = "Player O, please enter your move: " +
                       "\n" +
                       "<!> Error: Move 2 has already been taken.\n" +
                       "Please enter a new move: " +
-                      "   | x |   \n" +
+                      " 1 | X | 3 \n" +
                       "---+---+---\n" +
-                      "   | o |   \n" +
+                      " 4 | O | 6 \n" +
                       "---+---+---\n" +
-                      "   |   |   \n" +
+                      " 7 | 8 | 9 \n" +
                       "\n"
 
     allow($stdin).to receive(:gets).and_return("2\n", "5\n")
 
-    expect{c.play_round("o", false)}.to output(expected_output).to_stdout
+    expect{c.play_round("O", false)}.to output(expected_output).to_stdout
   end
 end

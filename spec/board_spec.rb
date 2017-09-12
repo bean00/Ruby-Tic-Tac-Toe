@@ -1,37 +1,38 @@
 require 'board'
 
 describe 'move' do
-  [[1, ["x", "",  "",
+  [[1, ["X", "",  "",
         "",  "",  "",
         "",  "",  ""]],
-   [2, ["",  "x", "",
+   [2, ["",  "X", "",
         "",  "",  "",
         "",  "",  ""]],
    [9, ["",  "",  "",
         "",  "",  "",
-        "",  "",  "x"]]
+        "",  "",  "X"]]
   ].each do |move, board_after_move|
-    it "moves to the position #{move}" do
+    it "moves to position #{move}" do
       board = Board.new
 
-      board.move(move, "x")
+      board.move(move, "X")
 
-      expect(board.board).to eq(board_after_move)
+      expect(board.to_string).to eq(board_after_move)
     end
   end
 
   it 'moves to 2 next' do
-    board_before_move = ["x", "", "",
+    board_before_move = ["X", "", "",
                          "",  "", "",
                          "",  "", ""]
-    board_after_move = ["x", "o", "",
+
+    board_after_move = ["X", "O", "",
                         "",  "",  "",
                         "",  "",  ""]
     board = Board.new(board_before_move)
 
-    board.move(2, "o")
+    board.move(2, "O")
 
-    expect(board.board).to eq(board_after_move)
+    expect(board.to_string).to eq(board_after_move)
   end
 end
 
@@ -39,14 +40,14 @@ end
 describe 'get_available_moves' do
   it 'returns [2] when there is 1 more move left' do
     board = Board.new
-    board.move(1, "x")
-    board.move(3, "o")
-    board.move(4, "x")
-    board.move(6, "o")
-    board.move(5, "x")
-    board.move(7, "o")
-    board.move(8, "x")
-    board.move(9, "o")
+    board.move(1, "X")
+    board.move(3, "O")
+    board.move(4, "X")
+    board.move(6, "O")
+    board.move(5, "X")
+    board.move(7, "O")
+    board.move(8, "X")
+    board.move(9, "O")
     expected_array = [2]
 
     actual_array = board.get_available_moves
@@ -65,11 +66,11 @@ describe 'get_available_moves' do
 
   it 'returns [1, 6, 8, 9] when the other 5 moves have been made' do
     board = Board.new
-    board.move(2, "x")
-    board.move(3, "o")
-    board.move(4, "x")
-    board.move(5, "o")
-    board.move(7, "x")
+    board.move(2, "X")
+    board.move(3, "O")
+    board.move(4, "X")
+    board.move(5, "O")
+    board.move(7, "X")
     array_with_moves = [1, 6, 8, 9]
 
     actual_array = board.get_available_moves
@@ -79,60 +80,11 @@ describe 'get_available_moves' do
 end
 
 
-describe 'to_string' do
-  it 'returns a formatted board if all positions are "x"s' do
-    board = Board.new
-    board.move(1, "x")
-    board.move(2, "x")
-    board.move(3, "x")
-    board.move(4, "x")
-    board.move(5, "x")
-    board.move(6, "x")
-    board.move(7, "x")
-    board.move(8, "x")
-    board.move(9, "x")
-    formatted_board = " x | x | x \n" +
-                      "---+---+---\n" +
-                      " x | x | x \n" + 
-                      "---+---+---\n" +
-                      " x | x | x "
-
-    expect(board.to_string).to eq(formatted_board)
-  end
-
-  it 'returns a formatted board if all positions are empty' do
-    board = Board.new
-    formatted_board = "   |   |   \n" +
-                      "---+---+---\n" +
-                      "   |   |   \n" +
-                      "---+---+---\n" +
-                      "   |   |   "
-
-    expect(board.to_string).to eq(formatted_board)
-  end
-
-  it 'returns a formatted board if positions are mixed' do
-    board = Board.new
-    board.move(5, "x")
-    board.move(1, "o")
-    board.move(9, "x")
-    board.move(6, "o")
-    formatted_board = " o |   |   \n" +
-                      "---+---+---\n" +
-                      "   | x | o \n" +
-                      "---+---+---\n" +
-                      "   |   | x "
-
-    expect(board.to_string).to eq(formatted_board)
-  end
-end
-
-
 describe 'position_is_empty?' do
   it 'returns true for an empty position' do
     board = Board.new
-    board.move(4, "x")
-    board.move(5, "o")
+    board.move(4, "X")
+    board.move(5, "O")
 
     position_is_empty = board.position_is_empty?(2)
 
@@ -141,10 +93,51 @@ describe 'position_is_empty?' do
 
   it 'returns false for a position that was taken' do
     board = Board.new
-    board.move(6, "x")
+    board.move(6, "X")
 
     position_is_empty = board.position_is_empty?(6)
 
     expect(position_is_empty).to be false
+  end
+end
+
+
+describe 'to_string' do
+  it 'returns an empty array of strings for an empty board' do
+    board = Board.new
+    board_str = ["", "", "",
+                 "", "", "",
+                 "", "", ""]
+
+    expect(board.to_string).to eq(board_str)
+  end
+
+  it 'returns an array with 2 strings after 2 moves were made' do
+    board = Board.new
+    board.move(1, "x")
+    board.move(6, "o")
+    board_str = ["x", "", "",
+                 "",  "", "o",
+                 "",  "", ""]
+
+    expect(board.to_string).to eq(board_str)
+  end
+
+  it 'returns a full array for a full board' do
+    board = Board.new
+    board.move(1, "x")
+    board.move(2, "o")
+    board.move(3, "x")
+    board.move(4, "o")
+    board.move(5, "x")
+    board.move(6, "o")
+    board.move(7, "x")
+    board.move(8, "o")
+    board.move(9, "x")
+    board_str = ["x", "o", "x",
+                 "o", "x", "o",
+                 "x", "o", "x"]
+
+    expect(board.to_string).to eq(board_str)
   end
 end

@@ -19,36 +19,36 @@ the following positions:
 ---+---+---
  7 | 8 | 9 
 
-Please enter your move:    | x |   
+Please enter your move:  1 | X | 3 
 ---+---+---
-   |   |   
+ 4 | 5 | 6 
 ---+---+---
-   |   |   
+ 7 | 8 | 9 
 
 The computer moved.
- o | x |   
+ O | X | 3 
 ---+---+---
-   |   |   
+ 4 | 5 | 6 
 ---+---+---
-   |   |   
+ 7 | 8 | 9 
 
-Please enter your move:  o | x |   
+Please enter your move:  O | X | 3 
 ---+---+---
-   | x |   
+ 4 | X | 6 
 ---+---+---
-   |   |   
+ 7 | 8 | 9 
 
 The computer moved.
- o | x | o 
+ O | X | O 
 ---+---+---
-   | x |   
+ 4 | X | 6 
 ---+---+---
-   |   |   
+ 7 | 8 | 9 
 
-Please enter your move:  o | x | o 
+Please enter your move:  O | X | O 
 ---+---+---
-   | x |   
+ 4 | X | 6 
 ---+---+---
-   | x |   
+ 7 | X | 9 
 
 Game over. You won!

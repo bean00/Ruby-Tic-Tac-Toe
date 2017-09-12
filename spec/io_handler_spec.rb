@@ -47,7 +47,7 @@ describe 'display_who_goes_1st' do
   end
 
   it 'displays human message for Human vs. Human mode' do
-    hum_msg = "You are Player x, and you will go first.\n\n"
+    hum_msg = "You are Player X, and you will go first.\n\n"
 
     expect{IOHandler.display_who_goes_1st(false)}.to output(hum_msg).to_stdout
   end
@@ -74,15 +74,15 @@ end
 
 describe 'prompt_player_for_move' do
   it 'displays the correct prompt for the player that went 1st (HvH)' do
-    prompt = "Player x, please enter your move: "
+    prompt = "Player X, please enter your move: "
 
-    expect{IOHandler.prompt_player_for_move("x", false)}.to output(prompt).to_stdout
+    expect{IOHandler.prompt_player_for_move("X", false)}.to output(prompt).to_stdout
   end
 
   it 'displays the correct prompt for the player that went 2nd (HvH)' do
-    prompt = "Player o, please enter your move: "
+    prompt = "Player O, please enter your move: "
 
-    expect{IOHandler.prompt_player_for_move("o", false)}.to output(prompt).to_stdout
+    expect{IOHandler.prompt_player_for_move("O", false)}.to output(prompt).to_stdout
   end
 
   it 'displays the correct prompt for the human player (HvC)' do
@@ -103,22 +103,12 @@ describe 'get_user_input' do
 end
 
 
-describe 'get_input_as_int' do
-  it 'gets user input as an integer' do
-    allow($stdin).to receive(:gets).and_return("3\n")
-    input = IOHandler.get_input_as_int
-
-    expect(input).to eq(3)
-  end
-end
-
-
 describe 'display_game_over_msg' do
-  it 'displays the correct message if Player x won (HvH)' do
-    msg = "Game over. Player x won!\n"
+  it 'displays the correct message if Player X won (HvH)' do
+    msg = "Game over. Player X won!\n"
 
     expect {
-      IOHandler.display_game_over_msg(true, false, "x")
+      IOHandler.display_game_over_msg(true, false, "X")
     }.to output(msg).to_stdout
   end
 
@@ -126,7 +116,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. Resulted in a draw.\n"
 
     expect {
-      IOHandler.display_game_over_msg(false, false, "x")
+      IOHandler.display_game_over_msg(false, false, "X")
     }.to output(msg).to_stdout
   end
 
@@ -134,7 +124,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. You won!\n"
 
     expect {
-      IOHandler.display_game_over_msg(true, true, "x")
+      IOHandler.display_game_over_msg(true, true, "X")
     }.to output(msg).to_stdout
   end
 
@@ -142,7 +132,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. You lost :(\n"
 
     expect {
-      IOHandler.display_game_over_msg(true, true, "o")
+      IOHandler.display_game_over_msg(true, true, "O")
     }.to output(msg).to_stdout
   end
 end

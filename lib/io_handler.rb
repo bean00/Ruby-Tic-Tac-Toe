@@ -24,7 +24,7 @@ class IOHandler
     if playing_computer
       print "You will go first.\n\n"
     else
-      print "You are Player x, and you will go first.\n\n"
+      print "You are Player X, and you will go first.\n\n"
     end
   end
 
@@ -53,10 +53,6 @@ class IOHandler
     $stdin.gets.chomp.to_str
   end
 
-  def self.get_input_as_int
-    $stdin.gets.chomp.to_i
-  end
-
   def self.display_game_over_msg(player_won, playing_computer, player_token)
     if !player_won
       display_draw_message
@@ -80,7 +76,7 @@ class IOHandler
   end
 
   def self.display_message_vs_computer(player_token)
-    if player_token == "x"
+    if player_token == "X"
       print "Game over. You won!\n"
     else
       print "Game over. You lost :(\n"
