@@ -1,8 +1,11 @@
 Hello! This is a Tic Tac Toe program.
 
+*Enter "q" at any time to quit the program.
+
 Please enter one of the following:
 - "h" to play against another person
 - "c" to play against a computer
+(Or "q" to quit)
 
 > h
 
@@ -20,63 +23,63 @@ the following positions:
 ---+---+---
  7 | 8 | 9 
 
-Player x, please enter your move: 
+Player x, please enter your move (or "q" to quit): 
    | x |   
 ---+---+---
    |   |   
 ---+---+---
    |   |   
 
-Player o, please enter your move: 
+Player o, please enter your move (or "q" to quit): 
    | x | o 
 ---+---+---
    |   |   
 ---+---+---
    |   |   
 
-Player x, please enter your move: 
+Player x, please enter your move (or "q" to quit): 
    | x | o 
 ---+---+---
    | x |   
 ---+---+---
    |   |   
 
-Player o, please enter your move: 
+Player o, please enter your move (or "q" to quit): 
    | x | o 
 ---+---+---
    | x |   
 ---+---+---
    | o |   
 
-Player x, please enter your move: 
+Player x, please enter your move (or "q" to quit): 
  x | x | o 
 ---+---+---
    | x |   
 ---+---+---
    | o |   
 
-Player o, please enter your move: 
+Player o, please enter your move (or "q" to quit): 
  x | x | o 
 ---+---+---
  o | x |   
 ---+---+---
    | o |   
 
-Player x, please enter your move: 
+Player x, please enter your move (or "q" to quit): 
  x | x | o 
 ---+---+---
  o | x | x 
 ---+---+---
    | o |   
 
-Player o, please enter your move: 
+Player o, please enter your move (or "q" to quit): 
  x | x | o 
 ---+---+---
  o | x | x 
 ---+---+---
  o | o |   
 
-Player x, please enter your move: 
+Player x, please enter your move (or "q" to quit): 
  x | x | o 
 ---+---+---
  o | x | x 
