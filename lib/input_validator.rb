@@ -1,7 +1,8 @@
 class InputValidator
 
-  def initialize(num_positions)
-    @num_positions = num_positions
+  def initialize(board_string_array)
+    @board_string_array = board_string_array
+    @num_positions = board_string_array.length
   end
 
   def is_move_valid?(move_str)
@@ -12,6 +13,14 @@ class InputValidator
 
       (move_int >= 1) && (move_int <= @num_positions)
     end
+  end
+
+  def is_position_empty?(move)
+    move = move.to_i
+
+    move_index = move - 1
+    
+    @board_string_array[move_index] == ""
   end
 
   private

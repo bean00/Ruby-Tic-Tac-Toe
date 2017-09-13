@@ -24,16 +24,6 @@ class Board
     available_moves
   end
 
-  def position_is_empty?(move)
-    if move.is_a? String
-      move = move.to_i
-    end
-
-    move_index = move - 1
-    
-    @board[move_index] == ""
-  end
-
   def to_string_array
     @board
   end

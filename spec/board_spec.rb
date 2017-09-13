@@ -81,28 +81,6 @@ describe 'get_available_moves' do
 end
 
 
-describe 'position_is_empty?' do
-  it 'returns true for an empty position' do
-    b = Board.new(3)
-    b.move(4, "X")
-    b.move(5, "O")
-
-    position_is_empty = b.position_is_empty?(2)
-
-    expect(position_is_empty).to be true
-  end
-
-  it 'returns false for a position that was taken' do
-    b = Board.new(3)
-    b.move(6, "X")
-
-    position_is_empty = b.position_is_empty?(6)
-
-    expect(position_is_empty).to be false
-  end
-end
-
-
 describe 'to_string_array' do
   it 'returns an empty array of strings for an empty board' do
     b = Board.new(3)
