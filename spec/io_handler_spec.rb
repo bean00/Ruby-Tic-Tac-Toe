@@ -5,11 +5,14 @@ describe 'display_intro_and_instructions' do
   it 'displays the introduction and instructions to select game mode' do
     handler = IOHandler.new
     exp_out = "Hello! This is a Tic Tac Toe program.\n" +
-             "\n" +
-             "Please enter one of the following:\n" +
-             "- \"h\" to play against another person\n" +
-             "- \"c\" to play against a computer\n" +
-             "\n"
+              "\n" +
+              "*Enter \"q\" at any time to quit the program.\n" +
+              "\n" +
+              "Please enter one of the following:\n" +
+              "- \"h\" to play against another person\n" +
+              "- \"c\" to play against a computer\n" +
+              "(Or \"q\" to quit)\n" +
+              "\n"
 
     expect{handler.display_intro_and_instructions}.to output(exp_out).to_stdout
   end
@@ -60,7 +63,7 @@ end
 
 
 describe 'get_valid_game_mode' do
-  it 'prints output and returns value for a valid mode to "h"' do
+  it 'prints output and returns value for a valid mode "h"' do
     handler = IOHandler.new
     allow($stdin).to receive(:gets).and_return("h\n")
     expected_output = "> "
@@ -69,7 +72,7 @@ describe 'get_valid_game_mode' do
     expect(handler.get_valid_game_mode).to eq("h")
   end
   
-  it 'prints output and returns value for a valid mode to "c"' do
+  it 'prints output and returns value for a valid mode "c"' do
     handler = IOHandler.new
     allow($stdin).to receive(:gets).and_return("c\n")
     expected_output = "> "
@@ -78,7 +81,7 @@ describe 'get_valid_game_mode' do
     expect(handler.get_valid_game_mode).to eq("c")
   end
 
-  it 'prints output and returns value for an invalid mode to "y"' do
+  it 'prints output and returns value for an invalid mode "y"' do
     handler = IOHandler.new
     allow($stdin).to receive(:gets).and_return("y\n", "h\n")
     expected_output = "> \n" +
@@ -87,6 +90,15 @@ describe 'get_valid_game_mode' do
 
     expect{handler.get_valid_game_mode}.to output(expected_output).to_stdout
     expect(handler.get_valid_game_mode).to eq("h")
+  end
+
+  it 'prints output and returns value for a valid mode "q"' do
+    handler = IOHandler.new
+    allow($stdin).to receive(:gets).and_return("q\n")
+    expected_output = "> "
+
+    expect{handler.get_valid_game_mode}.to output(expected_output).to_stdout
+    expect(handler.get_valid_game_mode).to eq("q")
   end
 end 
 
@@ -99,10 +111,10 @@ describe 'get_valid_move' do
 
     move = handler.get_valid_move(b.to_string_array)
 
-    expect(move).to eq(8)
+    expect(move).to eq("8")
   end
 
-  it 'prints output and returns value for an invalid mode to "z"' do
+  it 'prints output and returns value for an invalid move to "z"' do
     b = Board.new(3)
     b_arr = b.to_string_array
     handler = IOHandler.new
@@ -111,7 +123,7 @@ describe 'get_valid_move' do
                       "Please enter a move from 1-9: "
 
     expect{handler.get_valid_move(b_arr)}.to output(expected_output).to_stdout
-    expect(handler.get_valid_move(b_arr)).to eq(3)
+    expect(handler.get_valid_move(b_arr)).to eq("3")
   end
 
   it 'prints output and returns value for a move already made to "4"' do
@@ -124,7 +136,17 @@ describe 'get_valid_move' do
                       "Please enter a new move: "
 
     expect{handler.get_valid_move(b_arr)}.to output(expected_output).to_stdout
-    expect(handler.get_valid_move(b_arr)).to eq(1)
+    expect(handler.get_valid_move(b_arr)).to eq("1")
+  end
+
+  it 'returns "q" when the user enters "q"' do
+    b = Board.new(3)
+    handler = IOHandler.new
+    allow($stdin).to receive(:gets).and_return("q\n")
+
+    move = handler.get_valid_move(b.to_string_array)
+
+    expect(move).to eq("q")
   end
 end
 
@@ -132,21 +154,21 @@ end
 describe 'prompt_player_for_move' do
   it 'displays the correct prompt for the player that went 1st (HvH)' do
     handler = IOHandler.new
-    prompt = "Player X, please enter your move: "
+    prompt = "Player X, please enter your move (or \"q\" to quit): "
 
     expect{handler.prompt_player_for_move("X", false)}.to output(prompt).to_stdout
   end
 
   it 'displays the correct prompt for the player that went 2nd (HvH)' do
     handler = IOHandler.new
-    prompt = "Player O, please enter your move: "
+    prompt = "Player O, please enter your move (or \"q\" to quit): "
 
     expect{handler.prompt_player_for_move("O", false)}.to output(prompt).to_stdout
   end
 
   it 'displays the correct prompt for the human player (HvC)' do
     handler = IOHandler.new
-    prompt = "Please enter your move: "
+    prompt = "Please enter your move (or \"q\" to quit): "
 
     expect{handler.prompt_player_for_move(1, true)}.to output(prompt).to_stdout
   end
@@ -169,7 +191,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. Player X won!\n"
 
     expect {
-      handler.display_game_over_msg(true, false, "X")
+      handler.display_game_over_msg(true, false, false, "X")
     }.to output(msg).to_stdout
   end
 
@@ -178,7 +200,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. Resulted in a draw.\n"
 
     expect {
-      handler.display_game_over_msg(false, false, "X")
+      handler.display_game_over_msg(false, false, false, "X")
     }.to output(msg).to_stdout
   end
 
@@ -187,7 +209,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. You won!\n"
 
     expect {
-      handler.display_game_over_msg(true, true, "X")
+      handler.display_game_over_msg(true, false, true, "X")
     }.to output(msg).to_stdout
   end
 
@@ -196,7 +218,17 @@ describe 'display_game_over_msg' do
     msg = "Game over. You lost :(\n"
 
     expect {
-      handler.display_game_over_msg(true, true, "O")
+      handler.display_game_over_msg(true, false, true, "O")
+    }.to output(msg).to_stdout
+  end
+
+  it 'displays the correct message if the player quit' do
+    handler = IOHandler.new
+    msg = "\n" +
+          "Quit program successfully.\n"
+
+    expect {
+      handler.display_game_over_msg(true, true, true, "O")
     }.to output(msg).to_stdout
   end
 end

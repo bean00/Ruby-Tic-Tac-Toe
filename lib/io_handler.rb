@@ -33,7 +33,8 @@ class IOHandler
     move = get_user_input
     iv = InputValidator.new(board_string_array)
 
-    while !iv.is_move_valid?(move) || !iv.is_position_empty?(move)
+    while (!iv.is_move_valid?(move) || !iv.is_position_empty?(move)) &&
+           (move != "q")
       if !iv.is_move_valid?(move)
         display_invalid_move_error(move)
         move = get_user_input
@@ -43,14 +44,14 @@ class IOHandler
       end
     end
 
-    move.to_i
+    move
   end
 
   def prompt_player_for_move(player_token, playing_computer)
     if playing_computer
-      print "Please enter your move: "
+      print "Please enter your move (or \"q\" to quit): "
     else
-      print "Player #{player_token}, please enter your move: "
+      print "Player #{player_token}, please enter your move (or \"q\" to quit): "
     end
   end
 
@@ -58,10 +59,12 @@ class IOHandler
     print "The computer moved.\n"
   end
 
-  def display_game_over_msg(player_won, playing_computer, player_token)
-    if !player_won
+  def display_game_over_msg(player_won, has_quit, playing_computer, player_token)
+    if has_quit
+      display_quit_message
+    elsif !player_won
       display_draw_message
-    else
+    elsif player_won
       if !playing_computer
         display_winning_message(player_token)
       else
@@ -78,9 +81,12 @@ class IOHandler
   end
 
   def display_game_mode_instructions
-    print "Please enter one of the following:\n" +
+    print "*Enter \"q\" at any time to quit the program.\n" +
+          "\n" +
+          "Please enter one of the following:\n" +
           "- \"h\" to play against another person\n" +
           "- \"c\" to play against a computer\n" +
+          "(Or \"q\" to quit)\n" +
           "\n"
   end
 
@@ -120,7 +126,7 @@ class IOHandler
   end
 
   def is_mode_invalid?(mode)
-    (mode != "h") && (mode != "c")
+    (mode != "h") && (mode != "c") && (mode != "q")
   end
 
   def display_invalid_game_mode_error
@@ -139,6 +145,11 @@ class IOHandler
           "Please enter a new move: "
   end
 
+
+  def display_quit_message
+    print "\n" +
+          "Quit program successfully.\n"
+  end
 
   def display_draw_message
     print "Game over. Resulted in a draw.\n"

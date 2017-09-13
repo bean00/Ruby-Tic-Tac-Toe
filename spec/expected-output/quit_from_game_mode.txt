@@ -7,6 +7,5 @@ Please enter one of the following:
 - "c" to play against a computer
 (Or "q" to quit)
 
-> q
-
+> 
 Quit program successfully.
