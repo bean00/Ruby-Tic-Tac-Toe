@@ -34,7 +34,7 @@ class Board
     @board[move_index] == ""
   end
 
-  def to_string
+  def to_string_array
     @board
   end
 

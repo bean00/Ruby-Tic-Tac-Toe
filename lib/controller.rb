@@ -6,7 +6,7 @@ class Controller
 
   def initialize(board = Board.new(3))
     @board = board
-    @view = View.new(@board.to_string)
+    @view = View.new(@board.to_string_array)
   end
 
   def play_game
@@ -26,7 +26,8 @@ class Controller
       player_token = set_player_token_based_on_move(move_number)
       play_round(player_token, playing_computer)
 
-      has_player_won = ScoreTracker.has_player_won?(@board.to_string, player_token)
+      has_player_won = ScoreTracker.has_player_won?(@board.to_string_array,
+                                                    player_token)
 
       move_number += 1
       num_available_moves = @board.get_available_moves.length
@@ -52,7 +53,7 @@ class Controller
 
     @board.move(move, player_token)
     
-    @view.update_view(@board.to_string)
+    @view.update_view(@board.to_string_array)
     @view.display_board
   end
 

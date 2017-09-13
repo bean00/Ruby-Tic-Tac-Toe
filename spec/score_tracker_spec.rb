@@ -8,7 +8,7 @@ describe 'has_player_won?' do
     board.move(2, "X")
     board.move(3, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string, "X")
+    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
 
     expect(player_won).to be true
   end
@@ -16,7 +16,7 @@ describe 'has_player_won?' do
   it 'returns false when the board is empty' do
     board = Board.new(3)
 
-    player_won = ScoreTracker.has_player_won?(board.to_string, "X")
+    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
 
     expect(player_won).to be false
   end
@@ -27,7 +27,7 @@ describe 'has_player_won?' do
     board.move(5, "O")
     board.move(6, "O")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string, "O")
+    player_won = ScoreTracker.has_player_won?(board.to_string_array, "O")
 
     expect(player_won).to be true
   end
@@ -38,7 +38,7 @@ describe 'has_player_won?' do
     board.move(8, "X")
     board.move(9, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string, "X")
+    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
 
     expect(player_won).to be true
   end
@@ -49,7 +49,7 @@ describe 'has_player_won?' do
     board.move(4, "X")
     board.move(7, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string, "X")
+    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
 
     expect(player_won).to be true
   end
@@ -60,7 +60,7 @@ describe 'has_player_won?' do
     board.move(5, "X")
     board.move(8, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string, "X")
+    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
 
     expect(player_won).to be true
   end
@@ -71,7 +71,7 @@ describe 'has_player_won?' do
     board.move(6, "X")
     board.move(9, "X")
     
-    player_won = ScoreTracker.has_player_won?(board.to_string, "X")
+    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
 
     expect(player_won).to be true
   end
@@ -82,7 +82,7 @@ describe 'has_player_won?' do
     board.move(5, "X")
     board.move(9, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string, "X")
+    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
 
     expect(player_won).to be true
   end
@@ -93,7 +93,7 @@ describe 'has_player_won?' do
     board.move(5, "X")
     board.move(7, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string, "X")
+    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
     
     expect(player_won).to be true
   end

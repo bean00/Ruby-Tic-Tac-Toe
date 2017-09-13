@@ -16,7 +16,7 @@ describe 'move' do
 
       b.move(move, "X")
 
-      expect(b.to_string).to eq(board_after_move)
+      expect(b.to_string_array).to eq(board_after_move)
     end
   end
 
@@ -33,7 +33,7 @@ describe 'move' do
 
     b.move(2, "O")
 
-    expect(b.to_string).to eq(board_after_move)
+    expect(b.to_string_array).to eq(board_after_move)
   end
 end
 
@@ -103,14 +103,14 @@ describe 'position_is_empty?' do
 end
 
 
-describe 'to_string' do
+describe 'to_string_array' do
   it 'returns an empty array of strings for an empty board' do
     b = Board.new(3)
     board_str = ["", "", "",
                  "", "", "",
                  "", "", ""]
 
-    expect(b.to_string).to eq(board_str)
+    expect(b.to_string_array).to eq(board_str)
   end
 
   it 'returns an array with 2 strings after 2 moves were made' do
@@ -121,7 +121,7 @@ describe 'to_string' do
                  "",  "", "O",
                  "",  "", ""]
 
-    expect(b.to_string).to eq(board_str)
+    expect(b.to_string_array).to eq(board_str)
   end
 
   it 'returns a full array for a full board' do
@@ -139,7 +139,7 @@ describe 'to_string' do
                  "O", "X", "O",
                  "X", "O", "X"]
 
-    expect(b.to_string).to eq(board_str)
+    expect(b.to_string_array).to eq(board_str)
   end
 end
 
@@ -153,6 +153,6 @@ describe 'set_board' do
 
     b.set_board(new_board)
 
-    expect(b.to_string).to eq(new_board)
+    expect(b.to_string_array).to eq(new_board)
   end
 end
