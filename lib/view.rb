@@ -1,3 +1,5 @@
+require 'colorize'
+
 class View
 
   def initialize(board_string_array)
@@ -9,6 +11,12 @@ class View
 
     @board_string_array.each_with_index do |pos, i|
       pos = convert_index_if_position_is_empty(pos, i)
+
+      if pos == "X"
+        pos = pos.colorize(:green) 
+      elsif pos == "O"
+        pos = pos.colorize(:red)
+      end
 
       formatted_board << pad_with_spaces(pos)
       formatted_board << add_divider(i)
@@ -33,7 +41,8 @@ class View
   end
 
   def pad_with_spaces(char)
-    char.center(3)
+#    char.center(3)
+    " " + char + " "
   end
 
   def add_divider(index)
