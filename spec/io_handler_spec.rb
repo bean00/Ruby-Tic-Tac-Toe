@@ -47,7 +47,7 @@ describe 'display_who_goes_1st' do
   end
 
   it 'displays human message for Human vs. Human mode' do
-    hum_msg = "You are Player x, and you will go first.\n\n"
+    hum_msg = "You are Player X, and you will go first.\n\n"
 
     expect{IOHandler.display_who_goes_1st(false)}.to output(hum_msg).to_stdout
   end
@@ -56,22 +56,15 @@ end
 
 describe 'display_instructions' do
   it 'displays the instructions for the Tic Tac Toe game' do
-    instructions = "To enter a move, type:\n" +
-                   "- \"t\"   -> top\n" +
-                   "- \"c\"   -> center\n" +
-                   "- \"b\"   -> bottom\n" +
-                   "- \"l\"   -> left\n" +
-                   "- \"r\"   -> right\n" +
-                   "- \"tl\"  -> top left\n" +
-                   "- \"tr\"  -> top right\n" +
-                   "- \"bl\"  -> bottom left\n" +
-                   "- \"br\"  -> bottom right\n" +
+    instructions = "To enter a move, type a number from 1-9.\n" +
+                   "It will be added to the board based on\n" +
+                   "the following positions:\n" +
                    "\n" +
-                   " tl | t | tr \n" +
-                   "----+---+----\n" +
-                   " l  | c | r  \n" +
-                   "----+---+----\n" +
-                   " bl | b | br \n" +
+                   " 1 | 2 | 3 \n" +
+                   "---+---+---\n" +
+                   " 4 | 5 | 6 \n" +
+                   "---+---+---\n" +
+                   " 7 | 8 | 9 \n" +
                    "\n"
 
     expect{IOHandler.display_instructions}.to output(instructions).to_stdout
@@ -81,15 +74,15 @@ end
 
 describe 'prompt_player_for_move' do
   it 'displays the correct prompt for the player that went 1st (HvH)' do
-    prompt = "Player x, please enter your move: "
+    prompt = "Player X, please enter your move: "
 
-    expect{IOHandler.prompt_player_for_move("x", false)}.to output(prompt).to_stdout
+    expect{IOHandler.prompt_player_for_move("X", false)}.to output(prompt).to_stdout
   end
 
   it 'displays the correct prompt for the player that went 2nd (HvH)' do
-    prompt = "Player o, please enter your move: "
+    prompt = "Player O, please enter your move: "
 
-    expect{IOHandler.prompt_player_for_move("o", false)}.to output(prompt).to_stdout
+    expect{IOHandler.prompt_player_for_move("O", false)}.to output(prompt).to_stdout
   end
 
   it 'displays the correct prompt for the human player (HvC)' do
@@ -101,21 +94,21 @@ end
 
 
 describe 'get_user_input' do
-  it 'gets user input' do
-    allow($stdin).to receive(:gets).and_return("tl\n")
+  it 'gets user input as a string' do
+    allow($stdin).to receive(:gets).and_return("h\n")
     input = IOHandler.get_user_input
 
-    expect(input).to eq(:tl)
+    expect(input).to eq("h")
   end
 end
 
 
 describe 'display_game_over_msg' do
-  it 'displays the correct message if Player x won (HvH)' do
-    msg = "Game over. Player x won!\n"
+  it 'displays the correct message if Player X won (HvH)' do
+    msg = "Game over. Player X won!\n"
 
     expect {
-      IOHandler.display_game_over_msg(true, false, "x")
+      IOHandler.display_game_over_msg(true, false, "X")
     }.to output(msg).to_stdout
   end
 
@@ -123,7 +116,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. Resulted in a draw.\n"
 
     expect {
-      IOHandler.display_game_over_msg(false, false, "x")
+      IOHandler.display_game_over_msg(false, false, "X")
     }.to output(msg).to_stdout
   end
 
@@ -131,7 +124,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. You won!\n"
 
     expect {
-      IOHandler.display_game_over_msg(true, true, "x")
+      IOHandler.display_game_over_msg(true, true, "X")
     }.to output(msg).to_stdout
   end
 
@@ -139,7 +132,7 @@ describe 'display_game_over_msg' do
     msg = "Game over. You lost :(\n"
 
     expect {
-      IOHandler.display_game_over_msg(true, true, "o")
+      IOHandler.display_game_over_msg(true, true, "O")
     }.to output(msg).to_stdout
   end
 end

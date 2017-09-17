@@ -24,27 +24,20 @@ class IOHandler
     if playing_computer
       print "You will go first.\n\n"
     else
-      print "You are Player x, and you will go first.\n\n"
+      print "You are Player X, and you will go first.\n\n"
     end
   end
 
   def self.display_instructions
-    print "To enter a move, type:\n" +
-          "- \"t\"   -> top\n" +
-          "- \"c\"   -> center\n" +
-          "- \"b\"   -> bottom\n" +
-          "- \"l\"   -> left\n" +
-          "- \"r\"   -> right\n" +
-          "- \"tl\"  -> top left\n" +
-          "- \"tr\"  -> top right\n" +
-          "- \"bl\"  -> bottom left\n" +
-          "- \"br\"  -> bottom right\n" +
+    print "To enter a move, type a number from 1-9.\n" +
+          "It will be added to the board based on\n" +
+          "the following positions:\n" +
           "\n" +
-          " tl | t | tr \n" +
-          "----+---+----\n" +
-          " l  | c | r  \n" +
-          "----+---+----\n" +
-          " bl | b | br \n" +
+          " 1 | 2 | 3 \n" +
+          "---+---+---\n" +
+          " 4 | 5 | 6 \n" +
+          "---+---+---\n" +
+          " 7 | 8 | 9 \n" +
           "\n"
   end
 
@@ -57,7 +50,7 @@ class IOHandler
   end
 
   def self.get_user_input
-    $stdin.gets.chomp.to_sym
+    $stdin.gets.chomp.to_str
   end
 
   def self.display_game_over_msg(player_won, playing_computer, player_token)
@@ -83,7 +76,7 @@ class IOHandler
   end
 
   def self.display_message_vs_computer(player_token)
-    if player_token == "x"
+    if player_token == "X"
       print "Game over. You won!\n"
     else
       print "Game over. You lost :(\n"

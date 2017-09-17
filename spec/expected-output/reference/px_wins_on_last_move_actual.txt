@@ -1,0 +1,86 @@
+Hello! This is a Tic Tac Toe program.
+
+Please enter one of the following:
+- "h" to play against another person
+- "c" to play against a computer
+
+> h
+
+Ok, you chose to play another person.
+
+You are Player x, and you will go first.
+
+To enter a move, type a number from 1-9.
+It will be added to the board based on
+the following positions:
+
+ 1 | 2 | 3 
+---+---+---
+ 4 | 5 | 6 
+---+---+---
+ 7 | 8 | 9 
+
+Player x, please enter your move: 
+   | x |   
+---+---+---
+   |   |   
+---+---+---
+   |   |   
+
+Player o, please enter your move: 
+   | x | o 
+---+---+---
+   |   |   
+---+---+---
+   |   |   
+
+Player x, please enter your move: 
+   | x | o 
+---+---+---
+   | x |   
+---+---+---
+   |   |   
+
+Player o, please enter your move: 
+   | x | o 
+---+---+---
+   | x |   
+---+---+---
+   | o |   
+
+Player x, please enter your move: 
+ x | x | o 
+---+---+---
+   | x |   
+---+---+---
+   | o |   
+
+Player o, please enter your move: 
+ x | x | o 
+---+---+---
+ o | x |   
+---+---+---
+   | o |   
+
+Player x, please enter your move: 
+ x | x | o 
+---+---+---
+ o | x | x 
+---+---+---
+   | o |   
+
+Player o, please enter your move: 
+ x | x | o 
+---+---+---
+ o | x | x 
+---+---+---
+ o | o |   
+
+Player x, please enter your move: 
+ x | x | o 
+---+---+---
+ o | x | x 
+---+---+---
+ o | o | x 
+
+Game over. Player x won!

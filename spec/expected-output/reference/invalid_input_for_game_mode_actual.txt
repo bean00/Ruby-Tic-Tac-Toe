@@ -4,12 +4,14 @@ Please enter one of the following:
 - "h" to play against another person
 - "c" to play against a computer
 
-> 
+> y
+
 <!> Error: Invalid input for game mode.
-Please enter a valid choice ("h", "c"): 
+Please enter a valid choice ("h", "c"): h
+
 Ok, you chose to play another person.
 
-You are Player X, and you will go first.
+You are Player x, and you will go first.
 
 To enter a move, type a number from 1-9.
 It will be added to the board based on
@@ -21,34 +23,39 @@ the following positions:
 ---+---+---
  7 | 8 | 9 
 
-Player X, please enter your move:  1 | X | 3 
+Player x, please enter your move: t
+   | x |   
 ---+---+---
- 4 | 5 | 6 
+   |   |   
 ---+---+---
- 7 | 8 | 9 
+   |   |   
 
-Player O, please enter your move:  1 | X | O 
+Player o, please enter your move: tr
+   | x | o 
 ---+---+---
- 4 | 5 | 6 
+   |   |   
 ---+---+---
- 7 | 8 | 9 
+   |   |   
 
-Player X, please enter your move:  1 | X | O 
+Player x, please enter your move: c
+   | x | o 
 ---+---+---
- 4 | X | 6 
+   | x |   
 ---+---+---
- 7 | 8 | 9 
+   |   |   
 
-Player O, please enter your move:  1 | X | O 
+Player o, please enter your move: r
+   | x | o 
 ---+---+---
- 4 | X | O 
+   | x | o 
 ---+---+---
- 7 | 8 | 9 
+   |   |   
 
-Player X, please enter your move:  1 | X | O 
+Player x, please enter your move: b
+   | x | o 
 ---+---+---
- 4 | X | O 
+   | x | o 
 ---+---+---
- 7 | X | 9 
+   | x |   
 
-Game over. Player X won!
+Game over. Player x won!

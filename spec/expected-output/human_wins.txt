@@ -9,53 +9,46 @@ Ok, you chose to play a computer.
 
 You will go first.
 
-To enter a move, type:
-- "t"   -> top
-- "c"   -> center
-- "b"   -> bottom
-- "l"   -> left
-- "r"   -> right
-- "tl"  -> top left
-- "tr"  -> top right
-- "bl"  -> bottom left
-- "br"  -> bottom right
+To enter a move, type a number from 1-9.
+It will be added to the board based on
+the following positions:
 
- tl | t | tr 
-----+---+----
- l  | c | r  
-----+---+----
- bl | b | br 
+ 1 | 2 | 3 
+---+---+---
+ 4 | 5 | 6 
+---+---+---
+ 7 | 8 | 9 
 
-Please enter your move:    | x |   
+Please enter your move:  1 | X | 3 
 ---+---+---
-   |   |   
+ 4 | 5 | 6 
 ---+---+---
-   |   |   
+ 7 | 8 | 9 
 
 The computer moved.
- o | x |   
+ O | X | 3 
 ---+---+---
-   |   |   
+ 4 | 5 | 6 
 ---+---+---
-   |   |   
+ 7 | 8 | 9 
 
-Please enter your move:  o | x |   
+Please enter your move:  O | X | 3 
 ---+---+---
-   | x |   
+ 4 | X | 6 
 ---+---+---
-   |   |   
+ 7 | 8 | 9 
 
 The computer moved.
- o | x | o 
+ O | X | O 
 ---+---+---
-   | x |   
+ 4 | X | 6 
 ---+---+---
-   |   |   
+ 7 | 8 | 9 
 
-Please enter your move:  o | x | o 
+Please enter your move:  O | X | O 
 ---+---+---
-   | x |   
+ 4 | X | 6 
 ---+---+---
-   | x |   
+ 7 | X | 9 
 
 Game over. You won!
