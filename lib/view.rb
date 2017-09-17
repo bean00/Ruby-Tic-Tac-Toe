@@ -26,9 +26,9 @@ class View
 
   def convert_index_if_position_is_empty(position, index)
     if position == ""
-      return (index + 1).to_s
+      (index + 1).to_s
     else
-      return position
+      position
     end
   end
 

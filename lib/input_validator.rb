@@ -6,7 +6,7 @@ class InputValidator
 
   def is_move_valid?(move_str)
     if !only_contains_digits?(move_str)
-      return false
+      false
     else
       move_int = move_str.to_i
 
