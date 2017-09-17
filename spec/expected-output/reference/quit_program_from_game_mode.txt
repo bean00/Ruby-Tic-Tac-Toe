@@ -1,0 +1,12 @@
+Hello! This is a Tic Tac Toe program.
+
+*Enter "q" at any time to quit the program.
+
+Please enter one of the following:
+- "h" to play against another person
+- "c" to play against a computer
+(Or "q" to quit)
+
+> q
+
+Quit program successfully.

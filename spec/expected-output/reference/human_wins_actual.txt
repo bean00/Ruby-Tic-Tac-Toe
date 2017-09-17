@@ -1,8 +1,11 @@
 Hello! This is a Tic Tac Toe program.
 
+*Enter "q" at any time to quit the program.
+
 Please enter one of the following:
 - "h" to play against another person
 - "c" to play against a computer
+(Or "q" to quit)
 
 > c
 
@@ -20,7 +23,7 @@ the following positions:
 ---+---+---
  7 | 8 | 9 
 
-Please enter your move: t
+Please enter your move (or "q" to quit): t
    | x |   
 ---+---+---
    |   |   
@@ -34,7 +37,7 @@ The computer moved.
 ---+---+---
    |   |   
 
-Please enter your move: c
+Please enter your move (or "q" to quit): c
  o | x |   
 ---+---+---
    | x |   
@@ -48,7 +51,7 @@ The computer moved.
 ---+---+---
    |   |   
 
-Please enter your move: b
+Please enter your move (or "q" to quit): b
  o | x | o 
 ---+---+---
    | x |   
