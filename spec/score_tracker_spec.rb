@@ -2,101 +2,109 @@ require 'board'
 require 'score_tracker'
 
 describe 'has_player_won?' do
-  it 'returns true when the top row is filled' do
-    board = Board.new(3)
-    board.move(1, "X")
-    board.move(2, "X")
-    board.move(3, "X")
+  let(:b) { Board.new(3) }
 
-    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
+  context 'when the top row is filled' do
+    it 'returns true' do
+      b.move(1, "X")
+      b.move(2, "X")
+      b.move(3, "X")
 
-    expect(player_won).to be true
+      player_won = ScoreTracker.has_player_won?(b.to_string_array, "X")
+
+      expect(player_won).to be true
+    end
   end
 
-  it 'returns false when the board is empty' do
-    board = Board.new(3)
+  context 'when the board is empty' do
+    it 'returns false' do
+      player_won = ScoreTracker.has_player_won?(b.to_string_array, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
-
-    expect(player_won).to be false
+      expect(player_won).to be false
+    end
   end
 
-  it 'returns true when the middle row is filled' do
-    board = Board.new(3)
-    board.move(4, "O")
-    board.move(5, "O")
-    board.move(6, "O")
+  context 'when the middle row is filled' do
+    it 'returns true' do
+      b.move(4, "O")
+      b.move(5, "O")
+      b.move(6, "O")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string_array, "O")
+      player_won = ScoreTracker.has_player_won?(b.to_string_array, "O")
 
-    expect(player_won).to be true
+      expect(player_won).to be true
+    end
   end
 
-  it 'returns true when the bottom row is filled' do
-    board = Board.new(3)
-    board.move(7, "X")
-    board.move(8, "X")
-    board.move(9, "X")
+  context 'when the bottom row is filled' do
+    it 'returns true' do
+      b.move(7, "X")
+      b.move(8, "X")
+      b.move(9, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
+      player_won = ScoreTracker.has_player_won?(b.to_string_array, "X")
 
-    expect(player_won).to be true
+      expect(player_won).to be true
+    end
   end
 
-  it 'returns true when the left column is filled' do
-    board = Board.new(3)
-    board.move(1, "X")
-    board.move(4, "X")
-    board.move(7, "X")
+  context 'when the left column is filled' do
+    it 'returns true' do
+      b.move(1, "X")
+      b.move(4, "X")
+      b.move(7, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
+      player_won = ScoreTracker.has_player_won?(b.to_string_array, "X")
 
-    expect(player_won).to be true
+      expect(player_won).to be true
+    end
   end
 
-  it 'returns true when the middle column is filled' do
-    board = Board.new(3)
-    board.move(2, "X")
-    board.move(5, "X")
-    board.move(8, "X")
+  context 'when the middle column is filled' do
+    it 'returns true' do
+      b.move(2, "X")
+      b.move(5, "X")
+      b.move(8, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
+      player_won = ScoreTracker.has_player_won?(b.to_string_array, "X")
 
-    expect(player_won).to be true
+      expect(player_won).to be true
+    end
   end
 
-  it 'returns true when the right column is filled' do
-    board = Board.new(3)
-    board.move(3, "X")
-    board.move(6, "X")
-    board.move(9, "X")
-    
-    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
+  context 'when the right column is filled' do
+    it 'returns true' do
+      b.move(3, "X")
+      b.move(6, "X")
+      b.move(9, "X")
+      
+      player_won = ScoreTracker.has_player_won?(b.to_string_array, "X")
 
-    expect(player_won).to be true
+      expect(player_won).to be true
+    end
   end
 
-  it 'returns true when the diagonal from the "tl" to "br" is filled' do
-    board = Board.new(3)
-    board.move(1, "X")
-    board.move(5, "X")
-    board.move(9, "X")
+  context 'when the diagonal from the "tl" to "br" is filled' do
+    it 'returns true' do
+      b.move(1, "X")
+      b.move(5, "X")
+      b.move(9, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
+      player_won = ScoreTracker.has_player_won?(b.to_string_array, "X")
 
-    expect(player_won).to be true
+      expect(player_won).to be true
+    end
   end
 
-  it 'returns true when the diagonal from the "tr" to "bl" is filled' do
-    board = Board.new(3)
-    board.move(3, "X")
-    board.move(5, "X")
-    board.move(7, "X")
+  context 'when the diagonal from the "tr" to "bl" is filled' do
+    it 'returns true' do
+      b.move(3, "X")
+      b.move(5, "X")
+      b.move(7, "X")
 
-    player_won = ScoreTracker.has_player_won?(board.to_string_array, "X")
-    
-    expect(player_won).to be true
+      player_won = ScoreTracker.has_player_won?(b.to_string_array, "X")
+      
+      expect(player_won).to be true
+    end
   end
 end
-
-
