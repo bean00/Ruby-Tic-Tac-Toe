@@ -2,6 +2,8 @@ require_relative 'io_handler'
 require_relative 'input_validator'
 require_relative 'view'
 require_relative 'player'
+require_relative 'human_player'
+require_relative 'computer_player'
 
 class Controller
 
@@ -24,11 +26,12 @@ class Controller
       player_turn = 1
       board_tracker = BoardTracker.new(@board.to_string_array)
       num_available_moves = board_tracker.get_available_moves.length
+
       main_user_turn = 1
       other_user_turn = (main_user_turn == 1) ? 2 : 1
-      @main_user = Player.new(false, main_user_turn, @board.to_string_array)
-      @other_player = Player.new(playing_computer, other_user_turn,
-                                 @board.to_string_array)
+      @main_user = HumanPlayer.new(main_user_turn, @board.to_string_array)
+      @other_player = set_other_player(playing_computer, other_user_turn,
+                                       @board.to_string_array)
       players = create_players_array(main_user_turn, @main_user, @other_player)
 
       while (!has_player_won) && (num_available_moves > 0) && (!has_quit)
@@ -70,6 +73,14 @@ class Controller
 
   def is_playing_computer?(game_mode)
     game_mode == "c"
+  end
+
+  def set_other_player(playing_computer, other_user_turn, board_string_array)
+    if playing_computer
+      ComputerPlayer.new(other_user_turn, board_string_array)
+    else
+      HumanPlayer.new(other_user_turn, board_string_array)
+    end
   end
 
   def create_players_array(main_user_turn, main_user, other_player)
