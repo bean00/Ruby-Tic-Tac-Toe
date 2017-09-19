@@ -20,17 +20,17 @@ class Controller
       @handler.display_game_instructions(playing_computer)
 
       has_player_won = false
-      move_number = 1
+      player_turn = 1
       num_available_moves = @board.get_available_moves.length
 
       while (!has_player_won) && (num_available_moves > 0) && (!has_quit)
-        player_token = set_player_token_based_on_move(move_number)
+        player_token = set_player_token(player_turn)
         move = play_round(player_token, playing_computer)
 
         has_player_won = ScoreTracker.has_player_won?(@board.to_string_array,
                                                       player_token)
 
-        move_number += 1
+        player_turn = (player_turn == 1) ? 2 : 1
         num_available_moves = @board.get_available_moves.length
         has_quit = (move == "q")
       end
@@ -71,8 +71,8 @@ class Controller
     game_mode == "c"
   end
 
-  def set_player_token_based_on_move(move_number)
-    (move_number % 2 != 0) ? "X" : "O"
+  def set_player_token(player_turn)
+    (player_turn == 1) ? "X" : "O"
   end
 
   def get_comp_move(available_moves)
