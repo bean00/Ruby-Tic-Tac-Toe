@@ -166,14 +166,14 @@ describe 'get_valid_move' do
 end
 
 
-describe 'prompt_player_for_move' do
+describe 'display_move_output' do
   let(:h) { IOHandler.new }
 
   context 'with a player that went 1st (HvH)' do
     it 'displays the correct prompt' do
       prompt = "Player X, please enter your move (or \"q\" to quit): "
 
-      expect{h.prompt_player_for_move("X", false)}.to output(prompt).to_stdout
+      expect{h.display_move_output("X", false)}.to output(prompt).to_stdout
     end
   end
 
@@ -181,7 +181,7 @@ describe 'prompt_player_for_move' do
     it 'displays the correct prompt' do
       prompt = "Player O, please enter your move (or \"q\" to quit): "
 
-      expect{h.prompt_player_for_move("O", false)}.to output(prompt).to_stdout
+      expect{h.display_move_output("O", false)}.to output(prompt).to_stdout
     end
   end
 
@@ -189,19 +189,15 @@ describe 'prompt_player_for_move' do
     it 'displays the correct prompt' do
       prompt = "Please enter your move (or \"q\" to quit): "
 
-      expect{h.prompt_player_for_move(1, true)}.to output(prompt).to_stdout
+      expect{h.display_move_output("X", true)}.to output(prompt).to_stdout
     end
   end
-end
 
-
-describe 'display_computer_moved' do
-  context 'when the computer moves' do
+  context 'when the computer moves (HvC)' do
     it 'displays a message' do
-      h = IOHandler.new
-      expected_output = "The computer moved.\n"
+      expected_out = "The computer moved.\n"
 
-      expect{h.display_computer_moved}.to output(expected_output).to_stdout
+      expect{h.display_move_output("O", true)}.to output(expected_out).to_stdout
     end
   end
 end

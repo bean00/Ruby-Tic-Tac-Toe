@@ -90,6 +90,7 @@ describe 'play_round' do
   context 'when Player X (PX) moves to 1 (HvH)' do
     it 'displays the correct output' do
       c = Controller.new(b)
+      person = Player.new(false, 1, b.to_string_array)
       allow($stdin).to receive(:gets).and_return("1\n")
       expected_output = "Player X, please enter your move (or \"q\" to quit): " +
                         " X | 2 | 3 \n" +
@@ -99,13 +100,14 @@ describe 'play_round' do
                         " 7 | 8 | 9 \n" +
                         "\n"
 
-      expect{c.play_round("X", false)}.to output(expected_output).to_stdout
+      expect{c.play_round(person, false)}.to output(expected_output).to_stdout
     end
   end
 
   context 'when PX moves to 2 (HvC)' do
     it 'displays the correct output' do
       c = Controller.new(b)
+      person = Player.new(false, 1, b.to_string_array)
       allow($stdin).to receive(:gets).and_return("2\n")
       expected_output = "Please enter your move (or \"q\" to quit): " +
                         " 1 | X | 3 \n" +
@@ -115,13 +117,14 @@ describe 'play_round' do
                         " 7 | 8 | 9 \n" +
                         "\n"
 
-      expect{c.play_round("X", true)}.to output(expected_output).to_stdout
+      expect{c.play_round(person, true)}.to output(expected_output).to_stdout
     end
   end
 
   context 'when PX makes an invalid move to "z"' do
     it 'displays the correct output' do
       c = Controller.new(b)
+      person = Player.new(false, 1, b.to_string_array)
       allow($stdin).to receive(:gets).and_return("z\n", "5\n")
       expected_output = "Player X, please enter your move (or \"q\" to quit): " + 
                         "\n" +
@@ -134,13 +137,14 @@ describe 'play_round' do
                         " 7 | 8 | 9 \n" +
                         "\n"
 
-      expect{c.play_round("X", false)}.to output(expected_output).to_stdout
+      expect{c.play_round(person, false)}.to output(expected_output).to_stdout
     end
   end
 
   context 'when Player O (PO) makes an invalid move to "y"' do
     it 'displays the correct output' do
       c = Controller.new(b)
+      person = Player.new(false, 2, b.to_string_array)
       allow($stdin).to receive(:gets).and_return("y\n", "6\n")
       expected_output = "Player O, please enter your move (or \"q\" to quit): " + 
                         "\n" +
@@ -153,7 +157,7 @@ describe 'play_round' do
                         " 7 | 8 | 9 \n" +
                         "\n"
 
-      expect{c.play_round("O", false)}.to output(expected_output).to_stdout
+      expect{c.play_round(person, false)}.to output(expected_output).to_stdout
     end
   end
 
@@ -162,6 +166,7 @@ describe 'play_round' do
       b.move(8, "X")
       b.move(9, "O")
       c = Controller.new(b)
+      person = Player.new(false, 1, b.to_string_array)
       allow($stdin).to receive(:gets).and_return("8\n", "5\n")
       expected_output = "Player X, please enter your move (or \"q\" to quit): " +
                         "\n" +
@@ -174,7 +179,7 @@ describe 'play_round' do
                         " 7 | X | O \n" +
                         "\n"
 
-      expect{c.play_round("X", false)}.to output(expected_output).to_stdout
+      expect{c.play_round(person, false)}.to output(expected_output).to_stdout
     end
   end
 
@@ -182,6 +187,7 @@ describe 'play_round' do
     it 'displays the correct output' do
       b.move(2, "X")
       c = Controller.new(b)
+      person = Player.new(false, 2, b.to_string_array)
       allow($stdin).to receive(:gets).and_return("2\n", "5\n")
       expected_output = "Player O, please enter your move (or \"q\" to quit): " +
                         "\n" +
@@ -194,18 +200,19 @@ describe 'play_round' do
                         " 7 | 8 | 9 \n" +
                         "\n"
 
-      expect{c.play_round("O", false)}.to output(expected_output).to_stdout
+      expect{c.play_round(person, false)}.to output(expected_output).to_stdout
     end
   end
 
   context 'when PX enters "q"' do
     it 'displays output and returns "q"' do
       c = Controller.new(b)
+      person = Player.new(false, 1, b.to_string_array)
       allow($stdin).to receive(:gets).and_return("q\n")
       expected_output = "Player X, please enter your move (or \"q\" to quit): "
 
-      expect{c.play_round("X", false)}.to output(expected_output).to_stdout
-      expect(c.play_round("X", false)).to eq("q")
+      expect{c.play_round(person, false)}.to output(expected_output).to_stdout
+      expect(c.play_round(person, false)).to eq("q")
     end
   end
 end

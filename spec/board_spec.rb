@@ -40,48 +40,6 @@ describe 'move' do
 end
 
 
-describe 'get_available_moves' do
-  let(:b) { Board.new(3) }
-
-  context 'when there is 1 move left' do
-    it 'returns that move' do
-      b.move(1, "X")
-      b.move(3, "O")
-      b.move(4, "X")
-      b.move(6, "O")
-      b.move(5, "X")
-      b.move(7, "O")
-      b.move(8, "X")
-      b.move(9, "O")
-      expected_array = [2]
-
-      expect(b.get_available_moves).to eq(expected_array)
-    end
-  end
-
-  context 'when no move has been made yet' do
-    it 'returns all moves' do
-      array_with_all_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-      expect(b.get_available_moves).to eq(array_with_all_moves)
-    end
-  end
-
-  context 'when 5 moves have been made' do
-    it 'returns the other 4 moves' do
-      b.move(2, "X")
-      b.move(3, "O")
-      b.move(4, "X")
-      b.move(5, "O")
-      b.move(7, "X")
-      array_with_moves = [1, 6, 8, 9]
-
-      expect(b.get_available_moves).to eq(array_with_moves)
-    end
-  end
-end
-
-
 describe 'to_string_array' do
   let(:b) { Board.new(3) }
 

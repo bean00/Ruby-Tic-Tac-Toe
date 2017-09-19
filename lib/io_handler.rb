@@ -47,16 +47,16 @@ class IOHandler
     move
   end
 
-  def prompt_player_for_move(player_token, playing_computer)
-    if playing_computer
-      print "Please enter your move (or \"q\" to quit): "
-    else
-      print "Player #{player_token}, please enter your move (or \"q\" to quit): "
+  def display_move_output(token, playing_computer)
+    if !playing_computer
+      print "Player #{token}, please enter your move (or \"q\" to quit): "
+    elsif playing_computer
+      if token == "X"
+        print "Please enter your move (or \"q\" to quit): "
+      elsif token == "O"
+        print "The computer moved.\n"
+      end
     end
-  end
-
-  def display_computer_moved
-    print "The computer moved.\n"
   end
 
   def display_game_over_msg(player_won, has_quit, playing_computer, player_token)
