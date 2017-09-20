@@ -11,7 +11,7 @@ describe 'get_next_move' do
                    "X", "O", "X",
                    "X", "O", "O"]
       b.set_board(new_state)
-      comp = ComputerPlayer.new(1, b.to_string_array)
+      comp = ComputerPlayer.new(1, b)
 
       expect(comp.get_next_move).to eq("1")
     end
@@ -23,7 +23,7 @@ describe 'get_next_move' do
                    "X", "O", "X",
                    "X", "O", "X"]
       b.set_board(new_state)
-      comp = ComputerPlayer.new(2, b.to_string_array)
+      comp = ComputerPlayer.new(2, b)
 
       expect(comp.get_next_move).to eq("2")
     end
@@ -36,7 +36,7 @@ describe 'get_token' do
 
   context 'when the computer goes 1st' do
     it 'returns O' do
-      comp = ComputerPlayer.new(1, b.to_string_array)
+      comp = ComputerPlayer.new(1, b)
 
       expect(comp.get_token).to eq("O")
     end
@@ -44,7 +44,7 @@ describe 'get_token' do
 
   context 'when the computer goes 2nd' do
     it 'returns O' do
-      comp = ComputerPlayer.new(2, b.to_string_array)
+      comp = ComputerPlayer.new(2, b)
 
       expect(comp.get_token).to eq("O")
     end

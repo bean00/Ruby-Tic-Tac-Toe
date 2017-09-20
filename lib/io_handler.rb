@@ -59,16 +59,16 @@ class IOHandler
     end
   end
 
-  def display_game_over_msg(player_won, has_quit, playing_computer, player_token)
+  def display_game_over_msg(a_player_has_won, has_quit, playing_comp, token)
     if has_quit
       display_quit_message
-    elsif !player_won
+    elsif !a_player_has_won
       display_draw_message
-    elsif player_won
-      if !playing_computer
-        display_winning_message(player_token)
+    elsif a_player_has_won
+      if !playing_comp
+        display_winning_message(token)
       else
-        display_message_vs_computer(player_token)
+        display_message_vs_computer(token)
       end
     end
   end

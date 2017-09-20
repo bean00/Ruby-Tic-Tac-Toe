@@ -1,70 +1,60 @@
 class ScoreTracker
+  WIN_SCORE = 1
+  LOSS_SCORE = -1
+  DRAW_SCORE = 0
+  INCOMPLETE_GAME = -1000000
 
-  def self.has_player_won?(board, player_token)
-    is_a_row_full?(board, player_token)      ||
-    is_a_column_full?(board, player_token)   ||
-    is_a_diagonal_full?(board, player_token)
+  def initialize(player_1_token, player_2_token, win_checker)
+    @win_checker = win_checker
+    @player_scores = initialize_player_scores(player_1_token, player_2_token)
+    @player_tokens = [player_1_token, player_2_token]
   end
 
-  # ----- private -----
-
-  def self.is_a_row_full?(board, player_token)
-    rows = extract_rows(board)
-
-    are_any_arrays_full?(rows, player_token)
+  def get_player_score(token)
+    @player_scores[token]
   end
 
-  def self.extract_rows(board)
-    top_row = board[0, 3]
-    middle_row = board[3, 3]
-    bottom_row = board[6, 3]
+  def is_game_finished?
+    player_1_token = @player_tokens[0]
 
-    [top_row, middle_row, bottom_row]
+    @player_scores[player_1_token] != INCOMPLETE_GAME
   end
 
-  def self.are_any_arrays_full?(arrays, player_token)
-    arrays.each do |array|
-      if is_array_full?(array, player_token)
-        return true
-      end
+  def has_either_player_won?
+    player_1_token = @player_tokens[0]
+
+    @player_scores[player_1_token] == WIN_SCORE ||
+    @player_scores[player_1_token] == LOSS_SCORE
+  end
+  
+  def update_scores(token, number_of_moves_left)
+    if @win_checker.has_player_won?(token)
+      set_player_scores_if_player_won(token)
+    elsif number_of_moves_left == 0
+      set_player_scores_if_player_drew(token)
     end
-
-    false
   end
 
-  def self.is_array_full?(array, player_token)
-    array.count(player_token) == 3
+  private
+
+  def initialize_player_scores(player_1_token, player_2_token)
+    { player_1_token => INCOMPLETE_GAME, player_2_token => INCOMPLETE_GAME }
   end
 
-  def self.is_a_column_full?(board, player_token)
-    columns = extract_columns(board)
-
-    are_any_arrays_full?(columns, player_token)
+  def set_player_scores_if_player_won(token)
+    other_token = get_other_token(token)
+    @player_scores[token] = WIN_SCORE
+    @player_scores[other_token] = LOSS_SCORE
   end
 
-  def self.extract_columns(board)
-    left_col = [board[0], board[3], board[6]]
-    middle_col = [board[1], board[4], board[7]]
-    right_col = [board[2], board[5], board[8]]
-
-    [left_col, middle_col, right_col]
+  def get_other_token(token)
+    (@player_tokens[0] == token) ? @player_tokens[1] : @player_tokens[0]
   end
 
-  def self.is_a_diagonal_full?(board, player_token)
-    diagonals = extract_diagonals(board)
-    
-    are_any_arrays_full?(diagonals, player_token)
+  def set_player_scores_if_player_drew(token)
+    other_token = get_other_token(token)
+    @player_scores[token] = DRAW_SCORE
+    @player_scores[other_token] = DRAW_SCORE
   end
-
-  def self.extract_diagonals(board)
-    left_diagonal = [board[0], board[4], board[8]]
-    right_diagonal = [board[2], board[4], board[6]]
-
-    [left_diagonal, right_diagonal]
-  end
-
-  private_class_method :is_a_row_full?, :extract_rows, :are_any_arrays_full?,
-    :is_array_full?, :is_a_column_full?, :extract_columns, :is_a_diagonal_full?,
-    :extract_diagonals
 
 end
