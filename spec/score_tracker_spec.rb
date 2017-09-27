@@ -10,8 +10,9 @@ INCOMPLETE_GAME = ScoreTracker::INCOMPLETE_GAME
 describe 'get_player_score' do
   before(:each) do
     @b = Board.new(3)
-    @w = WinChecker.new(@b)
-    @s = ScoreTracker.new("X", "O", @w)
+    tokens = ["X", "O"]
+    @b.set_tokens_before_any_move_is_made(tokens)
+    @s = ScoreTracker.new(@b)
   end
 
   context 'when the game first starts' do
@@ -119,8 +120,7 @@ end
 
 describe 'is_game_finished?' do
   let(:b) { Board.new(3) }
-  let(:w) { WinChecker.new(b) }
-  let(:s) { ScoreTracker.new("X", "O", w) }
+  let(:s) { ScoreTracker.new(b) }
   
   context 'when the game just started' do
     it 'returns false' do
@@ -193,8 +193,7 @@ end
 
 describe 'has_either_player_won?' do
   let(:b) { Board.new(3) }
-  let(:w) { WinChecker.new(b) }
-  let(:s) { ScoreTracker.new("X", "O", w) }
+  let(:s) { ScoreTracker.new(b) }
   
   context 'when the game just started' do
     it 'returns false' do

@@ -33,7 +33,10 @@ class Controller
       @other_player = set_other_player(playing_computer, other_user_turn, @board)
       players = create_players_array(main_user_turn, @main_user, @other_player)
 
-      @score_tracker = create_score_tracker(@board, players)
+      tokens = [players[0].get_token, players[1].get_token]
+      @board.set_tokens_before_any_move_is_made(tokens)
+
+      @score_tracker = ScoreTracker.new(@board)
 
       while (!is_game_finished && !has_quit)
         player = set_player(players, player_turn)
@@ -47,7 +50,7 @@ class Controller
         has_quit = (move == "q")
       end
 
-      a_player_has_won = @score_tracker.has_either_player_won? 
+      a_player_has_won = @score_tracker.has_either_player_won?
     end
 
     @handler.display_game_over_msg(a_player_has_won, has_quit, 
@@ -96,15 +99,6 @@ class Controller
     end
 
     players
-  end
-
-  def create_score_tracker(board, players)
-    win_checker = WinChecker.new(board)
-
-    player_1_token = players[0].get_token
-    player_2_token = players[1].get_token
-
-    ScoreTracker.new(player_1_token, player_2_token, win_checker)
   end
 
   def set_player(players, player_turn)

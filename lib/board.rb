@@ -65,6 +65,14 @@ class Board
     num_moves_left
   end
 
+  def set_tokens_before_any_move_is_made(tokens)
+    @player_moves = { tokens[0] => Set.new, tokens[1] => Set.new }
+  end
+
+  def get_player_tokens
+    @player_moves.keys
+  end
+
   private
 
   def set_all_moves(side_length)

@@ -1,4 +1,7 @@
 require 'board'
+require 'player'
+require 'human_player'
+require 'computer_player'
 
 describe 'to_string_array' do
   let(:b) { Board.new(3) }
@@ -246,6 +249,33 @@ describe 'number_of_moves_left' do
       b.set_board(board)
 
       expect(b.number_of_moves_left).to eq(0)
+    end
+  end
+end
+
+
+describe 'get_player_tokens' do
+  let(:b) { Board.new(3) }
+
+  context 'when 4 moves have been made (without setting the tokens)' do
+    it 'returns both tokens' do
+      b.move(1, "O")
+      b.move(2, "X")
+      b.move(5, "O")
+      b.move(3, "X")
+
+      expect(b.get_player_tokens).to eq(["O", "X"])
+    end
+  end
+
+  context 'when no moves have been made (with setting the tokens)' do
+    it 'returns both tokens' do
+      h = HumanPlayer.new(1, b)
+      c = ComputerPlayer.new(2, b)
+      tokens = [h.get_token, c.get_token]
+      b.set_tokens_before_any_move_is_made(tokens)
+
+      expect(b.get_player_tokens).to eq(["X", "O"])
     end
   end
 end
