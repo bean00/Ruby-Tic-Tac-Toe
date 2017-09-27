@@ -29,7 +29,7 @@ class Controller
 
       main_user_turn = 1
       other_user_turn = (main_user_turn == 1) ? 2 : 1
-      @main_user = HumanPlayer.new(main_user_turn, @board)
+      @main_user = HumanPlayer.new(main_user_turn, @board, playing_computer)
       @other_player = set_other_player(playing_computer, other_user_turn, @board)
       players = create_players_array(main_user_turn, @main_user, @other_player)
 
@@ -83,7 +83,7 @@ class Controller
     if playing_computer
       ComputerPlayer.new(other_user_turn, board)
     else
-      HumanPlayer.new(other_user_turn, board)
+      HumanPlayer.new(other_user_turn, board, false)
     end
   end
 

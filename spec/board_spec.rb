@@ -270,7 +270,7 @@ describe 'get_player_tokens' do
 
   context 'when no moves have been made (with setting the tokens)' do
     it 'returns both tokens' do
-      h = HumanPlayer.new(1, b)
+      h = HumanPlayer.new(1, b, true)
       c = ComputerPlayer.new(2, b)
       tokens = [h.get_token, c.get_token]
       b.set_tokens_before_any_move_is_made(tokens)

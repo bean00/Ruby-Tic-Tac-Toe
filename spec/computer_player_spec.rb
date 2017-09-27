@@ -17,8 +17,8 @@ describe 'get_next_move' do
     end
   end
 
-  xcontext 'when the computer can win now (1 move left)' do
-    it 'returns the move' do
+  context 'when the computer can win now (1 move left)' do
+    it 'returns the move to win' do
       board = ["",  "X", "O",
                "X", "O", "X",
                "X", "O", "O"]
@@ -29,7 +29,7 @@ describe 'get_next_move' do
     end
   end
 
-  xcontext 'when the computer can win now (2 moves left)' do
+  context 'when the computer can win now (2 moves left)' do
     it 'returns the move to win' do
       board = ["O", "",  "",
                "X", "O", "X",
@@ -38,6 +38,54 @@ describe 'get_next_move' do
       comp = ComputerPlayer.new(2, b)
 
       expect(comp.get_next_move).to eq("2")
+    end
+  end
+  
+  context 'when the computer can win now (3 moves left)' do
+    it 'returns the move to win' do
+      board = ["",  "",  "X",
+               "X", "O", "",
+               "O", "O", "X"]
+      b.set_board(board)
+      comp = ComputerPlayer.new(1, b)
+
+      expect(comp.get_next_move).to eq("2")
+    end
+  end
+
+  context "when the computer can't win (2 moves left)" do
+    it 'returns the move to force a draw' do
+      board = ["X", "O", "",
+               "O", "O", "X",
+               "X", "X", ""]
+      b.set_board(board)
+      comp = ComputerPlayer.new(2, b)
+
+      expect(comp.get_next_move).to eq("9")
+    end
+  end
+
+  context "when the computer determines that it can't win" do
+    it 'returns the move to eventually draw' do
+      board = ["X", "",  "",
+               "",  "O", "",
+               "X", "",  ""]
+      b.set_board(board)
+      comp = ComputerPlayer.new(2, b)
+
+      expect(comp.get_next_move).to eq("4")
+    end
+  end
+
+  context "when the computer determines that it can win" do
+    it 'returns the move to eventually win' do
+      board = ["", "",  "O",
+               "", "",  "X",
+               "", "X", "O"]
+      b.set_board(board)
+      comp = ComputerPlayer.new(1, b)
+
+      expect(comp.get_next_move).to eq("1")
     end
   end
 end
