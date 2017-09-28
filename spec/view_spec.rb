@@ -1,8 +1,11 @@
 require 'board'
 require 'view'
 
+X_G = "\e[0;32;49mX\e[0m"
+O_R = "\e[0;31;49mO\e[0m"
+
 describe 'display_board' do
-  it 'prints a formatted board if all positions are "x"s' do
+  xit 'prints a formatted board if all positions are "x"s' do
     b = Board.new(3)
     b.move(1, "X")
     b.move(2, "X")
@@ -44,11 +47,11 @@ describe 'display_board' do
     b.move(9, "X")
     b.move(6, "O")
     v = View.new(b.to_string_array)
-    formatted_board = " O | 2 | 3 \n" +
+    formatted_board = " " + O_R + " | 2 | 3 \n" +
                       "---+---+---\n" +
-                      " 4 | X | O \n" +
+                      " 4 | " + X_G + " | " + O_R + " \n" +
                       "---+---+---\n" +
-                      " 7 | 8 | X \n" +
+                      " 7 | 8 | " + X_G + " \n" +
                       "\n"
 
     expect{v.display_board}.to output(formatted_board).to_stdout

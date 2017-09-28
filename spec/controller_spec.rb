@@ -2,7 +2,7 @@ require 'board'
 require 'score_tracker'
 require 'controller'
 
-describe 'play_game' do
+xdescribe 'play_game' do
   it 'prints correct output when PX wins from moving to [t,c,b] (HvH)' do
     c = Controller.new
     allow($stdin).to receive(:gets).and_return("h\n", "2\n", "3\n", "5\n",
@@ -74,7 +74,7 @@ describe 'play_game' do
 end
 
 
-describe 'play_round' do
+xdescribe 'play_round' do
   it 'displays correct output for Player X (PX) moving to 1 (HvH)' do
     c = Controller.new
     allow($stdin).to receive(:gets).and_return("1\n")
