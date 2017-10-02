@@ -1,9 +1,11 @@
 require 'board'
 require 'win_checker'
+require 'tic_tac_toe_rules'
 
 describe 'has_player_won?' do
   let(:b) { Board.new(3) }
-  let(:w) { WinChecker.new(b) }
+  let(:r) { TicTacToeRules.new(3) }
+  let(:w) { WinChecker.new(b, r) }
 
   context 'when the top row is filled' do
     it 'returns true' do

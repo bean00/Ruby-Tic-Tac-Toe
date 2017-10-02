@@ -35,23 +35,30 @@ The computer moved.
 ---+---+---
  7 | 8 | 9 
 
-Please enter your move (or "q" to quit):  O | X | 3 
+Please enter your move (or "q" to quit):  O | X | X 
 ---+---+---
- 4 | X | 6 
+ 4 | 5 | 6 
 ---+---+---
  7 | 8 | 9 
 
 The computer moved.
- O | X | O 
+ O | X | X 
 ---+---+---
- 4 | X | 6 
+ O | 5 | 6 
 ---+---+---
  7 | 8 | 9 
 
-Please enter your move (or "q" to quit):  O | X | O 
+Please enter your move (or "q" to quit):  O | X | X 
 ---+---+---
- 4 | X | 6 
+ O | X | 6 
 ---+---+---
- 7 | X | 9 
+ 7 | 8 | 9 
 
-Game over. You won!
+The computer moved.
+ O | X | X 
+---+---+---
+ O | X | 6 
+---+---+---
+ O | 8 | 9 
+
+Game over. You lost :(

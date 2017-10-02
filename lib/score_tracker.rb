@@ -4,10 +4,12 @@ class ScoreTracker
   DRAW_SCORE = 0
   INCOMPLETE_GAME = -1000000
 
-  def initialize(player_1_token, player_2_token, win_checker)
-    @win_checker = win_checker
-    @player_scores = initialize_player_scores(player_1_token, player_2_token)
-    @player_tokens = [player_1_token, player_2_token]
+  def initialize(board)
+    rules = TicTacToeRules.new(board.get_side_length)
+    @win_checker = WinChecker.new(board, rules)
+    tokens = board.get_player_tokens
+    @player_scores = initialize_player_scores(tokens[0], tokens[1])
+    @player_tokens = [tokens[0], tokens[1]]
   end
 
   def get_player_score(token)
@@ -15,16 +17,16 @@ class ScoreTracker
   end
 
   def is_game_finished?
-    player_1_token = @player_tokens[0]
+    player_a_token = @player_tokens[0]
 
-    @player_scores[player_1_token] != INCOMPLETE_GAME
+    @player_scores[player_a_token] != INCOMPLETE_GAME
   end
 
   def has_either_player_won?
-    player_1_token = @player_tokens[0]
+    player_a_token = @player_tokens[0]
 
-    @player_scores[player_1_token] == WIN_SCORE ||
-    @player_scores[player_1_token] == LOSS_SCORE
+    @player_scores[player_a_token] == WIN_SCORE ||
+    @player_scores[player_a_token] == LOSS_SCORE
   end
   
   def update_scores(token, number_of_moves_left)
@@ -37,8 +39,8 @@ class ScoreTracker
 
   private
 
-  def initialize_player_scores(player_1_token, player_2_token)
-    { player_1_token => INCOMPLETE_GAME, player_2_token => INCOMPLETE_GAME }
+  def initialize_player_scores(player_a_token, player_b_token)
+    { player_a_token => INCOMPLETE_GAME, player_b_token => INCOMPLETE_GAME }
   end
 
   def set_player_scores_if_player_won(token)
