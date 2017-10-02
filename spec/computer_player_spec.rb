@@ -11,9 +11,9 @@ describe 'get_next_move' do
                "X", "O", "O",
                "O", "X", "X"]
       b.set_board(board)
-      comp = ComputerPlayer.new(2, b)
+      comp = ComputerPlayer.new(2, b.get_side_length)
 
-      expect(comp.get_next_move).to eq("0")
+      expect(comp.get_next_move(b)).to eq("0")
     end
   end
 
@@ -23,9 +23,9 @@ describe 'get_next_move' do
                "X", "O", "X",
                "X", "O", "O"]
       b.set_board(board)
-      comp = ComputerPlayer.new(1, b)
+      comp = ComputerPlayer.new(1, b.get_side_length)
 
-      expect(comp.get_next_move).to eq("1")
+      expect(comp.get_next_move(b)).to eq("1")
     end
   end
 
@@ -35,9 +35,9 @@ describe 'get_next_move' do
                "X", "O", "X",
                "X", "O", "X"]
       b.set_board(board)
-      comp = ComputerPlayer.new(2, b)
+      comp = ComputerPlayer.new(2, b.get_side_length)
 
-      expect(comp.get_next_move).to eq("2")
+      expect(comp.get_next_move(b)).to eq("2")
     end
   end
   
@@ -47,9 +47,9 @@ describe 'get_next_move' do
                "X", "O", "",
                "O", "O", "X"]
       b.set_board(board)
-      comp = ComputerPlayer.new(1, b)
+      comp = ComputerPlayer.new(1, b.get_side_length)
 
-      expect(comp.get_next_move).to eq("2")
+      expect(comp.get_next_move(b)).to eq("2")
     end
   end
 
@@ -59,9 +59,9 @@ describe 'get_next_move' do
                "O", "O", "X",
                "X", "X", ""]
       b.set_board(board)
-      comp = ComputerPlayer.new(2, b)
+      comp = ComputerPlayer.new(2, b.get_side_length)
 
-      expect(comp.get_next_move).to eq("9")
+      expect(comp.get_next_move(b)).to eq("9")
     end
   end
 
@@ -71,9 +71,9 @@ describe 'get_next_move' do
                "",  "O", "",
                "X", "",  ""]
       b.set_board(board)
-      comp = ComputerPlayer.new(2, b)
+      comp = ComputerPlayer.new(2, b.get_side_length)
 
-      expect(comp.get_next_move).to eq("4")
+      expect(comp.get_next_move(b)).to eq("4")
     end
   end
 
@@ -83,9 +83,9 @@ describe 'get_next_move' do
                "", "",  "X",
                "", "X", "O"]
       b.set_board(board)
-      comp = ComputerPlayer.new(1, b)
+      comp = ComputerPlayer.new(1, b.get_side_length)
 
-      expect(comp.get_next_move).to eq("1")
+      expect(comp.get_next_move(b)).to eq("1")
     end
   end
 end

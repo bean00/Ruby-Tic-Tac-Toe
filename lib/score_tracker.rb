@@ -5,7 +5,8 @@ class ScoreTracker
   INCOMPLETE_GAME = -1000000
 
   def initialize(board)
-    @win_checker = WinChecker.new(board)
+    rules = TicTacToeRules.new(board.get_side_length)
+    @win_checker = WinChecker.new(board, rules)
     tokens = board.get_player_tokens
     @player_scores = initialize_player_scores(tokens[0], tokens[1])
     @player_tokens = [tokens[0], tokens[1]]

@@ -3,17 +3,16 @@ require_relative 'score_tracker'
 
 class ComputerPlayer < Player
 
-  def initialize(player_num, board)
+  def initialize(player_num, side_length)
     @player_num = player_num
-    @board = board
     @next_move = 0
-    @side_length = board.get_side_length
+    @side_length = side_length
     @comp_token = "O"
     @other_token = "X"
   end
 
-  def get_next_move
-    minimax_score(@board.to_string_array, @player_num)
+  def get_next_move(board)
+    minimax_score(board.to_string_array, @player_num)
 
     @next_move.to_s
   end

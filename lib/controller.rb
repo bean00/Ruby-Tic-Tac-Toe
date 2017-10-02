@@ -29,7 +29,7 @@ class Controller
 
       main_user_turn = 1
       other_user_turn = (main_user_turn == 1) ? 2 : 1
-      @main_user = HumanPlayer.new(main_user_turn, @board, playing_computer)
+      @main_user = HumanPlayer.new(main_user_turn, playing_computer)
       @other_player = set_other_player(playing_computer, other_user_turn, @board)
       players = create_players_array(main_user_turn, @main_user, @other_player)
 
@@ -60,7 +60,7 @@ class Controller
   def play_round(player, playing_computer)
     player_token = player.get_token
     @handler.display_move_output(player_token, playing_computer)
-    move = player.get_next_move
+    move = player.get_next_move(@board)
 
     if move == "q"
       return move
@@ -81,9 +81,9 @@ class Controller
 
   def set_other_player(playing_computer, other_user_turn, board)
     if playing_computer
-      ComputerPlayer.new(other_user_turn, board)
+      ComputerPlayer.new(other_user_turn, board.get_side_length)
     else
-      HumanPlayer.new(other_user_turn, board, false)
+      HumanPlayer.new(other_user_turn, false)
     end
   end
 

@@ -90,7 +90,7 @@ describe 'play_round' do
   context 'when Player X (PX) moves to 1 (HvH)' do
     it 'displays the correct output' do
       c = Controller.new(b)
-      person = HumanPlayer.new(1, b, false)
+      person = HumanPlayer.new(1, false)
       allow($stdin).to receive(:gets).and_return("1\n")
       expected_output = "Player X, please enter your move (or \"q\" to quit): " +
                         " X | 2 | 3 \n" +
@@ -107,7 +107,7 @@ describe 'play_round' do
   context 'when PX moves to 2 (HvC)' do
     it 'displays the correct output' do
       c = Controller.new(b)
-      person = HumanPlayer.new(1, b, true)
+      person = HumanPlayer.new(1, true)
       allow($stdin).to receive(:gets).and_return("2\n")
       expected_output = "Please enter your move (or \"q\" to quit): " +
                         " 1 | X | 3 \n" +
@@ -124,7 +124,7 @@ describe 'play_round' do
   context 'when PX makes an invalid move to "z"' do
     it 'displays the correct output' do
       c = Controller.new(b)
-      person = HumanPlayer.new(1, b, false)
+      person = HumanPlayer.new(1, false)
       allow($stdin).to receive(:gets).and_return("z\n", "5\n")
       expected_output = "Player X, please enter your move (or \"q\" to quit): " + 
                         "\n" +
@@ -144,7 +144,7 @@ describe 'play_round' do
   context 'when Player O (PO) makes an invalid move to "y"' do
     it 'displays the correct output' do
       c = Controller.new(b)
-      person = HumanPlayer.new(2, b, false)
+      person = HumanPlayer.new(2, false)
       allow($stdin).to receive(:gets).and_return("y\n", "6\n")
       expected_output = "Player O, please enter your move (or \"q\" to quit): " + 
                         "\n" +
@@ -166,7 +166,7 @@ describe 'play_round' do
       b.move(8, "X")
       b.move(9, "O")
       c = Controller.new(b)
-      person = HumanPlayer.new(1, b, false)
+      person = HumanPlayer.new(1, false)
       allow($stdin).to receive(:gets).and_return("8\n", "5\n")
       expected_output = "Player X, please enter your move (or \"q\" to quit): " +
                         "\n" +
@@ -187,7 +187,7 @@ describe 'play_round' do
     it 'displays the correct output' do
       b.move(2, "X")
       c = Controller.new(b)
-      person = HumanPlayer.new(2, b, false)
+      person = HumanPlayer.new(2, false)
       allow($stdin).to receive(:gets).and_return("2\n", "5\n")
       expected_output = "Player O, please enter your move (or \"q\" to quit): " +
                         "\n" +
@@ -207,7 +207,7 @@ describe 'play_round' do
   context 'when PX enters "q"' do
     it 'displays output and returns "q"' do
       c = Controller.new(b)
-      person = HumanPlayer.new(1, b, false)
+      person = HumanPlayer.new(1, false)
       allow($stdin).to receive(:gets).and_return("q\n")
       expected_output = "Player X, please enter your move (or \"q\" to quit): "
 

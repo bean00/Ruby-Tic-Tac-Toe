@@ -2,12 +2,12 @@ class Board
 
   def initialize(side_length)
     @side_length = side_length
-    @all_moves = set_all_moves(@side_length)
     @player_moves = Hash.new
+    @available_moves = generate_all_moves(@side_length)
   end
 
   def to_string_array
-    string_array = Array.new(@all_moves.size, "")
+    string_array = Array.new(@side_length * @side_length, "")
 
     @player_moves.each do |token, moves_set|
       assign_moves_to_array(string_array, token, moves_set)
@@ -22,16 +22,12 @@ class Board
     else
       @player_moves[player_token].add(move)
     end
+
+    @available_moves.delete(move)
   end
 
   def get_available_moves
-    available_moves_set = @all_moves
-
-    @player_moves.each do |token, moves_set|
-      available_moves_set -= moves_set
-    end
-    
-    available_moves_set.to_a
+    @available_moves.to_a
   end
 
   def set_board(board_string_array)
@@ -48,21 +44,12 @@ class Board
     if @player_moves[token]
       @player_moves[token]
     else
-      [].to_set
+      Set.new
     end
   end
 
   def number_of_moves_left
-    num_moves_left = @all_moves.size
-
-    if !@player_moves.empty?
-      player_moves_sets = @player_moves.values
-      player_moves_sets.map { |set|
-        num_moves_left -= set.size
-      }
-    end
-
-    num_moves_left
+    @available_moves.size
   end
 
   def set_tokens_before_any_move_is_made(tokens)
@@ -75,7 +62,7 @@ class Board
 
   private
 
-  def set_all_moves(side_length)
+  def generate_all_moves(side_length)
     lowest_move = 1
     highest_move = side_length * side_length
     move_array = (lowest_move..highest_move).to_a
