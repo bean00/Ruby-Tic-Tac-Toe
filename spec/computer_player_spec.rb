@@ -3,14 +3,12 @@ require 'player'
 require 'computer_player'
 
 describe 'get_next_move' do
-  let(:b) { Board.new(3) }
-
   context 'when the board is already full' do
     it "returns an invalid move (0), since the computer won't make a move" do
       board = ["X", "O", "X",
                "X", "O", "O",
                "O", "X", "X"]
-      b.set_board(board)
+      b = Board.create_from_string_array(board)
       comp = ComputerPlayer.new(2, b.get_side_length)
 
       expect(comp.get_next_move(b)).to eq("0")
@@ -22,7 +20,7 @@ describe 'get_next_move' do
       board = ["",  "X", "O",
                "X", "O", "X",
                "X", "O", "O"]
-      b.set_board(board)
+      b = Board.create_from_string_array(board)
       comp = ComputerPlayer.new(1, b.get_side_length)
 
       expect(comp.get_next_move(b)).to eq("1")
@@ -34,7 +32,7 @@ describe 'get_next_move' do
       board = ["O", "",  "",
                "X", "O", "X",
                "X", "O", "X"]
-      b.set_board(board)
+      b = Board.create_from_string_array(board)
       comp = ComputerPlayer.new(2, b.get_side_length)
 
       expect(comp.get_next_move(b)).to eq("2")
@@ -46,7 +44,7 @@ describe 'get_next_move' do
       board = ["",  "",  "X",
                "X", "O", "",
                "O", "O", "X"]
-      b.set_board(board)
+      b = Board.create_from_string_array(board)
       comp = ComputerPlayer.new(1, b.get_side_length)
 
       expect(comp.get_next_move(b)).to eq("2")
@@ -58,7 +56,7 @@ describe 'get_next_move' do
       board = ["X", "O", "",
                "O", "O", "X",
                "X", "X", ""]
-      b.set_board(board)
+      b = Board.create_from_string_array(board)
       comp = ComputerPlayer.new(2, b.get_side_length)
 
       expect(comp.get_next_move(b)).to eq("9")
@@ -70,7 +68,7 @@ describe 'get_next_move' do
       board = ["X", "",  "",
                "",  "O", "",
                "X", "",  ""]
-      b.set_board(board)
+      b = Board.create_from_string_array(board)
       comp = ComputerPlayer.new(2, b.get_side_length)
 
       expect(comp.get_next_move(b)).to eq("4")
@@ -82,7 +80,7 @@ describe 'get_next_move' do
       board = ["", "",  "O",
                "", "",  "X",
                "", "X", "O"]
-      b.set_board(board)
+      b = Board.create_from_string_array(board)
       comp = ComputerPlayer.new(1, b.get_side_length)
 
       expect(comp.get_next_move(b)).to eq("1")

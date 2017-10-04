@@ -24,8 +24,7 @@ class ComputerPlayer < Player
   private
 
   def minimax_score(board_string_array, next_player)
-    current_board = Board.new(@side_length)
-    current_board.set_board(board_string_array)
+    current_board = Board.create_from_string_array(board_string_array)
     score_tracker = ScoreTracker.new(current_board)
 
     player_that_just_went = (next_player == 1) ? 2 : 1
@@ -43,8 +42,7 @@ class ComputerPlayer < Player
       
       board_array = Array.new
       possible_moves.length.times {
-        board = Board.new(@side_length)
-        board.set_board(board_string_array)
+        board = Board.create_from_string_array(board_string_array)
         board_array << board 
       }
 

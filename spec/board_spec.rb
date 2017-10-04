@@ -139,28 +139,26 @@ describe 'get_available_moves' do
 end
 
 
-describe 'set_board' do
-  let(:b) { Board.new(3) }
-
+describe 'create_from_string_array' do
   context 'when passing in an empty board' do
-    it 'sets the board correctly' do
+    it 'creates the board correctly' do
       new_board = ["", "", "",
                    "", "", "",
                    "", "", ""]
 
-      b.set_board(new_board)
+      b = Board.create_from_string_array(new_board)
 
       expect(b.to_string_array).to eq(new_board)
     end
   end
 
   context 'when passing in a board' do
-    it 'sets the board correctly' do
+    it 'creates the board correctly' do
       new_board = ["", "X", "",
                    "", "O", "",
                    "", "X", ""]
 
-      b.set_board(new_board)
+      b = Board.create_from_string_array(new_board)
 
       expect(b.to_string_array).to eq(new_board)
     end
@@ -243,10 +241,15 @@ describe 'number_of_moves_left' do
 
   context 'when all moves have been made on a 3x3 board' do
     it 'returns 0' do
-      board = ["X", "O", "X",
-               "X", "X", "O",
-               "O", "X", "O"]
-      b.set_board(board)
+      b.move(1, "X")
+      b.move(2, "O")
+      b.move(3, "X")
+      b.move(4, "X")
+      b.move(5, "X")
+      b.move(6, "O")
+      b.move(7, "O")
+      b.move(8, "X")
+      b.move(9, "O")
 
       expect(b.number_of_moves_left).to eq(0)
     end
