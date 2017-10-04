@@ -25,15 +25,14 @@ class ComputerPlayer < Player
 
   def minimax_score(board_string_array, next_player)
     current_board = Board.create_from_string_array(board_string_array)
-    score_tracker = ScoreTracker.new(current_board)
+    score_tracker = ScoreTracker.new(@player_num, @comp_token, current_board)
 
     player_that_just_went = (next_player == 1) ? 2 : 1
 
-    player_that_just_went_token = get_player_token(player_that_just_went) 
-    score_tracker.update_scores(player_that_just_went_token,
+    score_tracker.update_scores(player_that_just_went,
                                 current_board.number_of_moves_left)
 
-    current_score = score_tracker.get_player_score(@comp_token)
+    current_score = score_tracker.get_player_score(@player_num)
 
     if score_tracker.is_game_finished?
       return current_score

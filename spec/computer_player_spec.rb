@@ -29,8 +29,8 @@ describe 'get_next_move' do
 
   context 'when the computer can win now (2 moves left)' do
     it 'returns the move to win' do
-      board = ["O", "",  "",
-               "X", "O", "X",
+      board = ["X", "",  "",
+               "O", "O", "X",
                "X", "O", "X"]
       b = Board.create_from_string_array(board)
       comp = ComputerPlayer.new(2, b.get_side_length)
@@ -84,6 +84,18 @@ describe 'get_next_move' do
       comp = ComputerPlayer.new(1, b.get_side_length)
 
       expect(comp.get_next_move(b)).to eq("1")
+    end
+  end
+
+  context 'when the computer has taken the first position to be parsed' do
+    it 'returns the move to win' do
+      board = ["O", "",  "",
+               "X", "O", "X",
+               "X", "O", "X"]
+      b = Board.create_from_string_array(board)
+      comp = ComputerPlayer.new(2, b.get_side_length)
+
+      expect(comp.get_next_move(b)).to eq("2")
     end
   end
 end

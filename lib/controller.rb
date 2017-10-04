@@ -25,7 +25,7 @@ class Controller
       @handler.display_game_instructions(playing_computer)
 
       is_game_finished = false
-      player_turn = 1
+      player_num = 1
 
       main_user_turn = 1
       other_user_turn = (main_user_turn == 1) ? 2 : 1
@@ -36,17 +36,17 @@ class Controller
       tokens = [players[0].get_token, players[1].get_token]
       @board.set_tokens_before_any_move_is_made(tokens)
 
-      @score_tracker = ScoreTracker.new(@board)
+      @score_tracker = ScoreTracker.new(1, tokens[0], @board)
 
       while (!is_game_finished && !has_quit)
-        player = set_player(players, player_turn)
+        player = set_player(players, player_num)
         player_token = player.get_token
         move = play_round(player, playing_computer)
 
-        @score_tracker.update_scores(player_token, @board.number_of_moves_left)
+        @score_tracker.update_scores(player_num, @board.number_of_moves_left)
         is_game_finished = @score_tracker.is_game_finished?
 
-        player_turn = (player_turn == 1) ? 2 : 1
+        player_num = (player_num == 1) ? 2 : 1
         has_quit = (move == "q")
       end
 
@@ -101,8 +101,8 @@ class Controller
     players
   end
 
-  def set_player(players, player_turn)
-    players[player_turn - 1]
+  def set_player(players, player_num)
+    players[player_num - 1]
   end
 
 end

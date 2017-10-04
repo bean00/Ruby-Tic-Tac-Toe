@@ -8,20 +8,20 @@ DRAW_SCORE = ScoreTracker::DRAW_SCORE
 INCOMPLETE_GAME = ScoreTracker::INCOMPLETE_GAME
 
 describe 'get_player_score' do
-  context 'when the game first starts' do
+  context 'when the game first starts (Player 1 is X)' do
     before(:each) do
       @b = Board.new(3)
       tokens = ["X", "O"]
       @b.set_tokens_before_any_move_is_made(tokens)
-      @s = ScoreTracker.new(@b)
+      @s = ScoreTracker.new(1, "X", @b)
     end
 
-    it 'returns incomplete game score for X' do
-      expect(@s.get_player_score("X")).to eq(INCOMPLETE_GAME)
+    it 'returns incomplete game score for Player 1 (P1)' do
+      expect(@s.get_player_score(1)).to eq(INCOMPLETE_GAME)
     end
 
-    it 'returns incomplete game score for O' do
-      expect(@s.get_player_score("O")).to eq(INCOMPLETE_GAME)
+    it 'returns incomplete game score for Player 2 (P2)' do
+      expect(@s.get_player_score(2)).to eq(INCOMPLETE_GAME)
     end
   end
 
@@ -31,16 +31,16 @@ describe 'get_player_score' do
         ["X", "X", "X",
          "",  "O", "",
          "",  "O",  "" ])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("X", @b.number_of_moves_left)
+      @s = ScoreTracker.new(1, "X", @b)
+      @s.update_scores(1, @b.number_of_moves_left)
     end
 
-    it 'returns win score for X' do
-      expect(@s.get_player_score("X")).to eq(WIN_SCORE)
+    it 'returns win score for P1' do
+      expect(@s.get_player_score(1)).to eq(WIN_SCORE)
     end
 
-    it 'returns loss score for O' do
-      expect(@s.get_player_score("O")).to eq(LOSS_SCORE)
+    it 'returns loss score for P2' do
+      expect(@s.get_player_score(2)).to eq(LOSS_SCORE)
     end
   end
 
@@ -50,16 +50,16 @@ describe 'get_player_score' do
         ["X", "X", "O",
          "X", "O", "",
          "O", "",  "" ])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("O", @b.number_of_moves_left)
+      @s = ScoreTracker.new(2, "O", @b)
+      @s.update_scores(2, @b.number_of_moves_left)
     end
 
-    it 'returns win score for O' do
-      expect(@s.get_player_score("O")).to eq(WIN_SCORE)
+    it 'returns win score for P2' do
+      expect(@s.get_player_score(2)).to eq(WIN_SCORE)
     end
 
-    it 'returns loss score for X' do
-      expect(@s.get_player_score("X")).to eq(LOSS_SCORE)
+    it 'returns loss score for P1' do
+      expect(@s.get_player_score(1)).to eq(LOSS_SCORE)
     end
   end
 
@@ -69,16 +69,16 @@ describe 'get_player_score' do
         ["X", "X", "O",
          "X", "O", "",
          "",  "O", "" ])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("X", @b.number_of_moves_left)
+      @s = ScoreTracker.new(1, "O", @b)
+      @s.update_scores(1, @b.number_of_moves_left)
     end
 
-    it 'returns incomplete game score for X' do
-      expect(@s.get_player_score("X")).to eq(INCOMPLETE_GAME)
+    it 'returns incomplete game score for P2 (X)' do
+      expect(@s.get_player_score(2)).to eq(INCOMPLETE_GAME)
     end
 
-    it 'returns incomplete game score for O' do
-      expect(@s.get_player_score("O")).to eq(INCOMPLETE_GAME)
+    it 'returns incomplete game score for P1 (O)' do
+      expect(@s.get_player_score(1)).to eq(INCOMPLETE_GAME)
     end
   end
 
@@ -88,16 +88,16 @@ describe 'get_player_score' do
         ["X", "O", "X",
          "X", "X", "O",
          "O", "X", "O"])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("X", @b.number_of_moves_left)
+      @s = ScoreTracker.new(1, "X", @b)
+      @s.update_scores(1, @b.number_of_moves_left)
     end
 
-    it 'returns draw score for X' do
-      expect(@s.get_player_score("X")).to eq(DRAW_SCORE)
+    it 'returns draw score for P1' do
+      expect(@s.get_player_score(1)).to eq(DRAW_SCORE)
     end
 
-    it 'returns draw score for O' do
-      expect(@s.get_player_score("O")).to eq(DRAW_SCORE)
+    it 'returns draw score for P2' do
+      expect(@s.get_player_score(2)).to eq(DRAW_SCORE)
     end
   end
 
@@ -107,16 +107,16 @@ describe 'get_player_score' do
         ["X", "O", "X",
          "X", "X", "O",
          "O", "O", "X"])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("X", @b.number_of_moves_left)
+      @s = ScoreTracker.new(1, "X", @b)
+      @s.update_scores(1, @b.number_of_moves_left)
     end
 
-    it 'returns win score for X' do
-      expect(@s.get_player_score("X")).to eq(WIN_SCORE)
+    it 'returns win score for P1' do
+      expect(@s.get_player_score(1)).to eq(WIN_SCORE)
     end
 
-    it 'returns loss score for O' do
-      expect(@s.get_player_score("O")).to eq(LOSS_SCORE)
+    it 'returns loss score for P2' do
+      expect(@s.get_player_score(2)).to eq(LOSS_SCORE)
     end
   end
 end
@@ -126,7 +126,7 @@ describe 'is_game_finished?' do
   context 'when the game just started' do
     it 'returns false' do
       b = Board.new(3)
-      s = ScoreTracker.new(b)
+      s = ScoreTracker.new(1, "X", b)
       expect(s.is_game_finished?).to eq false
     end
   end
@@ -137,8 +137,8 @@ describe 'is_game_finished?' do
         ["X", "X", "X",
          "O", "O", "",
          "",  "",  ""])
-      s = ScoreTracker.new(b)
-      s.update_scores("X", b.number_of_moves_left)
+      s = ScoreTracker.new(1, "X", b)
+      s.update_scores(1, b.number_of_moves_left)
 
       expect(s.is_game_finished?).to eq true
     end
@@ -150,8 +150,8 @@ describe 'is_game_finished?' do
         ["X", "X", "O",
          "X", "O", "",
          "O", "",  ""])
-      s = ScoreTracker.new(b)
-      s.update_scores("O", b.number_of_moves_left)
+      s = ScoreTracker.new(2, "O", b)
+      s.update_scores(2, b.number_of_moves_left)
 
       expect(s.is_game_finished?).to eq true
     end
@@ -163,8 +163,8 @@ describe 'is_game_finished?' do
         ["X", "O", "X",
          "",  "",  "",
          "",  "",  ""])
-      s = ScoreTracker.new(b)
-      s.update_scores("X", b.number_of_moves_left)
+      s = ScoreTracker.new(1, "X", b)
+      s.update_scores(1, b.number_of_moves_left)
 
       expect(s.is_game_finished?).to eq false
     end
@@ -176,8 +176,8 @@ describe 'is_game_finished?' do
         ["X", "O", "X",
          "X", "X", "O",
          "O", "X", "O"])
-      s = ScoreTracker.new(b)
-      s.update_scores("X", b.number_of_moves_left)
+      s = ScoreTracker.new(1, "X", b)
+      s.update_scores(1, b.number_of_moves_left)
 
       expect(s.is_game_finished?).to eq true
     end
@@ -189,8 +189,8 @@ describe 'is_game_finished?' do
         ["X", "O", "X",
          "X", "X", "O",
          "O", "O", "X"])
-      s = ScoreTracker.new(b)
-      s.update_scores("X", b.number_of_moves_left)
+      s = ScoreTracker.new(1, "X", b)
+      s.update_scores(1, b.number_of_moves_left)
 
       expect(s.is_game_finished?).to eq true
     end
@@ -200,7 +200,7 @@ end
 
 describe 'has_either_player_won?' do
   let(:b) { Board.new(3) }
-  let(:s) { ScoreTracker.new(b) }
+  let(:s) { ScoreTracker.new(1, "X", b) }
   
   context 'when the game just started' do
     it 'returns false' do
@@ -213,7 +213,7 @@ describe 'has_either_player_won?' do
       b.move(1, "X")
       b.move(2, "X")
       b.move(3, "X")
-      s.update_scores("X", b.number_of_moves_left)
+      s.update_scores(1, b.number_of_moves_left)
 
       expect(s.has_either_player_won?).to eq true
     end
