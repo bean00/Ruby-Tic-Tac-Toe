@@ -2,6 +2,7 @@ require 'board'
 require 'player'
 require 'human_player'
 require 'computer_player'
+require 'io_handler'
 
 describe 'to_string_array' do
   let(:b) { Board.new(3) }
@@ -273,8 +274,10 @@ describe 'get_player_tokens' do
 
   context 'when no moves have been made (with setting the tokens)' do
     it 'returns both tokens' do
-      h = HumanPlayer.new(1, true)
-      c = ComputerPlayer.new(2, b)
+      io = IOHandler.new
+      s = ScoreTracker.new(b)
+      h = HumanPlayer.new("X", io)
+      c = ComputerPlayer.new("O", "X", s)
       tokens = [h.get_token, c.get_token]
       b.set_tokens_before_any_move_is_made(tokens)
 

@@ -4,15 +4,15 @@ class ScoreTracker
   DRAW_SCORE = 0
   INCOMPLETE_GAME = -1000000
 
-  def initialize(player_num, player_token, board)
-    rules = TicTacToeRules.new(board.get_side_length)
-    @win_checker = WinChecker.new(board, rules)
-    @player_tokens = set_player_tokens(player_num, player_token, board)
+  def initialize(board)
+    @board = board
+    rules = TicTacToeRules.new(@board.get_side_length)
+    @win_checker = WinChecker.new(rules)
+    @player_tokens = @board.get_player_tokens
     @player_scores = initialize_player_scores(@player_tokens)
   end
 
-  def get_player_score(player_num)
-    token = get_token_from_player_num(player_num)
+  def get_player_score(token)
     @player_scores[token]
   end
 
@@ -29,29 +29,13 @@ class ScoreTracker
       @player_scores[player_1_token] == LOSS_SCORE
   end
   
-  def update_scores(player_num, number_of_moves_left)
-    token = get_token_from_player_num(player_num)
+  def update_scores(token, board = @board)
+    reset_scores_if_they_were_changed
 
-    if @win_checker.has_player_won?(token)
-      set_player_scores_if_player_won(token)
-    elsif number_of_moves_left == 0
-      set_player_scores_if_player_drew(token)
-    end
+    set_player_scores(token, board)
   end
 
   private
-
-  def set_player_tokens(player_num, player_token, board)
-    player_tokens = board.get_player_tokens
-
-    token_is_at_correct_index = player_tokens[player_num - 1] == player_token
-
-    if token_is_at_correct_index
-      player_tokens
-    else
-      player_tokens.reverse
-    end
-  end
 
   def initialize_player_scores(player_tokens)
     player_1_token = player_tokens[0]
@@ -59,8 +43,18 @@ class ScoreTracker
     { player_1_token => INCOMPLETE_GAME, player_2_token => INCOMPLETE_GAME }
   end
 
-  def get_token_from_player_num(player_num)
-    @player_tokens[player_num - 1]
+  def reset_scores_if_they_were_changed
+    if @player_scores[@player_tokens[0]] != INCOMPLETE_GAME
+      @player_scores.each { |k, v| @player_scores[k] = INCOMPLETE_GAME }
+    end
+  end
+
+  def set_player_scores(token, board)
+    if @win_checker.has_player_won?(token, board)
+      set_player_scores_if_player_won(token)
+    elsif board.number_of_moves_left == 0
+      set_player_scores_if_player_drew(token)
+    end
   end
 
   def set_player_scores_if_player_won(token)

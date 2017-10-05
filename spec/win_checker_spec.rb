@@ -5,7 +5,7 @@ require 'tic_tac_toe_rules'
 describe 'has_player_won?' do
   let(:b) { Board.new(3) }
   let(:r) { TicTacToeRules.new(3) }
-  let(:w) { WinChecker.new(b, r) }
+  let(:w) { WinChecker.new(r) }
 
   context 'when the top row is filled' do
     it 'returns true' do
@@ -13,13 +13,13 @@ describe 'has_player_won?' do
       b.move(2, "X")
       b.move(3, "X")
 
-      expect(w.has_player_won?("X")).to be true
+      expect(w.has_player_won?("X", b)).to be true
     end
   end
 
   context 'when the board is empty' do
     it 'returns false' do
-      expect(w.has_player_won?("X")).to be false
+      expect(w.has_player_won?("X", b)).to be false
     end
   end
 
@@ -29,7 +29,7 @@ describe 'has_player_won?' do
       b.move(5, "O")
       b.move(4, "X")
 
-      expect(w.has_player_won?("X")).to be false
+      expect(w.has_player_won?("X", b)).to be false
     end
   end
 
@@ -39,7 +39,7 @@ describe 'has_player_won?' do
       b.move(5, "O")
       b.move(6, "O")
 
-      expect(w.has_player_won?("O")).to be true
+      expect(w.has_player_won?("O", b)).to be true
     end
   end
 
@@ -49,7 +49,7 @@ describe 'has_player_won?' do
       b.move(8, "X")
       b.move(9, "X")
 
-      expect(w.has_player_won?("X")).to be true
+      expect(w.has_player_won?("X", b)).to be true
     end
   end
 
@@ -59,7 +59,7 @@ describe 'has_player_won?' do
       b.move(4, "X")
       b.move(7, "X")
 
-      expect(w.has_player_won?("X")).to be true
+      expect(w.has_player_won?("X", b)).to be true
     end
   end
 
@@ -69,7 +69,7 @@ describe 'has_player_won?' do
       b.move(5, "X")
       b.move(8, "X")
 
-      expect(w.has_player_won?("X")).to be true
+      expect(w.has_player_won?("X", b)).to be true
     end
   end
 
@@ -79,7 +79,7 @@ describe 'has_player_won?' do
       b.move(6, "X")
       b.move(9, "X")
 
-      expect(w.has_player_won?("X")).to be true
+      expect(w.has_player_won?("X", b)).to be true
     end
   end
 
@@ -89,7 +89,7 @@ describe 'has_player_won?' do
       b.move(5, "X")
       b.move(9, "X")
 
-      expect(w.has_player_won?("X")).to be true
+      expect(w.has_player_won?("X", b)).to be true
     end
   end
 
@@ -99,7 +99,7 @@ describe 'has_player_won?' do
       b.move(5, "X")
       b.move(7, "X")
 
-      expect(w.has_player_won?("X")).to be true
+      expect(w.has_player_won?("X", b)).to be true
     end
   end
 end

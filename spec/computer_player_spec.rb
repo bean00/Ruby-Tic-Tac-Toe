@@ -9,7 +9,8 @@ describe 'get_next_move' do
                "X", "O", "O",
                "O", "X", "X"]
       b = Board.create_from_string_array(board)
-      comp = ComputerPlayer.new(2, b.get_side_length)
+      s = ScoreTracker.new(b)
+      comp = ComputerPlayer.new("O", "X", s)
 
       expect(comp.get_next_move(b)).to eq("0")
     end
@@ -21,7 +22,8 @@ describe 'get_next_move' do
                "X", "O", "X",
                "X", "O", "O"]
       b = Board.create_from_string_array(board)
-      comp = ComputerPlayer.new(1, b.get_side_length)
+      s = ScoreTracker.new(b)
+      comp = ComputerPlayer.new("X", "O", s)
 
       expect(comp.get_next_move(b)).to eq("1")
     end
@@ -33,7 +35,8 @@ describe 'get_next_move' do
                "O", "O", "X",
                "X", "O", "X"]
       b = Board.create_from_string_array(board)
-      comp = ComputerPlayer.new(2, b.get_side_length)
+      s = ScoreTracker.new(b)
+      comp = ComputerPlayer.new("O", "X", s)
 
       expect(comp.get_next_move(b)).to eq("2")
     end
@@ -45,8 +48,9 @@ describe 'get_next_move' do
                "X", "O", "",
                "O", "O", "X"]
       b = Board.create_from_string_array(board)
-      comp = ComputerPlayer.new(1, b.get_side_length)
-
+      s = ScoreTracker.new(b)
+      comp = ComputerPlayer.new("O", "X", s)
+      
       expect(comp.get_next_move(b)).to eq("2")
     end
   end
@@ -57,7 +61,8 @@ describe 'get_next_move' do
                "O", "O", "X",
                "X", "X", ""]
       b = Board.create_from_string_array(board)
-      comp = ComputerPlayer.new(2, b.get_side_length)
+      s = ScoreTracker.new(b)
+      comp = ComputerPlayer.new("O", "X", s)
 
       expect(comp.get_next_move(b)).to eq("9")
     end
@@ -69,7 +74,8 @@ describe 'get_next_move' do
                "",  "O", "",
                "X", "",  ""]
       b = Board.create_from_string_array(board)
-      comp = ComputerPlayer.new(2, b.get_side_length)
+      s = ScoreTracker.new(b)
+      comp = ComputerPlayer.new("O", "X", s)
 
       expect(comp.get_next_move(b)).to eq("4")
     end
@@ -81,7 +87,8 @@ describe 'get_next_move' do
                "", "",  "X",
                "", "X", "O"]
       b = Board.create_from_string_array(board)
-      comp = ComputerPlayer.new(1, b.get_side_length)
+      s = ScoreTracker.new(b)
+      comp = ComputerPlayer.new("O", "X", s)
 
       expect(comp.get_next_move(b)).to eq("1")
     end
@@ -93,7 +100,8 @@ describe 'get_next_move' do
                "X", "O", "X",
                "X", "O", "X"]
       b = Board.create_from_string_array(board)
-      comp = ComputerPlayer.new(2, b.get_side_length)
+      s = ScoreTracker.new(b)
+      comp = ComputerPlayer.new("O", "X", s)
 
       expect(comp.get_next_move(b)).to eq("2")
     end
@@ -103,18 +111,19 @@ end
 
 describe 'get_token' do
   let(:b) { Board.new(3) }
+  let(:s) { ScoreTracker.new(b) }
 
   context 'when the computer goes 1st' do
-    it 'returns O' do
-      comp = ComputerPlayer.new(1, b)
+    it 'returns X' do
+      comp = ComputerPlayer.new("X", "O", s)
 
-      expect(comp.get_token).to eq("O")
+      expect(comp.get_token).to eq("X")
     end
   end
 
   context 'when the computer goes 2nd' do
     it 'returns O' do
-      comp = ComputerPlayer.new(2, b)
+      comp = ComputerPlayer.new("O", "X", s)
 
       expect(comp.get_token).to eq("O")
     end
