@@ -1,6 +1,6 @@
 require 'board'
-require 'player'
 require 'computer_player'
+require 'score_tracker'
 
 describe 'get_next_move' do
   context 'when the board is already full' do

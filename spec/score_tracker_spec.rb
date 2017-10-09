@@ -1,5 +1,4 @@
 require 'board'
-require 'win_checker'
 require 'score_tracker'
 
 WIN_SCORE = ScoreTracker::WIN_SCORE

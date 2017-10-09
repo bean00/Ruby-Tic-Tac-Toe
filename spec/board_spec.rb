@@ -1,8 +1,8 @@
 require 'board'
-require 'player'
-require 'human_player'
 require 'computer_player'
+require 'human_player'
 require 'io_handler'
+require 'score_tracker'
 
 describe 'to_string_array' do
   let(:b) { Board.new(3) }

@@ -1,5 +1,4 @@
 require 'board'
-require 'score_tracker'
 require 'controller'
 
 describe 'play_game' do

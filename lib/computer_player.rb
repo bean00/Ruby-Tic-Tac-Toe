@@ -1,5 +1,4 @@
-require_relative 'win_checker'
-require_relative 'score_tracker'
+require_relative 'player'
 require 'deep_clone'
 
 class ComputerPlayer < Player

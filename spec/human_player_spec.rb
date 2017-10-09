@@ -1,7 +1,6 @@
 require 'board'
-require 'io_handler'
-require 'player'
 require 'human_player'
+require 'io_handler'
 
 describe 'get_next_move' do
   context 'when a person moves' do

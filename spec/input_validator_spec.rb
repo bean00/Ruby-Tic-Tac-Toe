@@ -1,5 +1,5 @@
-require 'input_validator'
 require 'board'
+require 'input_validator'
 
 describe 'is_move_valid?' do
   let(:b) { Board.new(3) }

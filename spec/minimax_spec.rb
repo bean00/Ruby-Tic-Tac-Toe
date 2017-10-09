@@ -1,8 +1,6 @@
 require 'board'
-require 'score_tracker'
-require 'tic_tac_toe_rules'
-require 'win_checker'
 require 'minimax'
+require 'score_tracker'
 
 WIN_SCORE = ScoreTracker::WIN_SCORE
 LOSS_SCORE = ScoreTracker::LOSS_SCORE

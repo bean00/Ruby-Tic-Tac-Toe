@@ -1,5 +1,3 @@
-require_relative 'tic_tac_toe_rules'
-
 class WinChecker
 
   def initialize(rules)

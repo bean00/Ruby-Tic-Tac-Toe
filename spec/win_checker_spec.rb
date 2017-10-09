@@ -1,6 +1,6 @@
 require 'board'
-require 'win_checker'
 require 'tic_tac_toe_rules'
+require 'win_checker'
 
 describe 'has_player_won?' do
   let(:b) { Board.new(3) }

@@ -1,3 +1,6 @@
+require_relative 'tic_tac_toe_rules'
+require_relative 'win_checker'
+
 class ScoreTracker
   WIN_SCORE = 1
   LOSS_SCORE = -1

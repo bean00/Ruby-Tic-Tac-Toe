@@ -1,3 +1,5 @@
+require 'set'
+
 class TicTacToeRules
 
   def initialize(side_length)

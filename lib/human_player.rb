@@ -1,3 +1,5 @@
+require_relative 'player'
+
 class HumanPlayer < Player
 
   def initialize(token, io_handler)

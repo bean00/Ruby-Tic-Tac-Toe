@@ -1,10 +1,8 @@
-require_relative 'io_handler'
-require_relative 'input_validator'
-require_relative 'view'
-require_relative 'player'
-require_relative 'human_player'
 require_relative 'computer_player'
-require_relative 'win_checker'
+require_relative 'human_player'
+require_relative 'io_handler'
+require_relative 'score_tracker'
+require_relative 'view'
 
 class Controller
 

@@ -1,5 +1,5 @@
-require 'io_handler'
 require 'board'
+require 'io_handler'
 
 describe 'display_intro_and_instructions' do
   context 'when the user starts the game' do
