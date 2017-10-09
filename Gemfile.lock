@@ -49,6 +49,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
+    ruby_deep_clone (0.8.0)
     ruby_dep (1.5.0)
     shellany (0.0.1)
     slop (3.6.0)
@@ -60,6 +61,7 @@ PLATFORMS
 DEPENDENCIES
   guard-rspec
   rspec (~> 3.0)
+  ruby_deep_clone (~> 0.8.0)
 
 BUNDLED WITH
-   1.15.4
+   1.16.0.pre.2

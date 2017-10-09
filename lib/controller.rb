@@ -25,28 +25,27 @@ class Controller
       @handler.display_game_instructions(playing_computer)
 
       is_game_finished = false
-      player_turn = 1
-
-      main_user_turn = 1
-      other_user_turn = (main_user_turn == 1) ? 2 : 1
-      @main_user = HumanPlayer.new(main_user_turn, playing_computer)
-      @other_player = set_other_player(playing_computer, other_user_turn, @board)
-      players = create_players_array(main_user_turn, @main_user, @other_player)
-
-      tokens = [players[0].get_token, players[1].get_token]
+      tokens = ["X", "O"]
       @board.set_tokens_before_any_move_is_made(tokens)
-
       @score_tracker = ScoreTracker.new(@board)
 
+      x_token = tokens[0]
+      o_token = tokens[1]
+
+      @main_user = HumanPlayer.new(x_token, @handler)
+      @other_player = set_other_player(x_token, o_token, playing_computer)
+      players = { x_token => @main_user, o_token => @other_player }
+      player = @other_player
+
+
       while (!is_game_finished && !has_quit)
-        player = set_player(players, player_turn)
-        player_token = player.get_token
+        player_token = (player.get_token == x_token) ? o_token : x_token 
+        player = players[player_token]
         move = play_round(player, playing_computer)
 
-        @score_tracker.update_scores(player_token, @board.number_of_moves_left)
+        @score_tracker.update_scores(player_token)
+        
         is_game_finished = @score_tracker.is_game_finished?
-
-        player_turn = (player_turn == 1) ? 2 : 1
         has_quit = (move == "q")
       end
 
@@ -79,30 +78,12 @@ class Controller
     game_mode == "c"
   end
 
-  def set_other_player(playing_computer, other_user_turn, board)
+  def set_other_player(x_token, o_token, playing_computer)
     if playing_computer
-      ComputerPlayer.new(other_user_turn, board.get_side_length)
+      ComputerPlayer.new(o_token, x_token, @score_tracker)
     else
-      HumanPlayer.new(other_user_turn, false)
+      HumanPlayer.new(o_token, @handler)
     end
-  end
-
-  def create_players_array(main_user_turn, main_user, other_player)
-    players = Array.new(2)
-    
-    if main_user_turn == 1
-      players[0] = main_user
-      players[1] = other_player
-    elsif main_user_turn == 2
-      players[0] = other_player
-      players[1] = main_user
-    end
-
-    players
-  end
-
-  def set_player(players, player_turn)
-    players[player_turn - 1]
   end
 
 end

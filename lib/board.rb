@@ -30,10 +30,16 @@ class Board
     @available_moves.to_a
   end
 
-  def set_board(board_string_array)
+  def self.create_from_string_array(board_string_array)
+    side_length = Math.sqrt(board_string_array.length).to_i
+
+    board = Board.new(side_length)
+
     board_string_array.each_with_index do |token, index|
-      move(index + 1, token) if (token != "")
+      board.move(index + 1, token) if (token != "")
     end
+    
+    board
   end
 
   def get_side_length
