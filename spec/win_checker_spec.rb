@@ -4,8 +4,7 @@ require 'win_checker'
 
 describe 'has_player_won?' do
   let(:b) { Board.new(3) }
-  let(:r) { TicTacToeRules.new(3) }
-  let(:w) { WinChecker.new(r) }
+  let(:w) { WinChecker.new(3) }
 
   context 'when the top row is filled' do
     it 'returns true' do

@@ -3,6 +3,8 @@ require 'computer_player'
 require 'human_player'
 require 'io_handler'
 require 'score_tracker'
+require 'tic_tac_toe_rules'
+require 'win_checker'
 
 describe 'to_string_array' do
   let(:b) { Board.new(3) }
@@ -263,19 +265,20 @@ describe 'get_player_tokens' do
 
   context 'when 4 moves have been made (without setting the tokens)' do
     it 'returns both tokens' do
-      b.move(1, "O")
-      b.move(2, "X")
-      b.move(5, "O")
-      b.move(3, "X")
+      b.move(1, "X")
+      b.move(2, "O")
+      b.move(5, "X")
+      b.move(3, "O")
 
-      expect(b.get_player_tokens).to eq(["O", "X"])
+      expect(b.get_player_tokens).to eq(["X", "O"])
     end
   end
 
   context 'when no moves have been made (with setting the tokens)' do
     it 'returns both tokens' do
       io = IOHandler.new
-      s = ScoreTracker.new(b)
+      w = WinChecker.new(b.get_side_length)
+      s = ScoreTracker.new(w, b.get_player_tokens)
       h = HumanPlayer.new("X", io)
       c = ComputerPlayer.new("O", "X", s)
       tokens = [h.get_token, c.get_token]

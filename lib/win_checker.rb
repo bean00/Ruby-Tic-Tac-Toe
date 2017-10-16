@@ -1,7 +1,9 @@
+require_relative 'tic_tac_toe_rules'
+
 class WinChecker
 
-  def initialize(rules)
-    @rules = rules
+  def initialize(side_length)
+    @rules = TicTacToeRules.new(side_length)
     @full_sets = get_full_sets
   end
 
