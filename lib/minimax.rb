@@ -13,18 +13,18 @@ class Minimax
 
     @score_tracker.update_scores(previous_player_token, board)
 
-    current_score = @score_tracker.get_player_score(@token)
+    score = @score_tracker.get_player_score(@token)
 
     if @score_tracker.is_game_finished?
-      { move: 0, score: current_score }
+      { move: 0, score: score }
     else
       possible_moves = board.get_available_moves
 
       moves_and_scores = Hash.new
 
-      possible_moves.each_with_index { |move, i|
-        cloned_board = DeepClone.clone(board)
-        cloned_board.move(move, next_player_token) 
+      possible_moves.each { |move|
+        cloned_board = DeepClone.clone(board) 
+        cloned_board.move(move, next_player_token)
 
         score = minimax_move_and_score(cloned_board,
                                        previous_player_token)[:score]

@@ -1,6 +1,7 @@
 require 'board'
 require 'computer_player'
 require 'score_tracker'
+require 'win_checker'
 
 describe 'get_next_move' do
   context 'when the computer has taken the first position to be parsed' do
@@ -9,7 +10,8 @@ describe 'get_next_move' do
                "X", "O", "X",
                "X", "O", "X"]
       b = Board.create_from_string_array(board)
-      s = ScoreTracker.new(b)
+      w = WinChecker.new(b.get_side_length)
+      s = ScoreTracker.new(w, b.get_player_tokens)
       comp = ComputerPlayer.new("O", "X", s)
 
       expect(comp.get_next_move(b)).to eq("2")
@@ -20,7 +22,8 @@ end
 
 describe 'get_token' do
   let(:b) { Board.new(3) }
-  let(:s) { ScoreTracker.new(b) }
+  let(:w) { WinChecker.new(b.get_side_length) }
+  let(:s) { ScoreTracker.new(w, b.get_player_tokens) }
 
   context 'when the computer goes 1st' do
     it 'returns X' do

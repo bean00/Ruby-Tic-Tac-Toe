@@ -1,17 +1,12 @@
-require_relative 'tic_tac_toe_rules'
-require_relative 'win_checker'
-
 class ScoreTracker
   WIN_SCORE = 1
   LOSS_SCORE = -1
   DRAW_SCORE = 0
   INCOMPLETE_GAME = -1000000
 
-  def initialize(board)
-    @board = board
-    rules = TicTacToeRules.new(@board.get_side_length)
-    @win_checker = WinChecker.new(rules)
-    @player_tokens = @board.get_player_tokens
+  def initialize(win_checker, player_tokens)
+    @win_checker = win_checker
+    @player_tokens = player_tokens
     @player_scores = initialize_player_scores(@player_tokens)
   end
 

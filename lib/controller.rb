@@ -3,6 +3,7 @@ require_relative 'human_player'
 require_relative 'io_handler'
 require_relative 'score_tracker'
 require_relative 'view'
+require_relative 'win_checker'
 
 class Controller
 
@@ -25,7 +26,8 @@ class Controller
       is_game_finished = false
       tokens = ["X", "O"]
       @board.set_tokens_before_any_move_is_made(tokens)
-      @score_tracker = ScoreTracker.new(@board)
+      win_checker = WinChecker.new(@board.get_side_length)
+      @score_tracker = ScoreTracker.new(win_checker, @board.get_player_tokens)
 
       x_token = tokens[0]
       o_token = tokens[1]
@@ -41,7 +43,7 @@ class Controller
         player = players[player_token]
         move = play_round(player, playing_computer)
 
-        @score_tracker.update_scores(player_token)
+        @score_tracker.update_scores(player_token, @board)
         
         is_game_finished = @score_tracker.is_game_finished?
         has_quit = (move == "q")

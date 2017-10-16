@@ -1,5 +1,7 @@
 require 'board'
 require 'score_tracker'
+require 'tic_tac_toe_rules'
+require 'win_checker'
 
 WIN_SCORE = ScoreTracker::WIN_SCORE
 LOSS_SCORE = ScoreTracker::LOSS_SCORE
@@ -7,14 +9,14 @@ DRAW_SCORE = ScoreTracker::DRAW_SCORE
 INCOMPLETE_GAME = ScoreTracker::INCOMPLETE_GAME
 
 describe 'get_player_score' do
+  before(:each) do
+    @b = Board.new(3)
+    @b.set_tokens_before_any_move_is_made(["X", "O"])
+    @w = WinChecker.new(@b.get_side_length)
+    @s = ScoreTracker.new(@w, @b.get_player_tokens)
+  end
+  
   context 'when the game first starts (Player 1 is X)' do
-    before(:each) do
-      @b = Board.new(3)
-      tokens = ["X", "O"]
-      @b.set_tokens_before_any_move_is_made(tokens)
-      @s = ScoreTracker.new(@b)
-    end
-
     it 'returns incomplete game score for Player 1 (P1)' do
       expect(@s.get_player_score("X")).to eq(INCOMPLETE_GAME)
     end
@@ -29,9 +31,8 @@ describe 'get_player_score' do
       @b = Board.create_from_string_array(
         ["X", "X", "X",
          "",  "O", "",
-         "",  "O",  "" ])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("X")
+         "",  "O", ""])
+      @s.update_scores("X", @b)
     end
 
     it 'returns win score for P1' do
@@ -49,8 +50,7 @@ describe 'get_player_score' do
         ["X", "X", "O",
          "X", "O", "",
          "O", "",  "" ])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("O")
+      @s.update_scores("O", @b)
     end
 
     it 'returns win score for P2' do
@@ -68,8 +68,7 @@ describe 'get_player_score' do
         ["X", "X", "O",
          "X", "O", "",
          "",  "O", "" ])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("O")
+      @s.update_scores("O", @b)
     end
 
     it 'returns incomplete game score for P1 (X)' do
@@ -87,8 +86,7 @@ describe 'get_player_score' do
         ["X", "O", "X",
          "X", "X", "O",
          "O", "X", "O"])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("X")
+      @s.update_scores("X", @b)
     end
 
     it 'returns draw score for P1' do
@@ -106,8 +104,7 @@ describe 'get_player_score' do
         ["X", "O", "X",
          "X", "X", "O",
          "O", "O", "X"])
-      @s = ScoreTracker.new(@b)
-      @s.update_scores("X")
+      @s.update_scores("X", @b)
     end
 
     it 'returns win score for P1' do
@@ -122,10 +119,12 @@ end
 
 
 describe 'is_game_finished?' do
+  let(:b) { Board.new(3) } 
+  let(:w) { WinChecker.new(b.get_side_length) }
+  let(:s) { ScoreTracker.new(w, b.get_player_tokens) }
+  
   context 'when the game just started' do
     it 'returns false' do
-      b = Board.new(3)
-      s = ScoreTracker.new(b)
       expect(s.is_game_finished?).to eq false
     end
   end
@@ -136,8 +135,7 @@ describe 'is_game_finished?' do
         ["X", "X", "X",
          "O", "O", "",
          "",  "",  ""])
-      s = ScoreTracker.new(b)
-      s.update_scores("X")
+      s.update_scores("X", b)
 
       expect(s.is_game_finished?).to eq true
     end
@@ -149,8 +147,7 @@ describe 'is_game_finished?' do
         ["X", "X", "O",
          "X", "O", "",
          "O", "",  ""])
-      s = ScoreTracker.new(b)
-      s.update_scores("O")
+      s.update_scores("O", b)
 
       expect(s.is_game_finished?).to eq true
     end
@@ -162,8 +159,7 @@ describe 'is_game_finished?' do
         ["X", "O", "X",
          "",  "",  "",
          "",  "",  ""])
-      s = ScoreTracker.new(b)
-      s.update_scores("X")
+      s.update_scores("X", b)
 
       expect(s.is_game_finished?).to eq false
     end
@@ -175,8 +171,7 @@ describe 'is_game_finished?' do
         ["X", "O", "X",
          "X", "X", "O",
          "O", "X", "O"])
-      s = ScoreTracker.new(b)
-      s.update_scores("X")
+      s.update_scores("X", b)
 
       expect(s.is_game_finished?).to eq true
     end
@@ -188,8 +183,7 @@ describe 'is_game_finished?' do
         ["X", "O", "X",
          "X", "X", "O",
          "O", "O", "X"])
-      s = ScoreTracker.new(b)
-      s.update_scores("X")
+      s.update_scores("X", b)
 
       expect(s.is_game_finished?).to eq true
     end
@@ -199,7 +193,8 @@ end
 
 describe 'has_either_player_won?' do
   let(:b) { Board.new(3) }
-  let(:s) { ScoreTracker.new(b) }
+  let(:w) { WinChecker.new(b.get_side_length) }
+  let(:s) { ScoreTracker.new(w, b.get_player_tokens) }
   
   context 'when the game just started' do
     it 'returns false' do
@@ -212,7 +207,7 @@ describe 'has_either_player_won?' do
       b.move(1, "X")
       b.move(2, "X")
       b.move(3, "X")
-      s.update_scores("X")
+      s.update_scores("X", b)
 
       expect(s.has_either_player_won?).to eq true
     end
