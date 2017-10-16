@@ -16,6 +16,10 @@ describe 'minimax_move_and_score' do
     @m = Minimax.new("O", "X", @s)
   end
 
+  def minimax_helper(token, return_type, result)
+    expect(@m.minimax_move_and_score(@b, token)[return_type]).to eq(result)
+  end
+
   context 'when the game ended in a draw' do
     before(:each) do
       board = [ "X", "O", "X",
@@ -25,11 +29,11 @@ describe 'minimax_move_and_score' do
     end
 
     it 'returns an invalid move' do
-      expect(@m.minimax_move_and_score(@b, "O")[:move]).to eq(0)
+      minimax_helper("O", :move, 0)
     end
 
     it 'returns the draw score' do
-      expect(@m.minimax_move_and_score(@b, "O")[:score]).to eq(DRAW_SCORE)
+      minimax_helper("O", :score, DRAW_SCORE)
     end
   end
 
@@ -40,7 +44,7 @@ describe 'minimax_move_and_score' do
                 "", "", "X"]
       @b = Board.create_from_string_array(board)
 
-      expect(@m.minimax_move_and_score(@b, "O")[:score]).to eq(LOSS_SCORE)
+      minimax_helper("O", :score, LOSS_SCORE)
     end
   end
 
@@ -51,7 +55,7 @@ describe 'minimax_move_and_score' do
                 "O", "", ""]
       @b = Board.create_from_string_array(board)
 
-      expect(@m.minimax_move_and_score(@b, "X")[:score]).to eq(WIN_SCORE)
+      minimax_helper("X", :score, WIN_SCORE)
     end
   end
   
@@ -64,11 +68,11 @@ describe 'minimax_move_and_score' do
     end
 
     it 'returns the move to win' do
-      expect(@m.minimax_move_and_score(@b, "O")[:move]).to eq(3)
+      minimax_helper("O", :move, 3)
     end
 
     it 'returns the win score' do
-      expect(@m.minimax_move_and_score(@b, "O")[:score]).to eq(WIN_SCORE)
+      minimax_helper("O", :score, WIN_SCORE)
     end
   end
   
@@ -79,7 +83,7 @@ describe 'minimax_move_and_score' do
                 "X", "X", "O"]
       @b = Board.create_from_string_array(board)
 
-      expect(@m.minimax_move_and_score(@b, "O")[:move]).to eq(3)
+      minimax_helper("O", :move, 3)
     end
   end
   
@@ -90,7 +94,7 @@ describe 'minimax_move_and_score' do
                 "X", "X", ""]
       @b = Board.create_from_string_array(board)
       
-      expect(@m.minimax_move_and_score(@b, "O")[:move]).to eq(9)
+      minimax_helper("O", :move, 9)
     end
   end
 
@@ -101,7 +105,7 @@ describe 'minimax_move_and_score' do
                 "X", "", ""]
       @b = Board.create_from_string_array(board)
       
-      expect(@m.minimax_move_and_score(@b, "O")[:move]).to eq(4)
+      minimax_helper("O", :move, 4)
     end
   end
 end
