@@ -20,8 +20,7 @@ class Minimax
     else
       possible_moves = board.get_available_moves
 
-      moves = Array.new
-      scores = Array.new
+      moves_and_scores = Hash.new
 
       possible_moves.each { |move|
         cloned_board = DeepClone.clone(board) 
@@ -30,15 +29,13 @@ class Minimax
         score = minimax_move_and_score(cloned_board,
                                        previous_player_token)[:score]
 
-        moves << move
-        scores << score
+        moves_and_scores[move] = score
       }
 
+      scores = moves_and_scores.values
       score = (next_player_token == @token) ? scores.max : scores.min
 
-      index = scores.find_index(score)
-
-      next_move = moves[index]
+      next_move = moves_and_scores.key(score)
 
       { move: next_move, score: score }
     end
