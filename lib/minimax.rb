@@ -24,11 +24,10 @@ class Minimax
       scores = Array.new
 
       possible_moves.each { |move|
-        cloned_board = DeepClone.clone(board) 
+        cloned_board = DeepClone.clone(board)
         cloned_board.move(move, next_player_token)
 
-        score = minimax_move_and_score(cloned_board,
-                                       previous_player_token)[:score]
+        score = minimax_move_and_score(cloned_board, previous_player_token)[:score]
 
         moves << move
         scores << score

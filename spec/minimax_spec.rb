@@ -3,10 +3,6 @@ require 'win_checker'
 require 'score_tracker'
 require 'minimax'
 
-WIN_SCORE = ScoreTracker::WIN_SCORE
-LOSS_SCORE = ScoreTracker::LOSS_SCORE
-DRAW_SCORE = ScoreTracker::DRAW_SCORE
-
 describe 'minimax_move_and_score' do
   before(:each) do
     @b = Board.new(3)
@@ -33,7 +29,7 @@ describe 'minimax_move_and_score' do
     end
 
     it 'returns the draw score' do
-      minimax_helper("O", :score, DRAW_SCORE)
+      minimax_helper("O", :score, 0)
     end
   end
 
@@ -44,7 +40,7 @@ describe 'minimax_move_and_score' do
                 "", "", "X"]
       @b = Board.create_from_string_array(board)
 
-      minimax_helper("O", :score, LOSS_SCORE)
+      minimax_helper("O", :score, -1)
     end
   end
 
@@ -55,10 +51,10 @@ describe 'minimax_move_and_score' do
                 "O", "", ""]
       @b = Board.create_from_string_array(board)
 
-      minimax_helper("X", :score, WIN_SCORE)
+      minimax_helper("X", :score, 1)
     end
   end
-  
+
   context 'when the player can win now (1 move left)' do
     before(:each) do
       board = [ "X", "X", "",
@@ -72,10 +68,10 @@ describe 'minimax_move_and_score' do
     end
 
     it 'returns the win score' do
-      minimax_helper("O", :score, WIN_SCORE)
+      minimax_helper("O", :score, 1)
     end
   end
-  
+
   context 'when the player can win now (2 moves left)' do
     it 'returns the move to win' do
       board = [ "X", "", "",
@@ -86,14 +82,14 @@ describe 'minimax_move_and_score' do
       minimax_helper("O", :move, 3)
     end
   end
-  
+
   context "when the player can't win (2 moves left)" do
     it 'returns the move to force a draw' do
       board = [ "X", "O", "",
                 "O", "O", "X",
                 "X", "X", ""]
       @b = Board.create_from_string_array(board)
-      
+
       minimax_helper("O", :move, 9)
     end
   end
@@ -104,7 +100,7 @@ describe 'minimax_move_and_score' do
                 "", "O", "",
                 "X", "", ""]
       @b = Board.create_from_string_array(board)
-      
+
       minimax_helper("O", :move, 4)
     end
   end
