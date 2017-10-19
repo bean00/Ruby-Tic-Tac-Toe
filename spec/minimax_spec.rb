@@ -7,9 +7,9 @@ describe 'minimax_move_and_score' do
   before(:each) do
     @b = Board.new(3)
     @b.set_tokens_before_any_move_is_made(["X", "O"])
-    @w = WinChecker.new(@b.get_side_length)
-    @s = ScoreTracker.new(@w, @b.get_player_tokens)
-    @m = Minimax.new("O", "X", @s)
+    w = WinChecker.new(@b.get_side_length)
+    s = ScoreTracker.new(w, @b.get_player_tokens)
+    @m = Minimax.new("O", "X", s)
   end
 
   context 'when the game ended in a draw' do
@@ -79,7 +79,7 @@ describe 'minimax_move_and_score' do
     end
   end
 
-  context "when the player can't win (2 moves left)" do
+  context 'when the player cannot win (2 moves left)' do
     it 'returns the move to force a draw' do
       board = [ "X", "O", "",
                 "O", "O", "X",
@@ -90,7 +90,7 @@ describe 'minimax_move_and_score' do
     end
   end
 
-  context "when the player determines that it can't win" do
+  context 'when the player determines that it cannot win' do
     it 'returns the move to eventually draw' do
       board = [ "X", "", "",
                 "", "O", "",

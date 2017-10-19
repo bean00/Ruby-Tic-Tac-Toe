@@ -10,7 +10,7 @@ class Minimax
 
   def minimax_move_and_score(board, next_player_token)
     previous_player_token = (next_player_token == @token) ? @other_token : @token
-
+    
     @score_tracker.update_scores(previous_player_token, board)
 
     score = @score_tracker.get_player_score(@token)
@@ -32,7 +32,7 @@ class Minimax
         moves << move
         scores << score
       }
-
+      
       score = (next_player_token == @token) ? scores.max : scores.min
 
       index = scores.find_index(score)
